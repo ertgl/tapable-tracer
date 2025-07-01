@@ -1,0 +1,14 @@
+{
+  "name": "tapable-tracer-e2e-uml-tapable-basic",
+  "private": true,
+  "scripts": {
+    "clean": "rimraf output",
+    "codegen:uml": "node codegen-uml.mjs"
+  },
+  "files": [
+    "./package.json"
+  ],
+  "exports": {
+    "./package.json": "./package.json"
+  }
+}

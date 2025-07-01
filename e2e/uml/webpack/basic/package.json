@@ -1,0 +1,18 @@
+{
+  "name": "tapable-tracer-e2e-uml-webpack-basic",
+  "private": true,
+  "scripts": {
+    "build": "node build.mjs",
+    "clean": "rimraf output",
+    "codegen:uml": "node codegen-uml.mjs"
+  },
+  "devDependencies": {
+    "webpack": "^5.99.9"
+  },
+  "files": [
+    "./package.json"
+  ],
+  "exports": {
+    "./package.json": "./package.json"
+  }
+}

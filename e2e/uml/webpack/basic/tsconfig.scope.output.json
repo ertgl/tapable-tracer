@@ -1,0 +1,9 @@
+{
+  "extends": "../../../../tsconfig.partial.base.json",
+  "compilerOptions": {
+    "noCheck": true
+  },
+  "include": [
+    "./output/**/*"
+  ]
+}

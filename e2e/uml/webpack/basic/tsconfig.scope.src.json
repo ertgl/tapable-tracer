@@ -1,0 +1,10 @@
+{
+  "extends": "../../../../tsconfig.partial.base.json",
+  "compilerOptions": {
+    "module": "Preserve",
+    "moduleResolution": "bundler"
+  },
+  "include": [
+    "./src/**/*"
+  ]
+}
