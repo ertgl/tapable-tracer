@@ -1,0 +1,11 @@
+{
+  "files": [],
+  "references": [
+    {
+      "path": "./tsconfig.scope.output.json"
+    },
+    {
+      "path": "./tsconfig.scope.src.json"
+    }
+  ]
+}

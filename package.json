@@ -1,0 +1,2656 @@
+{
+  "name": "tapable-tracer",
+  "description": "Trace the connections and flows between tapable hooks.",
+  "version": "2.1.1",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ertgl/tapable-tracer.git"
+  },
+  "scripts": {
+    "build": "yarn build:clean && yarn build::types && yarn build::cjs && yarn build::esm && yarn exports:update",
+    "build::cjs": "babel src --config-file ./babel.config.cjs.cjs --extensions '.cjs,.cts,.js,.mjs,.mts,.ts' --ignore '**/*.d.ts' --ignore '**/__tests__/**/*' --no-copy-ignored --out-dir ./dist/cjs --out-file-extension '.cjs'",
+    "build::esm": "babel src --config-file ./babel.config.esm.cjs --extensions '.cjs,.cts,.js,.mjs,.mts,.ts' --ignore '**/*.d.ts' --ignore '**/__tests__/**/*' --no-copy-ignored --out-dir ./dist/esm --out-file-extension '.mjs'",
+    "build::types": "tsc --project ./tsconfig.output.types.json && node -e \"console.log('Successfully compiled type declaration files.')\"",
+    "build:clean": "rimraf dist",
+    "changeset:add": "changeset",
+    "changeset:tag": "changeset tag",
+    "changeset:version": "changeset version",
+    "check": "yarn lint && yarn test",
+    "clean": "yarn build:clean",
+    "commitlint": "commitlint --config ./commitlint.config.mjs",
+    "commitlint:lint::edit": "yarn commitlint --edit",
+    "commitlint:lint::last": "yarn commitlint --last --verbose",
+    "e2e:prepare": "yarn e2e:yarn prepare",
+    "e2e:yarn": "yarn --cwd ./e2e",
+    "exports:inspect": "export-map-generator --dry-run generate --stdout",
+    "exports:update": "export-map-generator generate && node -e \"console.log('Successfully updated package exports.')\"",
+    "eslint:lint": "eslint --config ./eslint.config.mjs",
+    "eslint:lint::fix": "yarn eslint:lint --fix",
+    "format": "yarn lint::fix",
+    "git:push::tags": "git push --follow-tags",
+    "husky:prepare": "husky",
+    "jest:test": "node --disable-warning=ExperimentalWarning --experimental-vm-modules $(yarn bin jest)",
+    "lint": "yarn eslint:lint",
+    "lint::fix": "yarn eslint:lint::fix",
+    "prepare": "yarn husky:prepare",
+    "release": "yarn changeset:tag && yarn git:push::tags",
+    "test": "yarn jest:test",
+    "version": "yarn changeset:version"
+  },
+  "packageManager": "yarn@4.7.0",
+  "devDependencies": {
+    "@babel/cli": "^7.27.2",
+    "@babel/core": "^7.27.7",
+    "@babel/preset-env": "^7.27.2",
+    "@babel/preset-typescript": "^7.27.1",
+    "@changesets/cli": "^2.29.5",
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "@cspell/dict-bash": "^4.2.0",
+    "@cspell/dict-css": "^4.0.17",
+    "@cspell/dict-en-common-misspellings": "^2.1.2",
+    "@cspell/dict-en-gb": "^5.0.8",
+    "@cspell/dict-en_us": "^4.4.13",
+    "@cspell/dict-filetypes": "^3.0.12",
+    "@cspell/dict-git": "^3.0.6",
+    "@cspell/dict-html": "^4.0.11",
+    "@cspell/dict-html-symbol-entities": "^4.0.3",
+    "@cspell/dict-markdown": "^2.0.11",
+    "@cspell/dict-node": "^5.0.7",
+    "@cspell/dict-npm": "^5.2.9",
+    "@cspell/dict-shell": "^1.1.0",
+    "@cspell/dict-typescript": "^3.2.2",
+    "@cspell/eslint-plugin": "^9.1.2",
+    "@eslint/js": "^9.30.1",
+    "@eslint/json": "^0.12.0",
+    "@eslint/markdown": "^6.6.0",
+    "@stylistic/eslint-plugin": "^5.1.0",
+    "@types/babel__core": "^7.20.5",
+    "@types/babel__preset-env": "^7.10.0",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^24.0.10",
+    "babel-jest": "^30.0.2",
+    "babel-plugin-transform-import-source": "^2.1.0",
+    "eslint": "^9.30.1",
+    "eslint-plugin-jest": "^29.0.1",
+    "eslint-plugin-perfectionist": "^4.15.0",
+    "eslint-plugin-yml": "^1.18.0",
+    "export-map-generator": "^2.1.1",
+    "fast-glob": "^3.3.3",
+    "globals": "^16.3.0",
+    "husky": "^9.1.7",
+    "jest": "^30.0.3",
+    "rimraf": "^6.0.1",
+    "tapable": "^2.2.2",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.35.1",
+    "webpack": "^5.99.9"
+  },
+  "peerDependencies": {
+    "tapable": "*",
+    "webpack": "*"
+  },
+  "peerDependenciesMeta": {
+    "tapable": {
+      "optional": true
+    },
+    "webpack": {
+      "optional": true
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "type": "module",
+  "main": "./dist/cjs/index.cjs",
+  "module": "./dist/esm/index.mjs",
+  "types": "./dist/types/index.d.ts",
+  "files": [
+    "./dist/",
+    "./LICENSE",
+    "./README.md",
+    "./package.json"
+  ],
+  "exports": {
+    "./extensions/mermaid/index.cjs": {
+      "types": "./dist/types/extensions/mermaid/index.d.ts",
+      "import": "./dist/esm/extensions/mermaid/index.mjs",
+      "require": "./dist/cjs/extensions/mermaid/index.cjs",
+      "default": "./src/extensions/mermaid/index.ts"
+    },
+    "./extensions/mermaid/index.d.ts": {
+      "types": "./dist/types/extensions/mermaid/index.d.ts",
+      "default": "./src/extensions/mermaid/index.ts"
+    },
+    "./extensions/mermaid/index.js": {
+      "types": "./dist/types/extensions/mermaid/index.d.ts",
+      "import": "./dist/esm/extensions/mermaid/index.mjs",
+      "require": "./dist/cjs/extensions/mermaid/index.cjs",
+      "default": "./src/extensions/mermaid/index.ts"
+    },
+    "./extensions/mermaid/index.mjs": {
+      "types": "./dist/types/extensions/mermaid/index.d.ts",
+      "import": "./dist/esm/extensions/mermaid/index.mjs",
+      "require": "./dist/cjs/extensions/mermaid/index.cjs",
+      "default": "./src/extensions/mermaid/index.ts"
+    },
+    "./extensions/mermaid/index": {
+      "types": "./dist/types/extensions/mermaid/index.d.ts",
+      "import": "./dist/esm/extensions/mermaid/index.mjs",
+      "require": "./dist/cjs/extensions/mermaid/index.cjs",
+      "default": "./src/extensions/mermaid/index.ts"
+    },
+    "./extensions/mermaid/labels/LABEL_ROOT.cjs": {
+      "types": "./dist/types/extensions/mermaid/labels/LABEL_ROOT.d.ts",
+      "import": "./dist/esm/extensions/mermaid/labels/LABEL_ROOT.mjs",
+      "require": "./dist/cjs/extensions/mermaid/labels/LABEL_ROOT.cjs",
+      "default": "./src/extensions/mermaid/labels/LABEL_ROOT.ts"
+    },
+    "./extensions/mermaid/labels/LABEL_ROOT.d.ts": {
+      "types": "./dist/types/extensions/mermaid/labels/LABEL_ROOT.d.ts",
+      "default": "./src/extensions/mermaid/labels/LABEL_ROOT.ts"
+    },
+    "./extensions/mermaid/labels/LABEL_ROOT.js": {
+      "types": "./dist/types/extensions/mermaid/labels/LABEL_ROOT.d.ts",
+      "import": "./dist/esm/extensions/mermaid/labels/LABEL_ROOT.mjs",
+      "require": "./dist/cjs/extensions/mermaid/labels/LABEL_ROOT.cjs",
+      "default": "./src/extensions/mermaid/labels/LABEL_ROOT.ts"
+    },
+    "./extensions/mermaid/labels/LABEL_ROOT.mjs": {
+      "types": "./dist/types/extensions/mermaid/labels/LABEL_ROOT.d.ts",
+      "import": "./dist/esm/extensions/mermaid/labels/LABEL_ROOT.mjs",
+      "require": "./dist/cjs/extensions/mermaid/labels/LABEL_ROOT.cjs",
+      "default": "./src/extensions/mermaid/labels/LABEL_ROOT.ts"
+    },
+    "./extensions/mermaid/labels/LABEL_ROOT": {
+      "types": "./dist/types/extensions/mermaid/labels/LABEL_ROOT.d.ts",
+      "import": "./dist/esm/extensions/mermaid/labels/LABEL_ROOT.mjs",
+      "require": "./dist/cjs/extensions/mermaid/labels/LABEL_ROOT.cjs",
+      "default": "./src/extensions/mermaid/labels/LABEL_ROOT.ts"
+    },
+    "./extensions/mermaid/labels/index.cjs": {
+      "types": "./dist/types/extensions/mermaid/labels/index.d.ts",
+      "import": "./dist/esm/extensions/mermaid/labels/index.mjs",
+      "require": "./dist/cjs/extensions/mermaid/labels/index.cjs",
+      "default": "./src/extensions/mermaid/labels/index.ts"
+    },
+    "./extensions/mermaid/labels/index.d.ts": {
+      "types": "./dist/types/extensions/mermaid/labels/index.d.ts",
+      "default": "./src/extensions/mermaid/labels/index.ts"
+    },
+    "./extensions/mermaid/labels/index.js": {
+      "types": "./dist/types/extensions/mermaid/labels/index.d.ts",
+      "import": "./dist/esm/extensions/mermaid/labels/index.mjs",
+      "require": "./dist/cjs/extensions/mermaid/labels/index.cjs",
+      "default": "./src/extensions/mermaid/labels/index.ts"
+    },
+    "./extensions/mermaid/labels/index.mjs": {
+      "types": "./dist/types/extensions/mermaid/labels/index.d.ts",
+      "import": "./dist/esm/extensions/mermaid/labels/index.mjs",
+      "require": "./dist/cjs/extensions/mermaid/labels/index.cjs",
+      "default": "./src/extensions/mermaid/labels/index.ts"
+    },
+    "./extensions/mermaid/labels/index": {
+      "types": "./dist/types/extensions/mermaid/labels/index.d.ts",
+      "import": "./dist/esm/extensions/mermaid/labels/index.mjs",
+      "require": "./dist/cjs/extensions/mermaid/labels/index.cjs",
+      "default": "./src/extensions/mermaid/labels/index.ts"
+    },
+    "./extensions/mermaid/labels": {
+      "types": "./dist/types/extensions/mermaid/labels/index.d.ts",
+      "import": "./dist/esm/extensions/mermaid/labels/index.mjs",
+      "require": "./dist/cjs/extensions/mermaid/labels/index.cjs",
+      "default": "./src/extensions/mermaid/labels/index.ts"
+    },
+    "./extensions/mermaid/uml/codegen/generateMermaidUML.cjs": {
+      "types": "./dist/types/extensions/mermaid/uml/codegen/generateMermaidUML.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/codegen/generateMermaidUML.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/codegen/generateMermaidUML.cjs",
+      "default": "./src/extensions/mermaid/uml/codegen/generateMermaidUML.ts"
+    },
+    "./extensions/mermaid/uml/codegen/generateMermaidUML.d.ts": {
+      "types": "./dist/types/extensions/mermaid/uml/codegen/generateMermaidUML.d.ts",
+      "default": "./src/extensions/mermaid/uml/codegen/generateMermaidUML.ts"
+    },
+    "./extensions/mermaid/uml/codegen/generateMermaidUML.js": {
+      "types": "./dist/types/extensions/mermaid/uml/codegen/generateMermaidUML.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/codegen/generateMermaidUML.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/codegen/generateMermaidUML.cjs",
+      "default": "./src/extensions/mermaid/uml/codegen/generateMermaidUML.ts"
+    },
+    "./extensions/mermaid/uml/codegen/generateMermaidUML.mjs": {
+      "types": "./dist/types/extensions/mermaid/uml/codegen/generateMermaidUML.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/codegen/generateMermaidUML.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/codegen/generateMermaidUML.cjs",
+      "default": "./src/extensions/mermaid/uml/codegen/generateMermaidUML.ts"
+    },
+    "./extensions/mermaid/uml/codegen/generateMermaidUML": {
+      "types": "./dist/types/extensions/mermaid/uml/codegen/generateMermaidUML.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/codegen/generateMermaidUML.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/codegen/generateMermaidUML.cjs",
+      "default": "./src/extensions/mermaid/uml/codegen/generateMermaidUML.ts"
+    },
+    "./extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForCallFrame.cjs": {
+      "types": "./dist/types/extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForCallFrame.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForCallFrame.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForCallFrame.cjs",
+      "default": "./src/extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForCallFrame.ts"
+    },
+    "./extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForCallFrame.d.ts": {
+      "types": "./dist/types/extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForCallFrame.d.ts",
+      "default": "./src/extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForCallFrame.ts"
+    },
+    "./extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForCallFrame.js": {
+      "types": "./dist/types/extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForCallFrame.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForCallFrame.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForCallFrame.cjs",
+      "default": "./src/extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForCallFrame.ts"
+    },
+    "./extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForCallFrame.mjs": {
+      "types": "./dist/types/extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForCallFrame.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForCallFrame.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForCallFrame.cjs",
+      "default": "./src/extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForCallFrame.ts"
+    },
+    "./extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForCallFrame": {
+      "types": "./dist/types/extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForCallFrame.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForCallFrame.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForCallFrame.cjs",
+      "default": "./src/extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForCallFrame.ts"
+    },
+    "./extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForStackFrame.cjs": {
+      "types": "./dist/types/extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForStackFrame.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForStackFrame.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForStackFrame.cjs",
+      "default": "./src/extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForStackFrame.ts"
+    },
+    "./extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForStackFrame.d.ts": {
+      "types": "./dist/types/extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForStackFrame.d.ts",
+      "default": "./src/extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForStackFrame.ts"
+    },
+    "./extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForStackFrame.js": {
+      "types": "./dist/types/extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForStackFrame.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForStackFrame.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForStackFrame.cjs",
+      "default": "./src/extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForStackFrame.ts"
+    },
+    "./extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForStackFrame.mjs": {
+      "types": "./dist/types/extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForStackFrame.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForStackFrame.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForStackFrame.cjs",
+      "default": "./src/extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForStackFrame.ts"
+    },
+    "./extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForStackFrame": {
+      "types": "./dist/types/extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForStackFrame.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForStackFrame.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForStackFrame.cjs",
+      "default": "./src/extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForStackFrame.ts"
+    },
+    "./extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForTapFrame.cjs": {
+      "types": "./dist/types/extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForTapFrame.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForTapFrame.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForTapFrame.cjs",
+      "default": "./src/extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForTapFrame.ts"
+    },
+    "./extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForTapFrame.d.ts": {
+      "types": "./dist/types/extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForTapFrame.d.ts",
+      "default": "./src/extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForTapFrame.ts"
+    },
+    "./extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForTapFrame.js": {
+      "types": "./dist/types/extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForTapFrame.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForTapFrame.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForTapFrame.cjs",
+      "default": "./src/extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForTapFrame.ts"
+    },
+    "./extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForTapFrame.mjs": {
+      "types": "./dist/types/extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForTapFrame.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForTapFrame.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForTapFrame.cjs",
+      "default": "./src/extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForTapFrame.ts"
+    },
+    "./extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForTapFrame": {
+      "types": "./dist/types/extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForTapFrame.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForTapFrame.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForTapFrame.cjs",
+      "default": "./src/extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForTapFrame.ts"
+    },
+    "./extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForTriggerFrame.cjs": {
+      "types": "./dist/types/extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForTriggerFrame.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForTriggerFrame.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForTriggerFrame.cjs",
+      "default": "./src/extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForTriggerFrame.ts"
+    },
+    "./extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForTriggerFrame.d.ts": {
+      "types": "./dist/types/extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForTriggerFrame.d.ts",
+      "default": "./src/extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForTriggerFrame.ts"
+    },
+    "./extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForTriggerFrame.js": {
+      "types": "./dist/types/extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForTriggerFrame.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForTriggerFrame.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForTriggerFrame.cjs",
+      "default": "./src/extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForTriggerFrame.ts"
+    },
+    "./extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForTriggerFrame.mjs": {
+      "types": "./dist/types/extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForTriggerFrame.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForTriggerFrame.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForTriggerFrame.cjs",
+      "default": "./src/extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForTriggerFrame.ts"
+    },
+    "./extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForTriggerFrame": {
+      "types": "./dist/types/extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForTriggerFrame.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForTriggerFrame.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForTriggerFrame.cjs",
+      "default": "./src/extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForTriggerFrame.ts"
+    },
+    "./extensions/mermaid/uml/codegen/graph-edge/index.cjs": {
+      "types": "./dist/types/extensions/mermaid/uml/codegen/graph-edge/index.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/codegen/graph-edge/index.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/codegen/graph-edge/index.cjs",
+      "default": "./src/extensions/mermaid/uml/codegen/graph-edge/index.ts"
+    },
+    "./extensions/mermaid/uml/codegen/graph-edge/index.d.ts": {
+      "types": "./dist/types/extensions/mermaid/uml/codegen/graph-edge/index.d.ts",
+      "default": "./src/extensions/mermaid/uml/codegen/graph-edge/index.ts"
+    },
+    "./extensions/mermaid/uml/codegen/graph-edge/index.js": {
+      "types": "./dist/types/extensions/mermaid/uml/codegen/graph-edge/index.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/codegen/graph-edge/index.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/codegen/graph-edge/index.cjs",
+      "default": "./src/extensions/mermaid/uml/codegen/graph-edge/index.ts"
+    },
+    "./extensions/mermaid/uml/codegen/graph-edge/index.mjs": {
+      "types": "./dist/types/extensions/mermaid/uml/codegen/graph-edge/index.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/codegen/graph-edge/index.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/codegen/graph-edge/index.cjs",
+      "default": "./src/extensions/mermaid/uml/codegen/graph-edge/index.ts"
+    },
+    "./extensions/mermaid/uml/codegen/graph-edge/index": {
+      "types": "./dist/types/extensions/mermaid/uml/codegen/graph-edge/index.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/codegen/graph-edge/index.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/codegen/graph-edge/index.cjs",
+      "default": "./src/extensions/mermaid/uml/codegen/graph-edge/index.ts"
+    },
+    "./extensions/mermaid/uml/codegen/graph-edge": {
+      "types": "./dist/types/extensions/mermaid/uml/codegen/graph-edge/index.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/codegen/graph-edge/index.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/codegen/graph-edge/index.cjs",
+      "default": "./src/extensions/mermaid/uml/codegen/graph-edge/index.ts"
+    },
+    "./extensions/mermaid/uml/codegen/graph/generateMermaidGraphForFrames.cjs": {
+      "types": "./dist/types/extensions/mermaid/uml/codegen/graph/generateMermaidGraphForFrames.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/codegen/graph/generateMermaidGraphForFrames.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/codegen/graph/generateMermaidGraphForFrames.cjs",
+      "default": "./src/extensions/mermaid/uml/codegen/graph/generateMermaidGraphForFrames.ts"
+    },
+    "./extensions/mermaid/uml/codegen/graph/generateMermaidGraphForFrames.d.ts": {
+      "types": "./dist/types/extensions/mermaid/uml/codegen/graph/generateMermaidGraphForFrames.d.ts",
+      "default": "./src/extensions/mermaid/uml/codegen/graph/generateMermaidGraphForFrames.ts"
+    },
+    "./extensions/mermaid/uml/codegen/graph/generateMermaidGraphForFrames.js": {
+      "types": "./dist/types/extensions/mermaid/uml/codegen/graph/generateMermaidGraphForFrames.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/codegen/graph/generateMermaidGraphForFrames.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/codegen/graph/generateMermaidGraphForFrames.cjs",
+      "default": "./src/extensions/mermaid/uml/codegen/graph/generateMermaidGraphForFrames.ts"
+    },
+    "./extensions/mermaid/uml/codegen/graph/generateMermaidGraphForFrames.mjs": {
+      "types": "./dist/types/extensions/mermaid/uml/codegen/graph/generateMermaidGraphForFrames.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/codegen/graph/generateMermaidGraphForFrames.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/codegen/graph/generateMermaidGraphForFrames.cjs",
+      "default": "./src/extensions/mermaid/uml/codegen/graph/generateMermaidGraphForFrames.ts"
+    },
+    "./extensions/mermaid/uml/codegen/graph/generateMermaidGraphForFrames": {
+      "types": "./dist/types/extensions/mermaid/uml/codegen/graph/generateMermaidGraphForFrames.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/codegen/graph/generateMermaidGraphForFrames.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/codegen/graph/generateMermaidGraphForFrames.cjs",
+      "default": "./src/extensions/mermaid/uml/codegen/graph/generateMermaidGraphForFrames.ts"
+    },
+    "./extensions/mermaid/uml/codegen/graph/index.cjs": {
+      "types": "./dist/types/extensions/mermaid/uml/codegen/graph/index.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/codegen/graph/index.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/codegen/graph/index.cjs",
+      "default": "./src/extensions/mermaid/uml/codegen/graph/index.ts"
+    },
+    "./extensions/mermaid/uml/codegen/graph/index.d.ts": {
+      "types": "./dist/types/extensions/mermaid/uml/codegen/graph/index.d.ts",
+      "default": "./src/extensions/mermaid/uml/codegen/graph/index.ts"
+    },
+    "./extensions/mermaid/uml/codegen/graph/index.js": {
+      "types": "./dist/types/extensions/mermaid/uml/codegen/graph/index.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/codegen/graph/index.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/codegen/graph/index.cjs",
+      "default": "./src/extensions/mermaid/uml/codegen/graph/index.ts"
+    },
+    "./extensions/mermaid/uml/codegen/graph/index.mjs": {
+      "types": "./dist/types/extensions/mermaid/uml/codegen/graph/index.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/codegen/graph/index.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/codegen/graph/index.cjs",
+      "default": "./src/extensions/mermaid/uml/codegen/graph/index.ts"
+    },
+    "./extensions/mermaid/uml/codegen/graph/index": {
+      "types": "./dist/types/extensions/mermaid/uml/codegen/graph/index.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/codegen/graph/index.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/codegen/graph/index.cjs",
+      "default": "./src/extensions/mermaid/uml/codegen/graph/index.ts"
+    },
+    "./extensions/mermaid/uml/codegen/graph/state/MermaidGraphCodeGenState.cjs": {
+      "types": "./dist/types/extensions/mermaid/uml/codegen/graph/state/MermaidGraphCodeGenState.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/codegen/graph/state/MermaidGraphCodeGenState.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/codegen/graph/state/MermaidGraphCodeGenState.cjs",
+      "default": "./src/extensions/mermaid/uml/codegen/graph/state/MermaidGraphCodeGenState.ts"
+    },
+    "./extensions/mermaid/uml/codegen/graph/state/MermaidGraphCodeGenState.d.ts": {
+      "types": "./dist/types/extensions/mermaid/uml/codegen/graph/state/MermaidGraphCodeGenState.d.ts",
+      "default": "./src/extensions/mermaid/uml/codegen/graph/state/MermaidGraphCodeGenState.ts"
+    },
+    "./extensions/mermaid/uml/codegen/graph/state/MermaidGraphCodeGenState.js": {
+      "types": "./dist/types/extensions/mermaid/uml/codegen/graph/state/MermaidGraphCodeGenState.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/codegen/graph/state/MermaidGraphCodeGenState.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/codegen/graph/state/MermaidGraphCodeGenState.cjs",
+      "default": "./src/extensions/mermaid/uml/codegen/graph/state/MermaidGraphCodeGenState.ts"
+    },
+    "./extensions/mermaid/uml/codegen/graph/state/MermaidGraphCodeGenState.mjs": {
+      "types": "./dist/types/extensions/mermaid/uml/codegen/graph/state/MermaidGraphCodeGenState.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/codegen/graph/state/MermaidGraphCodeGenState.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/codegen/graph/state/MermaidGraphCodeGenState.cjs",
+      "default": "./src/extensions/mermaid/uml/codegen/graph/state/MermaidGraphCodeGenState.ts"
+    },
+    "./extensions/mermaid/uml/codegen/graph/state/MermaidGraphCodeGenState": {
+      "types": "./dist/types/extensions/mermaid/uml/codegen/graph/state/MermaidGraphCodeGenState.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/codegen/graph/state/MermaidGraphCodeGenState.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/codegen/graph/state/MermaidGraphCodeGenState.cjs",
+      "default": "./src/extensions/mermaid/uml/codegen/graph/state/MermaidGraphCodeGenState.ts"
+    },
+    "./extensions/mermaid/uml/codegen/graph/state/createMermaidGraphCodeGenState.cjs": {
+      "types": "./dist/types/extensions/mermaid/uml/codegen/graph/state/createMermaidGraphCodeGenState.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/codegen/graph/state/createMermaidGraphCodeGenState.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/codegen/graph/state/createMermaidGraphCodeGenState.cjs",
+      "default": "./src/extensions/mermaid/uml/codegen/graph/state/createMermaidGraphCodeGenState.ts"
+    },
+    "./extensions/mermaid/uml/codegen/graph/state/createMermaidGraphCodeGenState.d.ts": {
+      "types": "./dist/types/extensions/mermaid/uml/codegen/graph/state/createMermaidGraphCodeGenState.d.ts",
+      "default": "./src/extensions/mermaid/uml/codegen/graph/state/createMermaidGraphCodeGenState.ts"
+    },
+    "./extensions/mermaid/uml/codegen/graph/state/createMermaidGraphCodeGenState.js": {
+      "types": "./dist/types/extensions/mermaid/uml/codegen/graph/state/createMermaidGraphCodeGenState.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/codegen/graph/state/createMermaidGraphCodeGenState.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/codegen/graph/state/createMermaidGraphCodeGenState.cjs",
+      "default": "./src/extensions/mermaid/uml/codegen/graph/state/createMermaidGraphCodeGenState.ts"
+    },
+    "./extensions/mermaid/uml/codegen/graph/state/createMermaidGraphCodeGenState.mjs": {
+      "types": "./dist/types/extensions/mermaid/uml/codegen/graph/state/createMermaidGraphCodeGenState.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/codegen/graph/state/createMermaidGraphCodeGenState.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/codegen/graph/state/createMermaidGraphCodeGenState.cjs",
+      "default": "./src/extensions/mermaid/uml/codegen/graph/state/createMermaidGraphCodeGenState.ts"
+    },
+    "./extensions/mermaid/uml/codegen/graph/state/createMermaidGraphCodeGenState": {
+      "types": "./dist/types/extensions/mermaid/uml/codegen/graph/state/createMermaidGraphCodeGenState.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/codegen/graph/state/createMermaidGraphCodeGenState.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/codegen/graph/state/createMermaidGraphCodeGenState.cjs",
+      "default": "./src/extensions/mermaid/uml/codegen/graph/state/createMermaidGraphCodeGenState.ts"
+    },
+    "./extensions/mermaid/uml/codegen/graph/state/index.cjs": {
+      "types": "./dist/types/extensions/mermaid/uml/codegen/graph/state/index.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/codegen/graph/state/index.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/codegen/graph/state/index.cjs",
+      "default": "./src/extensions/mermaid/uml/codegen/graph/state/index.ts"
+    },
+    "./extensions/mermaid/uml/codegen/graph/state/index.d.ts": {
+      "types": "./dist/types/extensions/mermaid/uml/codegen/graph/state/index.d.ts",
+      "default": "./src/extensions/mermaid/uml/codegen/graph/state/index.ts"
+    },
+    "./extensions/mermaid/uml/codegen/graph/state/index.js": {
+      "types": "./dist/types/extensions/mermaid/uml/codegen/graph/state/index.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/codegen/graph/state/index.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/codegen/graph/state/index.cjs",
+      "default": "./src/extensions/mermaid/uml/codegen/graph/state/index.ts"
+    },
+    "./extensions/mermaid/uml/codegen/graph/state/index.mjs": {
+      "types": "./dist/types/extensions/mermaid/uml/codegen/graph/state/index.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/codegen/graph/state/index.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/codegen/graph/state/index.cjs",
+      "default": "./src/extensions/mermaid/uml/codegen/graph/state/index.ts"
+    },
+    "./extensions/mermaid/uml/codegen/graph/state/index": {
+      "types": "./dist/types/extensions/mermaid/uml/codegen/graph/state/index.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/codegen/graph/state/index.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/codegen/graph/state/index.cjs",
+      "default": "./src/extensions/mermaid/uml/codegen/graph/state/index.ts"
+    },
+    "./extensions/mermaid/uml/codegen/graph/state": {
+      "types": "./dist/types/extensions/mermaid/uml/codegen/graph/state/index.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/codegen/graph/state/index.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/codegen/graph/state/index.cjs",
+      "default": "./src/extensions/mermaid/uml/codegen/graph/state/index.ts"
+    },
+    "./extensions/mermaid/uml/codegen/graph": {
+      "types": "./dist/types/extensions/mermaid/uml/codegen/graph/index.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/codegen/graph/index.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/codegen/graph/index.cjs",
+      "default": "./src/extensions/mermaid/uml/codegen/graph/index.ts"
+    },
+    "./extensions/mermaid/uml/codegen/index.cjs": {
+      "types": "./dist/types/extensions/mermaid/uml/codegen/index.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/codegen/index.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/codegen/index.cjs",
+      "default": "./src/extensions/mermaid/uml/codegen/index.ts"
+    },
+    "./extensions/mermaid/uml/codegen/index.d.ts": {
+      "types": "./dist/types/extensions/mermaid/uml/codegen/index.d.ts",
+      "default": "./src/extensions/mermaid/uml/codegen/index.ts"
+    },
+    "./extensions/mermaid/uml/codegen/index.js": {
+      "types": "./dist/types/extensions/mermaid/uml/codegen/index.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/codegen/index.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/codegen/index.cjs",
+      "default": "./src/extensions/mermaid/uml/codegen/index.ts"
+    },
+    "./extensions/mermaid/uml/codegen/index.mjs": {
+      "types": "./dist/types/extensions/mermaid/uml/codegen/index.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/codegen/index.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/codegen/index.cjs",
+      "default": "./src/extensions/mermaid/uml/codegen/index.ts"
+    },
+    "./extensions/mermaid/uml/codegen/index": {
+      "types": "./dist/types/extensions/mermaid/uml/codegen/index.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/codegen/index.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/codegen/index.cjs",
+      "default": "./src/extensions/mermaid/uml/codegen/index.ts"
+    },
+    "./extensions/mermaid/uml/codegen": {
+      "types": "./dist/types/extensions/mermaid/uml/codegen/index.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/codegen/index.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/codegen/index.cjs",
+      "default": "./src/extensions/mermaid/uml/codegen/index.ts"
+    },
+    "./extensions/mermaid/uml/index.cjs": {
+      "types": "./dist/types/extensions/mermaid/uml/index.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/index.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/index.cjs",
+      "default": "./src/extensions/mermaid/uml/index.ts"
+    },
+    "./extensions/mermaid/uml/index.d.ts": {
+      "types": "./dist/types/extensions/mermaid/uml/index.d.ts",
+      "default": "./src/extensions/mermaid/uml/index.ts"
+    },
+    "./extensions/mermaid/uml/index.js": {
+      "types": "./dist/types/extensions/mermaid/uml/index.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/index.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/index.cjs",
+      "default": "./src/extensions/mermaid/uml/index.ts"
+    },
+    "./extensions/mermaid/uml/index.mjs": {
+      "types": "./dist/types/extensions/mermaid/uml/index.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/index.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/index.cjs",
+      "default": "./src/extensions/mermaid/uml/index.ts"
+    },
+    "./extensions/mermaid/uml/index": {
+      "types": "./dist/types/extensions/mermaid/uml/index.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/index.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/index.cjs",
+      "default": "./src/extensions/mermaid/uml/index.ts"
+    },
+    "./extensions/mermaid/uml/lexemes/CONFIG_ELK.cjs": {
+      "types": "./dist/types/extensions/mermaid/uml/lexemes/CONFIG_ELK.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/lexemes/CONFIG_ELK.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/lexemes/CONFIG_ELK.cjs",
+      "default": "./src/extensions/mermaid/uml/lexemes/CONFIG_ELK.ts"
+    },
+    "./extensions/mermaid/uml/lexemes/CONFIG_ELK.d.ts": {
+      "types": "./dist/types/extensions/mermaid/uml/lexemes/CONFIG_ELK.d.ts",
+      "default": "./src/extensions/mermaid/uml/lexemes/CONFIG_ELK.ts"
+    },
+    "./extensions/mermaid/uml/lexemes/CONFIG_ELK.js": {
+      "types": "./dist/types/extensions/mermaid/uml/lexemes/CONFIG_ELK.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/lexemes/CONFIG_ELK.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/lexemes/CONFIG_ELK.cjs",
+      "default": "./src/extensions/mermaid/uml/lexemes/CONFIG_ELK.ts"
+    },
+    "./extensions/mermaid/uml/lexemes/CONFIG_ELK.mjs": {
+      "types": "./dist/types/extensions/mermaid/uml/lexemes/CONFIG_ELK.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/lexemes/CONFIG_ELK.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/lexemes/CONFIG_ELK.cjs",
+      "default": "./src/extensions/mermaid/uml/lexemes/CONFIG_ELK.ts"
+    },
+    "./extensions/mermaid/uml/lexemes/CONFIG_ELK": {
+      "types": "./dist/types/extensions/mermaid/uml/lexemes/CONFIG_ELK.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/lexemes/CONFIG_ELK.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/lexemes/CONFIG_ELK.cjs",
+      "default": "./src/extensions/mermaid/uml/lexemes/CONFIG_ELK.ts"
+    },
+    "./extensions/mermaid/uml/lexemes/GRAPH_HEADER.cjs": {
+      "types": "./dist/types/extensions/mermaid/uml/lexemes/GRAPH_HEADER.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/lexemes/GRAPH_HEADER.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/lexemes/GRAPH_HEADER.cjs",
+      "default": "./src/extensions/mermaid/uml/lexemes/GRAPH_HEADER.ts"
+    },
+    "./extensions/mermaid/uml/lexemes/GRAPH_HEADER.d.ts": {
+      "types": "./dist/types/extensions/mermaid/uml/lexemes/GRAPH_HEADER.d.ts",
+      "default": "./src/extensions/mermaid/uml/lexemes/GRAPH_HEADER.ts"
+    },
+    "./extensions/mermaid/uml/lexemes/GRAPH_HEADER.js": {
+      "types": "./dist/types/extensions/mermaid/uml/lexemes/GRAPH_HEADER.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/lexemes/GRAPH_HEADER.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/lexemes/GRAPH_HEADER.cjs",
+      "default": "./src/extensions/mermaid/uml/lexemes/GRAPH_HEADER.ts"
+    },
+    "./extensions/mermaid/uml/lexemes/GRAPH_HEADER.mjs": {
+      "types": "./dist/types/extensions/mermaid/uml/lexemes/GRAPH_HEADER.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/lexemes/GRAPH_HEADER.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/lexemes/GRAPH_HEADER.cjs",
+      "default": "./src/extensions/mermaid/uml/lexemes/GRAPH_HEADER.ts"
+    },
+    "./extensions/mermaid/uml/lexemes/GRAPH_HEADER_LINE.cjs": {
+      "types": "./dist/types/extensions/mermaid/uml/lexemes/GRAPH_HEADER_LINE.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/lexemes/GRAPH_HEADER_LINE.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/lexemes/GRAPH_HEADER_LINE.cjs",
+      "default": "./src/extensions/mermaid/uml/lexemes/GRAPH_HEADER_LINE.ts"
+    },
+    "./extensions/mermaid/uml/lexemes/GRAPH_HEADER_LINE.d.ts": {
+      "types": "./dist/types/extensions/mermaid/uml/lexemes/GRAPH_HEADER_LINE.d.ts",
+      "default": "./src/extensions/mermaid/uml/lexemes/GRAPH_HEADER_LINE.ts"
+    },
+    "./extensions/mermaid/uml/lexemes/GRAPH_HEADER_LINE.js": {
+      "types": "./dist/types/extensions/mermaid/uml/lexemes/GRAPH_HEADER_LINE.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/lexemes/GRAPH_HEADER_LINE.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/lexemes/GRAPH_HEADER_LINE.cjs",
+      "default": "./src/extensions/mermaid/uml/lexemes/GRAPH_HEADER_LINE.ts"
+    },
+    "./extensions/mermaid/uml/lexemes/GRAPH_HEADER_LINE.mjs": {
+      "types": "./dist/types/extensions/mermaid/uml/lexemes/GRAPH_HEADER_LINE.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/lexemes/GRAPH_HEADER_LINE.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/lexemes/GRAPH_HEADER_LINE.cjs",
+      "default": "./src/extensions/mermaid/uml/lexemes/GRAPH_HEADER_LINE.ts"
+    },
+    "./extensions/mermaid/uml/lexemes/GRAPH_HEADER_LINE": {
+      "types": "./dist/types/extensions/mermaid/uml/lexemes/GRAPH_HEADER_LINE.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/lexemes/GRAPH_HEADER_LINE.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/lexemes/GRAPH_HEADER_LINE.cjs",
+      "default": "./src/extensions/mermaid/uml/lexemes/GRAPH_HEADER_LINE.ts"
+    },
+    "./extensions/mermaid/uml/lexemes/GRAPH_HEADER": {
+      "types": "./dist/types/extensions/mermaid/uml/lexemes/GRAPH_HEADER.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/lexemes/GRAPH_HEADER.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/lexemes/GRAPH_HEADER.cjs",
+      "default": "./src/extensions/mermaid/uml/lexemes/GRAPH_HEADER.ts"
+    },
+    "./extensions/mermaid/uml/lexemes/INDENT.cjs": {
+      "types": "./dist/types/extensions/mermaid/uml/lexemes/INDENT.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/lexemes/INDENT.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/lexemes/INDENT.cjs",
+      "default": "./src/extensions/mermaid/uml/lexemes/INDENT.ts"
+    },
+    "./extensions/mermaid/uml/lexemes/INDENT.d.ts": {
+      "types": "./dist/types/extensions/mermaid/uml/lexemes/INDENT.d.ts",
+      "default": "./src/extensions/mermaid/uml/lexemes/INDENT.ts"
+    },
+    "./extensions/mermaid/uml/lexemes/INDENT.js": {
+      "types": "./dist/types/extensions/mermaid/uml/lexemes/INDENT.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/lexemes/INDENT.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/lexemes/INDENT.cjs",
+      "default": "./src/extensions/mermaid/uml/lexemes/INDENT.ts"
+    },
+    "./extensions/mermaid/uml/lexemes/INDENT.mjs": {
+      "types": "./dist/types/extensions/mermaid/uml/lexemes/INDENT.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/lexemes/INDENT.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/lexemes/INDENT.cjs",
+      "default": "./src/extensions/mermaid/uml/lexemes/INDENT.ts"
+    },
+    "./extensions/mermaid/uml/lexemes/INDENT": {
+      "types": "./dist/types/extensions/mermaid/uml/lexemes/INDENT.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/lexemes/INDENT.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/lexemes/INDENT.cjs",
+      "default": "./src/extensions/mermaid/uml/lexemes/INDENT.ts"
+    },
+    "./extensions/mermaid/uml/lexemes/LINE_FEED.cjs": {
+      "types": "./dist/types/extensions/mermaid/uml/lexemes/LINE_FEED.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/lexemes/LINE_FEED.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/lexemes/LINE_FEED.cjs",
+      "default": "./src/extensions/mermaid/uml/lexemes/LINE_FEED.ts"
+    },
+    "./extensions/mermaid/uml/lexemes/LINE_FEED.d.ts": {
+      "types": "./dist/types/extensions/mermaid/uml/lexemes/LINE_FEED.d.ts",
+      "default": "./src/extensions/mermaid/uml/lexemes/LINE_FEED.ts"
+    },
+    "./extensions/mermaid/uml/lexemes/LINE_FEED.js": {
+      "types": "./dist/types/extensions/mermaid/uml/lexemes/LINE_FEED.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/lexemes/LINE_FEED.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/lexemes/LINE_FEED.cjs",
+      "default": "./src/extensions/mermaid/uml/lexemes/LINE_FEED.ts"
+    },
+    "./extensions/mermaid/uml/lexemes/LINE_FEED.mjs": {
+      "types": "./dist/types/extensions/mermaid/uml/lexemes/LINE_FEED.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/lexemes/LINE_FEED.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/lexemes/LINE_FEED.cjs",
+      "default": "./src/extensions/mermaid/uml/lexemes/LINE_FEED.ts"
+    },
+    "./extensions/mermaid/uml/lexemes/LINE_FEED": {
+      "types": "./dist/types/extensions/mermaid/uml/lexemes/LINE_FEED.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/lexemes/LINE_FEED.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/lexemes/LINE_FEED.cjs",
+      "default": "./src/extensions/mermaid/uml/lexemes/LINE_FEED.ts"
+    },
+    "./extensions/mermaid/uml/lexemes/SPACE.cjs": {
+      "types": "./dist/types/extensions/mermaid/uml/lexemes/SPACE.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/lexemes/SPACE.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/lexemes/SPACE.cjs",
+      "default": "./src/extensions/mermaid/uml/lexemes/SPACE.ts"
+    },
+    "./extensions/mermaid/uml/lexemes/SPACE.d.ts": {
+      "types": "./dist/types/extensions/mermaid/uml/lexemes/SPACE.d.ts",
+      "default": "./src/extensions/mermaid/uml/lexemes/SPACE.ts"
+    },
+    "./extensions/mermaid/uml/lexemes/SPACE.js": {
+      "types": "./dist/types/extensions/mermaid/uml/lexemes/SPACE.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/lexemes/SPACE.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/lexemes/SPACE.cjs",
+      "default": "./src/extensions/mermaid/uml/lexemes/SPACE.ts"
+    },
+    "./extensions/mermaid/uml/lexemes/SPACE.mjs": {
+      "types": "./dist/types/extensions/mermaid/uml/lexemes/SPACE.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/lexemes/SPACE.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/lexemes/SPACE.cjs",
+      "default": "./src/extensions/mermaid/uml/lexemes/SPACE.ts"
+    },
+    "./extensions/mermaid/uml/lexemes/SPACE": {
+      "types": "./dist/types/extensions/mermaid/uml/lexemes/SPACE.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/lexemes/SPACE.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/lexemes/SPACE.cjs",
+      "default": "./src/extensions/mermaid/uml/lexemes/SPACE.ts"
+    },
+    "./extensions/mermaid/uml/lexemes/index.cjs": {
+      "types": "./dist/types/extensions/mermaid/uml/lexemes/index.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/lexemes/index.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/lexemes/index.cjs",
+      "default": "./src/extensions/mermaid/uml/lexemes/index.ts"
+    },
+    "./extensions/mermaid/uml/lexemes/index.d.ts": {
+      "types": "./dist/types/extensions/mermaid/uml/lexemes/index.d.ts",
+      "default": "./src/extensions/mermaid/uml/lexemes/index.ts"
+    },
+    "./extensions/mermaid/uml/lexemes/index.js": {
+      "types": "./dist/types/extensions/mermaid/uml/lexemes/index.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/lexemes/index.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/lexemes/index.cjs",
+      "default": "./src/extensions/mermaid/uml/lexemes/index.ts"
+    },
+    "./extensions/mermaid/uml/lexemes/index.mjs": {
+      "types": "./dist/types/extensions/mermaid/uml/lexemes/index.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/lexemes/index.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/lexemes/index.cjs",
+      "default": "./src/extensions/mermaid/uml/lexemes/index.ts"
+    },
+    "./extensions/mermaid/uml/lexemes/index": {
+      "types": "./dist/types/extensions/mermaid/uml/lexemes/index.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/lexemes/index.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/lexemes/index.cjs",
+      "default": "./src/extensions/mermaid/uml/lexemes/index.ts"
+    },
+    "./extensions/mermaid/uml/lexemes": {
+      "types": "./dist/types/extensions/mermaid/uml/lexemes/index.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/lexemes/index.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/lexemes/index.cjs",
+      "default": "./src/extensions/mermaid/uml/lexemes/index.ts"
+    },
+    "./extensions/mermaid/uml": {
+      "types": "./dist/types/extensions/mermaid/uml/index.d.ts",
+      "import": "./dist/esm/extensions/mermaid/uml/index.mjs",
+      "require": "./dist/cjs/extensions/mermaid/uml/index.cjs",
+      "default": "./src/extensions/mermaid/uml/index.ts"
+    },
+    "./extensions/mermaid": {
+      "types": "./dist/types/extensions/mermaid/index.d.ts",
+      "import": "./dist/esm/extensions/mermaid/index.mjs",
+      "require": "./dist/cjs/extensions/mermaid/index.cjs",
+      "default": "./src/extensions/mermaid/index.ts"
+    },
+    "./extensions/webpack/callbacks/done/DoneCallback.cjs": {
+      "types": "./dist/types/extensions/webpack/callbacks/done/DoneCallback.d.ts",
+      "import": "./dist/esm/extensions/webpack/callbacks/done/DoneCallback.mjs",
+      "require": "./dist/cjs/extensions/webpack/callbacks/done/DoneCallback.cjs",
+      "default": "./src/extensions/webpack/callbacks/done/DoneCallback.ts"
+    },
+    "./extensions/webpack/callbacks/done/DoneCallback.d.ts": {
+      "types": "./dist/types/extensions/webpack/callbacks/done/DoneCallback.d.ts",
+      "default": "./src/extensions/webpack/callbacks/done/DoneCallback.ts"
+    },
+    "./extensions/webpack/callbacks/done/DoneCallback.js": {
+      "types": "./dist/types/extensions/webpack/callbacks/done/DoneCallback.d.ts",
+      "import": "./dist/esm/extensions/webpack/callbacks/done/DoneCallback.mjs",
+      "require": "./dist/cjs/extensions/webpack/callbacks/done/DoneCallback.cjs",
+      "default": "./src/extensions/webpack/callbacks/done/DoneCallback.ts"
+    },
+    "./extensions/webpack/callbacks/done/DoneCallback.mjs": {
+      "types": "./dist/types/extensions/webpack/callbacks/done/DoneCallback.d.ts",
+      "import": "./dist/esm/extensions/webpack/callbacks/done/DoneCallback.mjs",
+      "require": "./dist/cjs/extensions/webpack/callbacks/done/DoneCallback.cjs",
+      "default": "./src/extensions/webpack/callbacks/done/DoneCallback.ts"
+    },
+    "./extensions/webpack/callbacks/done/DoneCallback": {
+      "types": "./dist/types/extensions/webpack/callbacks/done/DoneCallback.d.ts",
+      "import": "./dist/esm/extensions/webpack/callbacks/done/DoneCallback.mjs",
+      "require": "./dist/cjs/extensions/webpack/callbacks/done/DoneCallback.cjs",
+      "default": "./src/extensions/webpack/callbacks/done/DoneCallback.ts"
+    },
+    "./extensions/webpack/callbacks/done/index.cjs": {
+      "types": "./dist/types/extensions/webpack/callbacks/done/index.d.ts",
+      "import": "./dist/esm/extensions/webpack/callbacks/done/index.mjs",
+      "require": "./dist/cjs/extensions/webpack/callbacks/done/index.cjs",
+      "default": "./src/extensions/webpack/callbacks/done/index.ts"
+    },
+    "./extensions/webpack/callbacks/done/index.d.ts": {
+      "types": "./dist/types/extensions/webpack/callbacks/done/index.d.ts",
+      "default": "./src/extensions/webpack/callbacks/done/index.ts"
+    },
+    "./extensions/webpack/callbacks/done/index.js": {
+      "types": "./dist/types/extensions/webpack/callbacks/done/index.d.ts",
+      "import": "./dist/esm/extensions/webpack/callbacks/done/index.mjs",
+      "require": "./dist/cjs/extensions/webpack/callbacks/done/index.cjs",
+      "default": "./src/extensions/webpack/callbacks/done/index.ts"
+    },
+    "./extensions/webpack/callbacks/done/index.mjs": {
+      "types": "./dist/types/extensions/webpack/callbacks/done/index.d.ts",
+      "import": "./dist/esm/extensions/webpack/callbacks/done/index.mjs",
+      "require": "./dist/cjs/extensions/webpack/callbacks/done/index.cjs",
+      "default": "./src/extensions/webpack/callbacks/done/index.ts"
+    },
+    "./extensions/webpack/callbacks/done/index": {
+      "types": "./dist/types/extensions/webpack/callbacks/done/index.d.ts",
+      "import": "./dist/esm/extensions/webpack/callbacks/done/index.mjs",
+      "require": "./dist/cjs/extensions/webpack/callbacks/done/index.cjs",
+      "default": "./src/extensions/webpack/callbacks/done/index.ts"
+    },
+    "./extensions/webpack/callbacks/done": {
+      "types": "./dist/types/extensions/webpack/callbacks/done/index.d.ts",
+      "import": "./dist/esm/extensions/webpack/callbacks/done/index.mjs",
+      "require": "./dist/cjs/extensions/webpack/callbacks/done/index.cjs",
+      "default": "./src/extensions/webpack/callbacks/done/index.ts"
+    },
+    "./extensions/webpack/callbacks/index.cjs": {
+      "types": "./dist/types/extensions/webpack/callbacks/index.d.ts",
+      "import": "./dist/esm/extensions/webpack/callbacks/index.mjs",
+      "require": "./dist/cjs/extensions/webpack/callbacks/index.cjs",
+      "default": "./src/extensions/webpack/callbacks/index.ts"
+    },
+    "./extensions/webpack/callbacks/index.d.ts": {
+      "types": "./dist/types/extensions/webpack/callbacks/index.d.ts",
+      "default": "./src/extensions/webpack/callbacks/index.ts"
+    },
+    "./extensions/webpack/callbacks/index.js": {
+      "types": "./dist/types/extensions/webpack/callbacks/index.d.ts",
+      "import": "./dist/esm/extensions/webpack/callbacks/index.mjs",
+      "require": "./dist/cjs/extensions/webpack/callbacks/index.cjs",
+      "default": "./src/extensions/webpack/callbacks/index.ts"
+    },
+    "./extensions/webpack/callbacks/index.mjs": {
+      "types": "./dist/types/extensions/webpack/callbacks/index.d.ts",
+      "import": "./dist/esm/extensions/webpack/callbacks/index.mjs",
+      "require": "./dist/cjs/extensions/webpack/callbacks/index.cjs",
+      "default": "./src/extensions/webpack/callbacks/index.ts"
+    },
+    "./extensions/webpack/callbacks/index": {
+      "types": "./dist/types/extensions/webpack/callbacks/index.d.ts",
+      "import": "./dist/esm/extensions/webpack/callbacks/index.mjs",
+      "require": "./dist/cjs/extensions/webpack/callbacks/index.cjs",
+      "default": "./src/extensions/webpack/callbacks/index.ts"
+    },
+    "./extensions/webpack/callbacks": {
+      "types": "./dist/types/extensions/webpack/callbacks/index.d.ts",
+      "import": "./dist/esm/extensions/webpack/callbacks/index.mjs",
+      "require": "./dist/cjs/extensions/webpack/callbacks/index.cjs",
+      "default": "./src/extensions/webpack/callbacks/index.ts"
+    },
+    "./extensions/webpack/index.cjs": {
+      "types": "./dist/types/extensions/webpack/index.d.ts",
+      "import": "./dist/esm/extensions/webpack/index.mjs",
+      "require": "./dist/cjs/extensions/webpack/index.cjs",
+      "default": "./src/extensions/webpack/index.ts"
+    },
+    "./extensions/webpack/index.d.ts": {
+      "types": "./dist/types/extensions/webpack/index.d.ts",
+      "default": "./src/extensions/webpack/index.ts"
+    },
+    "./extensions/webpack/index.js": {
+      "types": "./dist/types/extensions/webpack/index.d.ts",
+      "import": "./dist/esm/extensions/webpack/index.mjs",
+      "require": "./dist/cjs/extensions/webpack/index.cjs",
+      "default": "./src/extensions/webpack/index.ts"
+    },
+    "./extensions/webpack/index.mjs": {
+      "types": "./dist/types/extensions/webpack/index.d.ts",
+      "import": "./dist/esm/extensions/webpack/index.mjs",
+      "require": "./dist/cjs/extensions/webpack/index.cjs",
+      "default": "./src/extensions/webpack/index.ts"
+    },
+    "./extensions/webpack/index": {
+      "types": "./dist/types/extensions/webpack/index.d.ts",
+      "import": "./dist/esm/extensions/webpack/index.mjs",
+      "require": "./dist/cjs/extensions/webpack/index.cjs",
+      "default": "./src/extensions/webpack/index.ts"
+    },
+    "./extensions/webpack/plugin/PLUGIN_NAME_TAPABLE_TRACER.cjs": {
+      "types": "./dist/types/extensions/webpack/plugin/PLUGIN_NAME_TAPABLE_TRACER.d.ts",
+      "import": "./dist/esm/extensions/webpack/plugin/PLUGIN_NAME_TAPABLE_TRACER.mjs",
+      "require": "./dist/cjs/extensions/webpack/plugin/PLUGIN_NAME_TAPABLE_TRACER.cjs",
+      "default": "./src/extensions/webpack/plugin/PLUGIN_NAME_TAPABLE_TRACER.ts"
+    },
+    "./extensions/webpack/plugin/PLUGIN_NAME_TAPABLE_TRACER.d.ts": {
+      "types": "./dist/types/extensions/webpack/plugin/PLUGIN_NAME_TAPABLE_TRACER.d.ts",
+      "default": "./src/extensions/webpack/plugin/PLUGIN_NAME_TAPABLE_TRACER.ts"
+    },
+    "./extensions/webpack/plugin/PLUGIN_NAME_TAPABLE_TRACER.js": {
+      "types": "./dist/types/extensions/webpack/plugin/PLUGIN_NAME_TAPABLE_TRACER.d.ts",
+      "import": "./dist/esm/extensions/webpack/plugin/PLUGIN_NAME_TAPABLE_TRACER.mjs",
+      "require": "./dist/cjs/extensions/webpack/plugin/PLUGIN_NAME_TAPABLE_TRACER.cjs",
+      "default": "./src/extensions/webpack/plugin/PLUGIN_NAME_TAPABLE_TRACER.ts"
+    },
+    "./extensions/webpack/plugin/PLUGIN_NAME_TAPABLE_TRACER.mjs": {
+      "types": "./dist/types/extensions/webpack/plugin/PLUGIN_NAME_TAPABLE_TRACER.d.ts",
+      "import": "./dist/esm/extensions/webpack/plugin/PLUGIN_NAME_TAPABLE_TRACER.mjs",
+      "require": "./dist/cjs/extensions/webpack/plugin/PLUGIN_NAME_TAPABLE_TRACER.cjs",
+      "default": "./src/extensions/webpack/plugin/PLUGIN_NAME_TAPABLE_TRACER.ts"
+    },
+    "./extensions/webpack/plugin/PLUGIN_NAME_TAPABLE_TRACER": {
+      "types": "./dist/types/extensions/webpack/plugin/PLUGIN_NAME_TAPABLE_TRACER.d.ts",
+      "import": "./dist/esm/extensions/webpack/plugin/PLUGIN_NAME_TAPABLE_TRACER.mjs",
+      "require": "./dist/cjs/extensions/webpack/plugin/PLUGIN_NAME_TAPABLE_TRACER.cjs",
+      "default": "./src/extensions/webpack/plugin/PLUGIN_NAME_TAPABLE_TRACER.ts"
+    },
+    "./extensions/webpack/plugin/TapableTracerPlugin.cjs": {
+      "types": "./dist/types/extensions/webpack/plugin/TapableTracerPlugin.d.ts",
+      "import": "./dist/esm/extensions/webpack/plugin/TapableTracerPlugin.mjs",
+      "require": "./dist/cjs/extensions/webpack/plugin/TapableTracerPlugin.cjs",
+      "default": "./src/extensions/webpack/plugin/TapableTracerPlugin.ts"
+    },
+    "./extensions/webpack/plugin/TapableTracerPlugin.d.ts": {
+      "types": "./dist/types/extensions/webpack/plugin/TapableTracerPlugin.d.ts",
+      "default": "./src/extensions/webpack/plugin/TapableTracerPlugin.ts"
+    },
+    "./extensions/webpack/plugin/TapableTracerPlugin.js": {
+      "types": "./dist/types/extensions/webpack/plugin/TapableTracerPlugin.d.ts",
+      "import": "./dist/esm/extensions/webpack/plugin/TapableTracerPlugin.mjs",
+      "require": "./dist/cjs/extensions/webpack/plugin/TapableTracerPlugin.cjs",
+      "default": "./src/extensions/webpack/plugin/TapableTracerPlugin.ts"
+    },
+    "./extensions/webpack/plugin/TapableTracerPlugin.mjs": {
+      "types": "./dist/types/extensions/webpack/plugin/TapableTracerPlugin.d.ts",
+      "import": "./dist/esm/extensions/webpack/plugin/TapableTracerPlugin.mjs",
+      "require": "./dist/cjs/extensions/webpack/plugin/TapableTracerPlugin.cjs",
+      "default": "./src/extensions/webpack/plugin/TapableTracerPlugin.ts"
+    },
+    "./extensions/webpack/plugin/TapableTracerPluginOptions.cjs": {
+      "types": "./dist/types/extensions/webpack/plugin/TapableTracerPluginOptions.d.ts",
+      "import": "./dist/esm/extensions/webpack/plugin/TapableTracerPluginOptions.mjs",
+      "require": "./dist/cjs/extensions/webpack/plugin/TapableTracerPluginOptions.cjs",
+      "default": "./src/extensions/webpack/plugin/TapableTracerPluginOptions.ts"
+    },
+    "./extensions/webpack/plugin/TapableTracerPluginOptions.d.ts": {
+      "types": "./dist/types/extensions/webpack/plugin/TapableTracerPluginOptions.d.ts",
+      "default": "./src/extensions/webpack/plugin/TapableTracerPluginOptions.ts"
+    },
+    "./extensions/webpack/plugin/TapableTracerPluginOptions.js": {
+      "types": "./dist/types/extensions/webpack/plugin/TapableTracerPluginOptions.d.ts",
+      "import": "./dist/esm/extensions/webpack/plugin/TapableTracerPluginOptions.mjs",
+      "require": "./dist/cjs/extensions/webpack/plugin/TapableTracerPluginOptions.cjs",
+      "default": "./src/extensions/webpack/plugin/TapableTracerPluginOptions.ts"
+    },
+    "./extensions/webpack/plugin/TapableTracerPluginOptions.mjs": {
+      "types": "./dist/types/extensions/webpack/plugin/TapableTracerPluginOptions.d.ts",
+      "import": "./dist/esm/extensions/webpack/plugin/TapableTracerPluginOptions.mjs",
+      "require": "./dist/cjs/extensions/webpack/plugin/TapableTracerPluginOptions.cjs",
+      "default": "./src/extensions/webpack/plugin/TapableTracerPluginOptions.ts"
+    },
+    "./extensions/webpack/plugin/TapableTracerPluginOptions": {
+      "types": "./dist/types/extensions/webpack/plugin/TapableTracerPluginOptions.d.ts",
+      "import": "./dist/esm/extensions/webpack/plugin/TapableTracerPluginOptions.mjs",
+      "require": "./dist/cjs/extensions/webpack/plugin/TapableTracerPluginOptions.cjs",
+      "default": "./src/extensions/webpack/plugin/TapableTracerPluginOptions.ts"
+    },
+    "./extensions/webpack/plugin/TapableTracerPlugin": {
+      "types": "./dist/types/extensions/webpack/plugin/TapableTracerPlugin.d.ts",
+      "import": "./dist/esm/extensions/webpack/plugin/TapableTracerPlugin.mjs",
+      "require": "./dist/cjs/extensions/webpack/plugin/TapableTracerPlugin.cjs",
+      "default": "./src/extensions/webpack/plugin/TapableTracerPlugin.ts"
+    },
+    "./extensions/webpack/plugin/index.cjs": {
+      "types": "./dist/types/extensions/webpack/plugin/index.d.ts",
+      "import": "./dist/esm/extensions/webpack/plugin/index.mjs",
+      "require": "./dist/cjs/extensions/webpack/plugin/index.cjs",
+      "default": "./src/extensions/webpack/plugin/index.ts"
+    },
+    "./extensions/webpack/plugin/index.d.ts": {
+      "types": "./dist/types/extensions/webpack/plugin/index.d.ts",
+      "default": "./src/extensions/webpack/plugin/index.ts"
+    },
+    "./extensions/webpack/plugin/index.js": {
+      "types": "./dist/types/extensions/webpack/plugin/index.d.ts",
+      "import": "./dist/esm/extensions/webpack/plugin/index.mjs",
+      "require": "./dist/cjs/extensions/webpack/plugin/index.cjs",
+      "default": "./src/extensions/webpack/plugin/index.ts"
+    },
+    "./extensions/webpack/plugin/index.mjs": {
+      "types": "./dist/types/extensions/webpack/plugin/index.d.ts",
+      "import": "./dist/esm/extensions/webpack/plugin/index.mjs",
+      "require": "./dist/cjs/extensions/webpack/plugin/index.cjs",
+      "default": "./src/extensions/webpack/plugin/index.ts"
+    },
+    "./extensions/webpack/plugin/index": {
+      "types": "./dist/types/extensions/webpack/plugin/index.d.ts",
+      "import": "./dist/esm/extensions/webpack/plugin/index.mjs",
+      "require": "./dist/cjs/extensions/webpack/plugin/index.cjs",
+      "default": "./src/extensions/webpack/plugin/index.ts"
+    },
+    "./extensions/webpack/plugin": {
+      "types": "./dist/types/extensions/webpack/plugin/index.d.ts",
+      "import": "./dist/esm/extensions/webpack/plugin/index.mjs",
+      "require": "./dist/cjs/extensions/webpack/plugin/index.cjs",
+      "default": "./src/extensions/webpack/plugin/index.ts"
+    },
+    "./extensions/webpack": {
+      "types": "./dist/types/extensions/webpack/index.d.ts",
+      "import": "./dist/esm/extensions/webpack/index.mjs",
+      "require": "./dist/cjs/extensions/webpack/index.cjs",
+      "default": "./src/extensions/webpack/index.ts"
+    },
+    "./hook/AnyHook.cjs": {
+      "types": "./dist/types/hook/AnyHook.d.ts",
+      "import": "./dist/esm/hook/AnyHook.mjs",
+      "require": "./dist/cjs/hook/AnyHook.cjs",
+      "default": "./src/hook/AnyHook.ts"
+    },
+    "./hook/AnyHook.d.ts": {
+      "types": "./dist/types/hook/AnyHook.d.ts",
+      "default": "./src/hook/AnyHook.ts"
+    },
+    "./hook/AnyHook.js": {
+      "types": "./dist/types/hook/AnyHook.d.ts",
+      "import": "./dist/esm/hook/AnyHook.mjs",
+      "require": "./dist/cjs/hook/AnyHook.cjs",
+      "default": "./src/hook/AnyHook.ts"
+    },
+    "./hook/AnyHook.mjs": {
+      "types": "./dist/types/hook/AnyHook.d.ts",
+      "import": "./dist/esm/hook/AnyHook.mjs",
+      "require": "./dist/cjs/hook/AnyHook.cjs",
+      "default": "./src/hook/AnyHook.ts"
+    },
+    "./hook/AnyHook": {
+      "types": "./dist/types/hook/AnyHook.d.ts",
+      "import": "./dist/esm/hook/AnyHook.mjs",
+      "require": "./dist/cjs/hook/AnyHook.cjs",
+      "default": "./src/hook/AnyHook.ts"
+    },
+    "./hook/callback/HookCallback.cjs": {
+      "types": "./dist/types/hook/callback/HookCallback.d.ts",
+      "import": "./dist/esm/hook/callback/HookCallback.mjs",
+      "require": "./dist/cjs/hook/callback/HookCallback.cjs",
+      "default": "./src/hook/callback/HookCallback.ts"
+    },
+    "./hook/callback/HookCallback.d.ts": {
+      "types": "./dist/types/hook/callback/HookCallback.d.ts",
+      "default": "./src/hook/callback/HookCallback.ts"
+    },
+    "./hook/callback/HookCallback.js": {
+      "types": "./dist/types/hook/callback/HookCallback.d.ts",
+      "import": "./dist/esm/hook/callback/HookCallback.mjs",
+      "require": "./dist/cjs/hook/callback/HookCallback.cjs",
+      "default": "./src/hook/callback/HookCallback.ts"
+    },
+    "./hook/callback/HookCallback.mjs": {
+      "types": "./dist/types/hook/callback/HookCallback.d.ts",
+      "import": "./dist/esm/hook/callback/HookCallback.mjs",
+      "require": "./dist/cjs/hook/callback/HookCallback.cjs",
+      "default": "./src/hook/callback/HookCallback.ts"
+    },
+    "./hook/callback/HookCallback": {
+      "types": "./dist/types/hook/callback/HookCallback.d.ts",
+      "import": "./dist/esm/hook/callback/HookCallback.mjs",
+      "require": "./dist/cjs/hook/callback/HookCallback.cjs",
+      "default": "./src/hook/callback/HookCallback.ts"
+    },
+    "./hook/callback/index.cjs": {
+      "types": "./dist/types/hook/callback/index.d.ts",
+      "import": "./dist/esm/hook/callback/index.mjs",
+      "require": "./dist/cjs/hook/callback/index.cjs",
+      "default": "./src/hook/callback/index.ts"
+    },
+    "./hook/callback/index.d.ts": {
+      "types": "./dist/types/hook/callback/index.d.ts",
+      "default": "./src/hook/callback/index.ts"
+    },
+    "./hook/callback/index.js": {
+      "types": "./dist/types/hook/callback/index.d.ts",
+      "import": "./dist/esm/hook/callback/index.mjs",
+      "require": "./dist/cjs/hook/callback/index.cjs",
+      "default": "./src/hook/callback/index.ts"
+    },
+    "./hook/callback/index.mjs": {
+      "types": "./dist/types/hook/callback/index.d.ts",
+      "import": "./dist/esm/hook/callback/index.mjs",
+      "require": "./dist/cjs/hook/callback/index.cjs",
+      "default": "./src/hook/callback/index.ts"
+    },
+    "./hook/callback/index": {
+      "types": "./dist/types/hook/callback/index.d.ts",
+      "import": "./dist/esm/hook/callback/index.mjs",
+      "require": "./dist/cjs/hook/callback/index.cjs",
+      "default": "./src/hook/callback/index.ts"
+    },
+    "./hook/callback": {
+      "types": "./dist/types/hook/callback/index.d.ts",
+      "import": "./dist/esm/hook/callback/index.mjs",
+      "require": "./dist/cjs/hook/callback/index.cjs",
+      "default": "./src/hook/callback/index.ts"
+    },
+    "./hook/index.cjs": {
+      "types": "./dist/types/hook/index.d.ts",
+      "import": "./dist/esm/hook/index.mjs",
+      "require": "./dist/cjs/hook/index.cjs",
+      "default": "./src/hook/index.ts"
+    },
+    "./hook/index.d.ts": {
+      "types": "./dist/types/hook/index.d.ts",
+      "default": "./src/hook/index.ts"
+    },
+    "./hook/index.js": {
+      "types": "./dist/types/hook/index.d.ts",
+      "import": "./dist/esm/hook/index.mjs",
+      "require": "./dist/cjs/hook/index.cjs",
+      "default": "./src/hook/index.ts"
+    },
+    "./hook/index.mjs": {
+      "types": "./dist/types/hook/index.d.ts",
+      "import": "./dist/esm/hook/index.mjs",
+      "require": "./dist/cjs/hook/index.cjs",
+      "default": "./src/hook/index.ts"
+    },
+    "./hook/index": {
+      "types": "./dist/types/hook/index.d.ts",
+      "import": "./dist/esm/hook/index.mjs",
+      "require": "./dist/cjs/hook/index.cjs",
+      "default": "./src/hook/index.ts"
+    },
+    "./hook/label/HookLabel.cjs": {
+      "types": "./dist/types/hook/label/HookLabel.d.ts",
+      "import": "./dist/esm/hook/label/HookLabel.mjs",
+      "require": "./dist/cjs/hook/label/HookLabel.cjs",
+      "default": "./src/hook/label/HookLabel.ts"
+    },
+    "./hook/label/HookLabel.d.ts": {
+      "types": "./dist/types/hook/label/HookLabel.d.ts",
+      "default": "./src/hook/label/HookLabel.ts"
+    },
+    "./hook/label/HookLabel.js": {
+      "types": "./dist/types/hook/label/HookLabel.d.ts",
+      "import": "./dist/esm/hook/label/HookLabel.mjs",
+      "require": "./dist/cjs/hook/label/HookLabel.cjs",
+      "default": "./src/hook/label/HookLabel.ts"
+    },
+    "./hook/label/HookLabel.mjs": {
+      "types": "./dist/types/hook/label/HookLabel.d.ts",
+      "import": "./dist/esm/hook/label/HookLabel.mjs",
+      "require": "./dist/cjs/hook/label/HookLabel.cjs",
+      "default": "./src/hook/label/HookLabel.ts"
+    },
+    "./hook/label/HookLabellerFunction.cjs": {
+      "types": "./dist/types/hook/label/HookLabellerFunction.d.ts",
+      "import": "./dist/esm/hook/label/HookLabellerFunction.mjs",
+      "require": "./dist/cjs/hook/label/HookLabellerFunction.cjs",
+      "default": "./src/hook/label/HookLabellerFunction.ts"
+    },
+    "./hook/label/HookLabellerFunction.d.ts": {
+      "types": "./dist/types/hook/label/HookLabellerFunction.d.ts",
+      "default": "./src/hook/label/HookLabellerFunction.ts"
+    },
+    "./hook/label/HookLabellerFunction.js": {
+      "types": "./dist/types/hook/label/HookLabellerFunction.d.ts",
+      "import": "./dist/esm/hook/label/HookLabellerFunction.mjs",
+      "require": "./dist/cjs/hook/label/HookLabellerFunction.cjs",
+      "default": "./src/hook/label/HookLabellerFunction.ts"
+    },
+    "./hook/label/HookLabellerFunction.mjs": {
+      "types": "./dist/types/hook/label/HookLabellerFunction.d.ts",
+      "import": "./dist/esm/hook/label/HookLabellerFunction.mjs",
+      "require": "./dist/cjs/hook/label/HookLabellerFunction.cjs",
+      "default": "./src/hook/label/HookLabellerFunction.ts"
+    },
+    "./hook/label/HookLabellerFunction": {
+      "types": "./dist/types/hook/label/HookLabellerFunction.d.ts",
+      "import": "./dist/esm/hook/label/HookLabellerFunction.mjs",
+      "require": "./dist/cjs/hook/label/HookLabellerFunction.cjs",
+      "default": "./src/hook/label/HookLabellerFunction.ts"
+    },
+    "./hook/label/HookLabel": {
+      "types": "./dist/types/hook/label/HookLabel.d.ts",
+      "import": "./dist/esm/hook/label/HookLabel.mjs",
+      "require": "./dist/cjs/hook/label/HookLabel.cjs",
+      "default": "./src/hook/label/HookLabel.ts"
+    },
+    "./hook/label/index.cjs": {
+      "types": "./dist/types/hook/label/index.d.ts",
+      "import": "./dist/esm/hook/label/index.mjs",
+      "require": "./dist/cjs/hook/label/index.cjs",
+      "default": "./src/hook/label/index.ts"
+    },
+    "./hook/label/index.d.ts": {
+      "types": "./dist/types/hook/label/index.d.ts",
+      "default": "./src/hook/label/index.ts"
+    },
+    "./hook/label/index.js": {
+      "types": "./dist/types/hook/label/index.d.ts",
+      "import": "./dist/esm/hook/label/index.mjs",
+      "require": "./dist/cjs/hook/label/index.cjs",
+      "default": "./src/hook/label/index.ts"
+    },
+    "./hook/label/index.mjs": {
+      "types": "./dist/types/hook/label/index.d.ts",
+      "import": "./dist/esm/hook/label/index.mjs",
+      "require": "./dist/cjs/hook/label/index.cjs",
+      "default": "./src/hook/label/index.ts"
+    },
+    "./hook/label/index": {
+      "types": "./dist/types/hook/label/index.d.ts",
+      "import": "./dist/esm/hook/label/index.mjs",
+      "require": "./dist/cjs/hook/label/index.cjs",
+      "default": "./src/hook/label/index.ts"
+    },
+    "./hook/label/labelHook.cjs": {
+      "types": "./dist/types/hook/label/labelHook.d.ts",
+      "import": "./dist/esm/hook/label/labelHook.mjs",
+      "require": "./dist/cjs/hook/label/labelHook.cjs",
+      "default": "./src/hook/label/labelHook.ts"
+    },
+    "./hook/label/labelHook.d.ts": {
+      "types": "./dist/types/hook/label/labelHook.d.ts",
+      "default": "./src/hook/label/labelHook.ts"
+    },
+    "./hook/label/labelHook.js": {
+      "types": "./dist/types/hook/label/labelHook.d.ts",
+      "import": "./dist/esm/hook/label/labelHook.mjs",
+      "require": "./dist/cjs/hook/label/labelHook.cjs",
+      "default": "./src/hook/label/labelHook.ts"
+    },
+    "./hook/label/labelHook.mjs": {
+      "types": "./dist/types/hook/label/labelHook.d.ts",
+      "import": "./dist/esm/hook/label/labelHook.mjs",
+      "require": "./dist/cjs/hook/label/labelHook.cjs",
+      "default": "./src/hook/label/labelHook.ts"
+    },
+    "./hook/label/labelHook": {
+      "types": "./dist/types/hook/label/labelHook.d.ts",
+      "import": "./dist/esm/hook/label/labelHook.mjs",
+      "require": "./dist/cjs/hook/label/labelHook.cjs",
+      "default": "./src/hook/label/labelHook.ts"
+    },
+    "./hook/label": {
+      "types": "./dist/types/hook/label/index.d.ts",
+      "import": "./dist/esm/hook/label/index.mjs",
+      "require": "./dist/cjs/hook/label/index.cjs",
+      "default": "./src/hook/label/index.ts"
+    },
+    "./hook": {
+      "types": "./dist/types/hook/index.d.ts",
+      "import": "./dist/esm/hook/index.mjs",
+      "require": "./dist/cjs/hook/index.cjs",
+      "default": "./src/hook/index.ts"
+    },
+    "./index.cjs": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/esm/index.mjs",
+      "require": "./dist/cjs/index.cjs",
+      "default": "./src/index.ts"
+    },
+    "./index.d.ts": {
+      "types": "./dist/types/index.d.ts",
+      "default": "./src/index.ts"
+    },
+    "./index.js": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/esm/index.mjs",
+      "require": "./dist/cjs/index.cjs",
+      "default": "./src/index.ts"
+    },
+    "./index.mjs": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/esm/index.mjs",
+      "require": "./dist/cjs/index.cjs",
+      "default": "./src/index.ts"
+    },
+    "./index": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/esm/index.mjs",
+      "require": "./dist/cjs/index.cjs",
+      "default": "./src/index.ts"
+    },
+    "./package.json": {
+      "default": "./package.json"
+    },
+    "./stack-frame/CallFrame.cjs": {
+      "types": "./dist/types/stack-frame/CallFrame.d.ts",
+      "import": "./dist/esm/stack-frame/CallFrame.mjs",
+      "require": "./dist/cjs/stack-frame/CallFrame.cjs",
+      "default": "./src/stack-frame/CallFrame.ts"
+    },
+    "./stack-frame/CallFrame.d.ts": {
+      "types": "./dist/types/stack-frame/CallFrame.d.ts",
+      "default": "./src/stack-frame/CallFrame.ts"
+    },
+    "./stack-frame/CallFrame.js": {
+      "types": "./dist/types/stack-frame/CallFrame.d.ts",
+      "import": "./dist/esm/stack-frame/CallFrame.mjs",
+      "require": "./dist/cjs/stack-frame/CallFrame.cjs",
+      "default": "./src/stack-frame/CallFrame.ts"
+    },
+    "./stack-frame/CallFrame.mjs": {
+      "types": "./dist/types/stack-frame/CallFrame.d.ts",
+      "import": "./dist/esm/stack-frame/CallFrame.mjs",
+      "require": "./dist/cjs/stack-frame/CallFrame.cjs",
+      "default": "./src/stack-frame/CallFrame.ts"
+    },
+    "./stack-frame/CallFrame": {
+      "types": "./dist/types/stack-frame/CallFrame.d.ts",
+      "import": "./dist/esm/stack-frame/CallFrame.mjs",
+      "require": "./dist/cjs/stack-frame/CallFrame.cjs",
+      "default": "./src/stack-frame/CallFrame.ts"
+    },
+    "./stack-frame/StackFrame.cjs": {
+      "types": "./dist/types/stack-frame/StackFrame.d.ts",
+      "import": "./dist/esm/stack-frame/StackFrame.mjs",
+      "require": "./dist/cjs/stack-frame/StackFrame.cjs",
+      "default": "./src/stack-frame/StackFrame.ts"
+    },
+    "./stack-frame/StackFrame.d.ts": {
+      "types": "./dist/types/stack-frame/StackFrame.d.ts",
+      "default": "./src/stack-frame/StackFrame.ts"
+    },
+    "./stack-frame/StackFrame.js": {
+      "types": "./dist/types/stack-frame/StackFrame.d.ts",
+      "import": "./dist/esm/stack-frame/StackFrame.mjs",
+      "require": "./dist/cjs/stack-frame/StackFrame.cjs",
+      "default": "./src/stack-frame/StackFrame.ts"
+    },
+    "./stack-frame/StackFrame.mjs": {
+      "types": "./dist/types/stack-frame/StackFrame.d.ts",
+      "import": "./dist/esm/stack-frame/StackFrame.mjs",
+      "require": "./dist/cjs/stack-frame/StackFrame.cjs",
+      "default": "./src/stack-frame/StackFrame.ts"
+    },
+    "./stack-frame/StackFrame": {
+      "types": "./dist/types/stack-frame/StackFrame.d.ts",
+      "import": "./dist/esm/stack-frame/StackFrame.mjs",
+      "require": "./dist/cjs/stack-frame/StackFrame.cjs",
+      "default": "./src/stack-frame/StackFrame.ts"
+    },
+    "./stack-frame/TapFrame.cjs": {
+      "types": "./dist/types/stack-frame/TapFrame.d.ts",
+      "import": "./dist/esm/stack-frame/TapFrame.mjs",
+      "require": "./dist/cjs/stack-frame/TapFrame.cjs",
+      "default": "./src/stack-frame/TapFrame.ts"
+    },
+    "./stack-frame/TapFrame.d.ts": {
+      "types": "./dist/types/stack-frame/TapFrame.d.ts",
+      "default": "./src/stack-frame/TapFrame.ts"
+    },
+    "./stack-frame/TapFrame.js": {
+      "types": "./dist/types/stack-frame/TapFrame.d.ts",
+      "import": "./dist/esm/stack-frame/TapFrame.mjs",
+      "require": "./dist/cjs/stack-frame/TapFrame.cjs",
+      "default": "./src/stack-frame/TapFrame.ts"
+    },
+    "./stack-frame/TapFrame.mjs": {
+      "types": "./dist/types/stack-frame/TapFrame.d.ts",
+      "import": "./dist/esm/stack-frame/TapFrame.mjs",
+      "require": "./dist/cjs/stack-frame/TapFrame.cjs",
+      "default": "./src/stack-frame/TapFrame.ts"
+    },
+    "./stack-frame/TapFrame": {
+      "types": "./dist/types/stack-frame/TapFrame.d.ts",
+      "import": "./dist/esm/stack-frame/TapFrame.mjs",
+      "require": "./dist/cjs/stack-frame/TapFrame.cjs",
+      "default": "./src/stack-frame/TapFrame.ts"
+    },
+    "./stack-frame/TriggerFrame.cjs": {
+      "types": "./dist/types/stack-frame/TriggerFrame.d.ts",
+      "import": "./dist/esm/stack-frame/TriggerFrame.mjs",
+      "require": "./dist/cjs/stack-frame/TriggerFrame.cjs",
+      "default": "./src/stack-frame/TriggerFrame.ts"
+    },
+    "./stack-frame/TriggerFrame.d.ts": {
+      "types": "./dist/types/stack-frame/TriggerFrame.d.ts",
+      "default": "./src/stack-frame/TriggerFrame.ts"
+    },
+    "./stack-frame/TriggerFrame.js": {
+      "types": "./dist/types/stack-frame/TriggerFrame.d.ts",
+      "import": "./dist/esm/stack-frame/TriggerFrame.mjs",
+      "require": "./dist/cjs/stack-frame/TriggerFrame.cjs",
+      "default": "./src/stack-frame/TriggerFrame.ts"
+    },
+    "./stack-frame/TriggerFrame.mjs": {
+      "types": "./dist/types/stack-frame/TriggerFrame.d.ts",
+      "import": "./dist/esm/stack-frame/TriggerFrame.mjs",
+      "require": "./dist/cjs/stack-frame/TriggerFrame.cjs",
+      "default": "./src/stack-frame/TriggerFrame.ts"
+    },
+    "./stack-frame/TriggerFrame": {
+      "types": "./dist/types/stack-frame/TriggerFrame.d.ts",
+      "import": "./dist/esm/stack-frame/TriggerFrame.mjs",
+      "require": "./dist/cjs/stack-frame/TriggerFrame.cjs",
+      "default": "./src/stack-frame/TriggerFrame.ts"
+    },
+    "./stack-frame/createCallFrame.cjs": {
+      "types": "./dist/types/stack-frame/createCallFrame.d.ts",
+      "import": "./dist/esm/stack-frame/createCallFrame.mjs",
+      "require": "./dist/cjs/stack-frame/createCallFrame.cjs",
+      "default": "./src/stack-frame/createCallFrame.ts"
+    },
+    "./stack-frame/createCallFrame.d.ts": {
+      "types": "./dist/types/stack-frame/createCallFrame.d.ts",
+      "default": "./src/stack-frame/createCallFrame.ts"
+    },
+    "./stack-frame/createCallFrame.js": {
+      "types": "./dist/types/stack-frame/createCallFrame.d.ts",
+      "import": "./dist/esm/stack-frame/createCallFrame.mjs",
+      "require": "./dist/cjs/stack-frame/createCallFrame.cjs",
+      "default": "./src/stack-frame/createCallFrame.ts"
+    },
+    "./stack-frame/createCallFrame.mjs": {
+      "types": "./dist/types/stack-frame/createCallFrame.d.ts",
+      "import": "./dist/esm/stack-frame/createCallFrame.mjs",
+      "require": "./dist/cjs/stack-frame/createCallFrame.cjs",
+      "default": "./src/stack-frame/createCallFrame.ts"
+    },
+    "./stack-frame/createCallFrame": {
+      "types": "./dist/types/stack-frame/createCallFrame.d.ts",
+      "import": "./dist/esm/stack-frame/createCallFrame.mjs",
+      "require": "./dist/cjs/stack-frame/createCallFrame.cjs",
+      "default": "./src/stack-frame/createCallFrame.ts"
+    },
+    "./stack-frame/createTapFrame.cjs": {
+      "types": "./dist/types/stack-frame/createTapFrame.d.ts",
+      "import": "./dist/esm/stack-frame/createTapFrame.mjs",
+      "require": "./dist/cjs/stack-frame/createTapFrame.cjs",
+      "default": "./src/stack-frame/createTapFrame.ts"
+    },
+    "./stack-frame/createTapFrame.d.ts": {
+      "types": "./dist/types/stack-frame/createTapFrame.d.ts",
+      "default": "./src/stack-frame/createTapFrame.ts"
+    },
+    "./stack-frame/createTapFrame.js": {
+      "types": "./dist/types/stack-frame/createTapFrame.d.ts",
+      "import": "./dist/esm/stack-frame/createTapFrame.mjs",
+      "require": "./dist/cjs/stack-frame/createTapFrame.cjs",
+      "default": "./src/stack-frame/createTapFrame.ts"
+    },
+    "./stack-frame/createTapFrame.mjs": {
+      "types": "./dist/types/stack-frame/createTapFrame.d.ts",
+      "import": "./dist/esm/stack-frame/createTapFrame.mjs",
+      "require": "./dist/cjs/stack-frame/createTapFrame.cjs",
+      "default": "./src/stack-frame/createTapFrame.ts"
+    },
+    "./stack-frame/createTapFrame": {
+      "types": "./dist/types/stack-frame/createTapFrame.d.ts",
+      "import": "./dist/esm/stack-frame/createTapFrame.mjs",
+      "require": "./dist/cjs/stack-frame/createTapFrame.cjs",
+      "default": "./src/stack-frame/createTapFrame.ts"
+    },
+    "./stack-frame/createTriggerFrame.cjs": {
+      "types": "./dist/types/stack-frame/createTriggerFrame.d.ts",
+      "import": "./dist/esm/stack-frame/createTriggerFrame.mjs",
+      "require": "./dist/cjs/stack-frame/createTriggerFrame.cjs",
+      "default": "./src/stack-frame/createTriggerFrame.ts"
+    },
+    "./stack-frame/createTriggerFrame.d.ts": {
+      "types": "./dist/types/stack-frame/createTriggerFrame.d.ts",
+      "default": "./src/stack-frame/createTriggerFrame.ts"
+    },
+    "./stack-frame/createTriggerFrame.js": {
+      "types": "./dist/types/stack-frame/createTriggerFrame.d.ts",
+      "import": "./dist/esm/stack-frame/createTriggerFrame.mjs",
+      "require": "./dist/cjs/stack-frame/createTriggerFrame.cjs",
+      "default": "./src/stack-frame/createTriggerFrame.ts"
+    },
+    "./stack-frame/createTriggerFrame.mjs": {
+      "types": "./dist/types/stack-frame/createTriggerFrame.d.ts",
+      "import": "./dist/esm/stack-frame/createTriggerFrame.mjs",
+      "require": "./dist/cjs/stack-frame/createTriggerFrame.cjs",
+      "default": "./src/stack-frame/createTriggerFrame.ts"
+    },
+    "./stack-frame/createTriggerFrame": {
+      "types": "./dist/types/stack-frame/createTriggerFrame.d.ts",
+      "import": "./dist/esm/stack-frame/createTriggerFrame.mjs",
+      "require": "./dist/cjs/stack-frame/createTriggerFrame.cjs",
+      "default": "./src/stack-frame/createTriggerFrame.ts"
+    },
+    "./stack-frame/encodable/EncodableCallFrame.cjs": {
+      "types": "./dist/types/stack-frame/encodable/EncodableCallFrame.d.ts",
+      "import": "./dist/esm/stack-frame/encodable/EncodableCallFrame.mjs",
+      "require": "./dist/cjs/stack-frame/encodable/EncodableCallFrame.cjs",
+      "default": "./src/stack-frame/encodable/EncodableCallFrame.ts"
+    },
+    "./stack-frame/encodable/EncodableCallFrame.d.ts": {
+      "types": "./dist/types/stack-frame/encodable/EncodableCallFrame.d.ts",
+      "default": "./src/stack-frame/encodable/EncodableCallFrame.ts"
+    },
+    "./stack-frame/encodable/EncodableCallFrame.js": {
+      "types": "./dist/types/stack-frame/encodable/EncodableCallFrame.d.ts",
+      "import": "./dist/esm/stack-frame/encodable/EncodableCallFrame.mjs",
+      "require": "./dist/cjs/stack-frame/encodable/EncodableCallFrame.cjs",
+      "default": "./src/stack-frame/encodable/EncodableCallFrame.ts"
+    },
+    "./stack-frame/encodable/EncodableCallFrame.mjs": {
+      "types": "./dist/types/stack-frame/encodable/EncodableCallFrame.d.ts",
+      "import": "./dist/esm/stack-frame/encodable/EncodableCallFrame.mjs",
+      "require": "./dist/cjs/stack-frame/encodable/EncodableCallFrame.cjs",
+      "default": "./src/stack-frame/encodable/EncodableCallFrame.ts"
+    },
+    "./stack-frame/encodable/EncodableCallFrame": {
+      "types": "./dist/types/stack-frame/encodable/EncodableCallFrame.d.ts",
+      "import": "./dist/esm/stack-frame/encodable/EncodableCallFrame.mjs",
+      "require": "./dist/cjs/stack-frame/encodable/EncodableCallFrame.cjs",
+      "default": "./src/stack-frame/encodable/EncodableCallFrame.ts"
+    },
+    "./stack-frame/encodable/EncodableStackFrame.cjs": {
+      "types": "./dist/types/stack-frame/encodable/EncodableStackFrame.d.ts",
+      "import": "./dist/esm/stack-frame/encodable/EncodableStackFrame.mjs",
+      "require": "./dist/cjs/stack-frame/encodable/EncodableStackFrame.cjs",
+      "default": "./src/stack-frame/encodable/EncodableStackFrame.ts"
+    },
+    "./stack-frame/encodable/EncodableStackFrame.d.ts": {
+      "types": "./dist/types/stack-frame/encodable/EncodableStackFrame.d.ts",
+      "default": "./src/stack-frame/encodable/EncodableStackFrame.ts"
+    },
+    "./stack-frame/encodable/EncodableStackFrame.js": {
+      "types": "./dist/types/stack-frame/encodable/EncodableStackFrame.d.ts",
+      "import": "./dist/esm/stack-frame/encodable/EncodableStackFrame.mjs",
+      "require": "./dist/cjs/stack-frame/encodable/EncodableStackFrame.cjs",
+      "default": "./src/stack-frame/encodable/EncodableStackFrame.ts"
+    },
+    "./stack-frame/encodable/EncodableStackFrame.mjs": {
+      "types": "./dist/types/stack-frame/encodable/EncodableStackFrame.d.ts",
+      "import": "./dist/esm/stack-frame/encodable/EncodableStackFrame.mjs",
+      "require": "./dist/cjs/stack-frame/encodable/EncodableStackFrame.cjs",
+      "default": "./src/stack-frame/encodable/EncodableStackFrame.ts"
+    },
+    "./stack-frame/encodable/EncodableStackFrame": {
+      "types": "./dist/types/stack-frame/encodable/EncodableStackFrame.d.ts",
+      "import": "./dist/esm/stack-frame/encodable/EncodableStackFrame.mjs",
+      "require": "./dist/cjs/stack-frame/encodable/EncodableStackFrame.cjs",
+      "default": "./src/stack-frame/encodable/EncodableStackFrame.ts"
+    },
+    "./stack-frame/encodable/EncodableTapFrame.cjs": {
+      "types": "./dist/types/stack-frame/encodable/EncodableTapFrame.d.ts",
+      "import": "./dist/esm/stack-frame/encodable/EncodableTapFrame.mjs",
+      "require": "./dist/cjs/stack-frame/encodable/EncodableTapFrame.cjs",
+      "default": "./src/stack-frame/encodable/EncodableTapFrame.ts"
+    },
+    "./stack-frame/encodable/EncodableTapFrame.d.ts": {
+      "types": "./dist/types/stack-frame/encodable/EncodableTapFrame.d.ts",
+      "default": "./src/stack-frame/encodable/EncodableTapFrame.ts"
+    },
+    "./stack-frame/encodable/EncodableTapFrame.js": {
+      "types": "./dist/types/stack-frame/encodable/EncodableTapFrame.d.ts",
+      "import": "./dist/esm/stack-frame/encodable/EncodableTapFrame.mjs",
+      "require": "./dist/cjs/stack-frame/encodable/EncodableTapFrame.cjs",
+      "default": "./src/stack-frame/encodable/EncodableTapFrame.ts"
+    },
+    "./stack-frame/encodable/EncodableTapFrame.mjs": {
+      "types": "./dist/types/stack-frame/encodable/EncodableTapFrame.d.ts",
+      "import": "./dist/esm/stack-frame/encodable/EncodableTapFrame.mjs",
+      "require": "./dist/cjs/stack-frame/encodable/EncodableTapFrame.cjs",
+      "default": "./src/stack-frame/encodable/EncodableTapFrame.ts"
+    },
+    "./stack-frame/encodable/EncodableTapFrame": {
+      "types": "./dist/types/stack-frame/encodable/EncodableTapFrame.d.ts",
+      "import": "./dist/esm/stack-frame/encodable/EncodableTapFrame.mjs",
+      "require": "./dist/cjs/stack-frame/encodable/EncodableTapFrame.cjs",
+      "default": "./src/stack-frame/encodable/EncodableTapFrame.ts"
+    },
+    "./stack-frame/encodable/EncodableTriggerFrame.cjs": {
+      "types": "./dist/types/stack-frame/encodable/EncodableTriggerFrame.d.ts",
+      "import": "./dist/esm/stack-frame/encodable/EncodableTriggerFrame.mjs",
+      "require": "./dist/cjs/stack-frame/encodable/EncodableTriggerFrame.cjs",
+      "default": "./src/stack-frame/encodable/EncodableTriggerFrame.ts"
+    },
+    "./stack-frame/encodable/EncodableTriggerFrame.d.ts": {
+      "types": "./dist/types/stack-frame/encodable/EncodableTriggerFrame.d.ts",
+      "default": "./src/stack-frame/encodable/EncodableTriggerFrame.ts"
+    },
+    "./stack-frame/encodable/EncodableTriggerFrame.js": {
+      "types": "./dist/types/stack-frame/encodable/EncodableTriggerFrame.d.ts",
+      "import": "./dist/esm/stack-frame/encodable/EncodableTriggerFrame.mjs",
+      "require": "./dist/cjs/stack-frame/encodable/EncodableTriggerFrame.cjs",
+      "default": "./src/stack-frame/encodable/EncodableTriggerFrame.ts"
+    },
+    "./stack-frame/encodable/EncodableTriggerFrame.mjs": {
+      "types": "./dist/types/stack-frame/encodable/EncodableTriggerFrame.d.ts",
+      "import": "./dist/esm/stack-frame/encodable/EncodableTriggerFrame.mjs",
+      "require": "./dist/cjs/stack-frame/encodable/EncodableTriggerFrame.cjs",
+      "default": "./src/stack-frame/encodable/EncodableTriggerFrame.ts"
+    },
+    "./stack-frame/encodable/EncodableTriggerFrame": {
+      "types": "./dist/types/stack-frame/encodable/EncodableTriggerFrame.d.ts",
+      "import": "./dist/esm/stack-frame/encodable/EncodableTriggerFrame.mjs",
+      "require": "./dist/cjs/stack-frame/encodable/EncodableTriggerFrame.cjs",
+      "default": "./src/stack-frame/encodable/EncodableTriggerFrame.ts"
+    },
+    "./stack-frame/encodable/index.cjs": {
+      "types": "./dist/types/stack-frame/encodable/index.d.ts",
+      "import": "./dist/esm/stack-frame/encodable/index.mjs",
+      "require": "./dist/cjs/stack-frame/encodable/index.cjs",
+      "default": "./src/stack-frame/encodable/index.ts"
+    },
+    "./stack-frame/encodable/index.d.ts": {
+      "types": "./dist/types/stack-frame/encodable/index.d.ts",
+      "default": "./src/stack-frame/encodable/index.ts"
+    },
+    "./stack-frame/encodable/index.js": {
+      "types": "./dist/types/stack-frame/encodable/index.d.ts",
+      "import": "./dist/esm/stack-frame/encodable/index.mjs",
+      "require": "./dist/cjs/stack-frame/encodable/index.cjs",
+      "default": "./src/stack-frame/encodable/index.ts"
+    },
+    "./stack-frame/encodable/index.mjs": {
+      "types": "./dist/types/stack-frame/encodable/index.d.ts",
+      "import": "./dist/esm/stack-frame/encodable/index.mjs",
+      "require": "./dist/cjs/stack-frame/encodable/index.cjs",
+      "default": "./src/stack-frame/encodable/index.ts"
+    },
+    "./stack-frame/encodable/index": {
+      "types": "./dist/types/stack-frame/encodable/index.d.ts",
+      "import": "./dist/esm/stack-frame/encodable/index.mjs",
+      "require": "./dist/cjs/stack-frame/encodable/index.cjs",
+      "default": "./src/stack-frame/encodable/index.ts"
+    },
+    "./stack-frame/encodable/toEncodableCallFrame.cjs": {
+      "types": "./dist/types/stack-frame/encodable/toEncodableCallFrame.d.ts",
+      "import": "./dist/esm/stack-frame/encodable/toEncodableCallFrame.mjs",
+      "require": "./dist/cjs/stack-frame/encodable/toEncodableCallFrame.cjs",
+      "default": "./src/stack-frame/encodable/toEncodableCallFrame.ts"
+    },
+    "./stack-frame/encodable/toEncodableCallFrame.d.ts": {
+      "types": "./dist/types/stack-frame/encodable/toEncodableCallFrame.d.ts",
+      "default": "./src/stack-frame/encodable/toEncodableCallFrame.ts"
+    },
+    "./stack-frame/encodable/toEncodableCallFrame.js": {
+      "types": "./dist/types/stack-frame/encodable/toEncodableCallFrame.d.ts",
+      "import": "./dist/esm/stack-frame/encodable/toEncodableCallFrame.mjs",
+      "require": "./dist/cjs/stack-frame/encodable/toEncodableCallFrame.cjs",
+      "default": "./src/stack-frame/encodable/toEncodableCallFrame.ts"
+    },
+    "./stack-frame/encodable/toEncodableCallFrame.mjs": {
+      "types": "./dist/types/stack-frame/encodable/toEncodableCallFrame.d.ts",
+      "import": "./dist/esm/stack-frame/encodable/toEncodableCallFrame.mjs",
+      "require": "./dist/cjs/stack-frame/encodable/toEncodableCallFrame.cjs",
+      "default": "./src/stack-frame/encodable/toEncodableCallFrame.ts"
+    },
+    "./stack-frame/encodable/toEncodableCallFrame": {
+      "types": "./dist/types/stack-frame/encodable/toEncodableCallFrame.d.ts",
+      "import": "./dist/esm/stack-frame/encodable/toEncodableCallFrame.mjs",
+      "require": "./dist/cjs/stack-frame/encodable/toEncodableCallFrame.cjs",
+      "default": "./src/stack-frame/encodable/toEncodableCallFrame.ts"
+    },
+    "./stack-frame/encodable/toEncodableStackFrame.cjs": {
+      "types": "./dist/types/stack-frame/encodable/toEncodableStackFrame.d.ts",
+      "import": "./dist/esm/stack-frame/encodable/toEncodableStackFrame.mjs",
+      "require": "./dist/cjs/stack-frame/encodable/toEncodableStackFrame.cjs",
+      "default": "./src/stack-frame/encodable/toEncodableStackFrame.ts"
+    },
+    "./stack-frame/encodable/toEncodableStackFrame.d.ts": {
+      "types": "./dist/types/stack-frame/encodable/toEncodableStackFrame.d.ts",
+      "default": "./src/stack-frame/encodable/toEncodableStackFrame.ts"
+    },
+    "./stack-frame/encodable/toEncodableStackFrame.js": {
+      "types": "./dist/types/stack-frame/encodable/toEncodableStackFrame.d.ts",
+      "import": "./dist/esm/stack-frame/encodable/toEncodableStackFrame.mjs",
+      "require": "./dist/cjs/stack-frame/encodable/toEncodableStackFrame.cjs",
+      "default": "./src/stack-frame/encodable/toEncodableStackFrame.ts"
+    },
+    "./stack-frame/encodable/toEncodableStackFrame.mjs": {
+      "types": "./dist/types/stack-frame/encodable/toEncodableStackFrame.d.ts",
+      "import": "./dist/esm/stack-frame/encodable/toEncodableStackFrame.mjs",
+      "require": "./dist/cjs/stack-frame/encodable/toEncodableStackFrame.cjs",
+      "default": "./src/stack-frame/encodable/toEncodableStackFrame.ts"
+    },
+    "./stack-frame/encodable/toEncodableStackFrame": {
+      "types": "./dist/types/stack-frame/encodable/toEncodableStackFrame.d.ts",
+      "import": "./dist/esm/stack-frame/encodable/toEncodableStackFrame.mjs",
+      "require": "./dist/cjs/stack-frame/encodable/toEncodableStackFrame.cjs",
+      "default": "./src/stack-frame/encodable/toEncodableStackFrame.ts"
+    },
+    "./stack-frame/encodable/toEncodableTapFrame.cjs": {
+      "types": "./dist/types/stack-frame/encodable/toEncodableTapFrame.d.ts",
+      "import": "./dist/esm/stack-frame/encodable/toEncodableTapFrame.mjs",
+      "require": "./dist/cjs/stack-frame/encodable/toEncodableTapFrame.cjs",
+      "default": "./src/stack-frame/encodable/toEncodableTapFrame.ts"
+    },
+    "./stack-frame/encodable/toEncodableTapFrame.d.ts": {
+      "types": "./dist/types/stack-frame/encodable/toEncodableTapFrame.d.ts",
+      "default": "./src/stack-frame/encodable/toEncodableTapFrame.ts"
+    },
+    "./stack-frame/encodable/toEncodableTapFrame.js": {
+      "types": "./dist/types/stack-frame/encodable/toEncodableTapFrame.d.ts",
+      "import": "./dist/esm/stack-frame/encodable/toEncodableTapFrame.mjs",
+      "require": "./dist/cjs/stack-frame/encodable/toEncodableTapFrame.cjs",
+      "default": "./src/stack-frame/encodable/toEncodableTapFrame.ts"
+    },
+    "./stack-frame/encodable/toEncodableTapFrame.mjs": {
+      "types": "./dist/types/stack-frame/encodable/toEncodableTapFrame.d.ts",
+      "import": "./dist/esm/stack-frame/encodable/toEncodableTapFrame.mjs",
+      "require": "./dist/cjs/stack-frame/encodable/toEncodableTapFrame.cjs",
+      "default": "./src/stack-frame/encodable/toEncodableTapFrame.ts"
+    },
+    "./stack-frame/encodable/toEncodableTapFrame": {
+      "types": "./dist/types/stack-frame/encodable/toEncodableTapFrame.d.ts",
+      "import": "./dist/esm/stack-frame/encodable/toEncodableTapFrame.mjs",
+      "require": "./dist/cjs/stack-frame/encodable/toEncodableTapFrame.cjs",
+      "default": "./src/stack-frame/encodable/toEncodableTapFrame.ts"
+    },
+    "./stack-frame/encodable/toEncodableTriggerFrame.cjs": {
+      "types": "./dist/types/stack-frame/encodable/toEncodableTriggerFrame.d.ts",
+      "import": "./dist/esm/stack-frame/encodable/toEncodableTriggerFrame.mjs",
+      "require": "./dist/cjs/stack-frame/encodable/toEncodableTriggerFrame.cjs",
+      "default": "./src/stack-frame/encodable/toEncodableTriggerFrame.ts"
+    },
+    "./stack-frame/encodable/toEncodableTriggerFrame.d.ts": {
+      "types": "./dist/types/stack-frame/encodable/toEncodableTriggerFrame.d.ts",
+      "default": "./src/stack-frame/encodable/toEncodableTriggerFrame.ts"
+    },
+    "./stack-frame/encodable/toEncodableTriggerFrame.js": {
+      "types": "./dist/types/stack-frame/encodable/toEncodableTriggerFrame.d.ts",
+      "import": "./dist/esm/stack-frame/encodable/toEncodableTriggerFrame.mjs",
+      "require": "./dist/cjs/stack-frame/encodable/toEncodableTriggerFrame.cjs",
+      "default": "./src/stack-frame/encodable/toEncodableTriggerFrame.ts"
+    },
+    "./stack-frame/encodable/toEncodableTriggerFrame.mjs": {
+      "types": "./dist/types/stack-frame/encodable/toEncodableTriggerFrame.d.ts",
+      "import": "./dist/esm/stack-frame/encodable/toEncodableTriggerFrame.mjs",
+      "require": "./dist/cjs/stack-frame/encodable/toEncodableTriggerFrame.cjs",
+      "default": "./src/stack-frame/encodable/toEncodableTriggerFrame.ts"
+    },
+    "./stack-frame/encodable/toEncodableTriggerFrame": {
+      "types": "./dist/types/stack-frame/encodable/toEncodableTriggerFrame.d.ts",
+      "import": "./dist/esm/stack-frame/encodable/toEncodableTriggerFrame.mjs",
+      "require": "./dist/cjs/stack-frame/encodable/toEncodableTriggerFrame.cjs",
+      "default": "./src/stack-frame/encodable/toEncodableTriggerFrame.ts"
+    },
+    "./stack-frame/encodable": {
+      "types": "./dist/types/stack-frame/encodable/index.d.ts",
+      "import": "./dist/esm/stack-frame/encodable/index.mjs",
+      "require": "./dist/cjs/stack-frame/encodable/index.cjs",
+      "default": "./src/stack-frame/encodable/index.ts"
+    },
+    "./stack-frame/index.cjs": {
+      "types": "./dist/types/stack-frame/index.d.ts",
+      "import": "./dist/esm/stack-frame/index.mjs",
+      "require": "./dist/cjs/stack-frame/index.cjs",
+      "default": "./src/stack-frame/index.ts"
+    },
+    "./stack-frame/index.d.ts": {
+      "types": "./dist/types/stack-frame/index.d.ts",
+      "default": "./src/stack-frame/index.ts"
+    },
+    "./stack-frame/index.js": {
+      "types": "./dist/types/stack-frame/index.d.ts",
+      "import": "./dist/esm/stack-frame/index.mjs",
+      "require": "./dist/cjs/stack-frame/index.cjs",
+      "default": "./src/stack-frame/index.ts"
+    },
+    "./stack-frame/index.mjs": {
+      "types": "./dist/types/stack-frame/index.d.ts",
+      "import": "./dist/esm/stack-frame/index.mjs",
+      "require": "./dist/cjs/stack-frame/index.cjs",
+      "default": "./src/stack-frame/index.ts"
+    },
+    "./stack-frame/index": {
+      "types": "./dist/types/stack-frame/index.d.ts",
+      "import": "./dist/esm/stack-frame/index.mjs",
+      "require": "./dist/cjs/stack-frame/index.cjs",
+      "default": "./src/stack-frame/index.ts"
+    },
+    "./stack-frame/label/StackFrameLabel.cjs": {
+      "types": "./dist/types/stack-frame/label/StackFrameLabel.d.ts",
+      "import": "./dist/esm/stack-frame/label/StackFrameLabel.mjs",
+      "require": "./dist/cjs/stack-frame/label/StackFrameLabel.cjs",
+      "default": "./src/stack-frame/label/StackFrameLabel.ts"
+    },
+    "./stack-frame/label/StackFrameLabel.d.ts": {
+      "types": "./dist/types/stack-frame/label/StackFrameLabel.d.ts",
+      "default": "./src/stack-frame/label/StackFrameLabel.ts"
+    },
+    "./stack-frame/label/StackFrameLabel.js": {
+      "types": "./dist/types/stack-frame/label/StackFrameLabel.d.ts",
+      "import": "./dist/esm/stack-frame/label/StackFrameLabel.mjs",
+      "require": "./dist/cjs/stack-frame/label/StackFrameLabel.cjs",
+      "default": "./src/stack-frame/label/StackFrameLabel.ts"
+    },
+    "./stack-frame/label/StackFrameLabel.mjs": {
+      "types": "./dist/types/stack-frame/label/StackFrameLabel.d.ts",
+      "import": "./dist/esm/stack-frame/label/StackFrameLabel.mjs",
+      "require": "./dist/cjs/stack-frame/label/StackFrameLabel.cjs",
+      "default": "./src/stack-frame/label/StackFrameLabel.ts"
+    },
+    "./stack-frame/label/StackFrameLabel": {
+      "types": "./dist/types/stack-frame/label/StackFrameLabel.d.ts",
+      "import": "./dist/esm/stack-frame/label/StackFrameLabel.mjs",
+      "require": "./dist/cjs/stack-frame/label/StackFrameLabel.cjs",
+      "default": "./src/stack-frame/label/StackFrameLabel.ts"
+    },
+    "./stack-frame/label/index.cjs": {
+      "types": "./dist/types/stack-frame/label/index.d.ts",
+      "import": "./dist/esm/stack-frame/label/index.mjs",
+      "require": "./dist/cjs/stack-frame/label/index.cjs",
+      "default": "./src/stack-frame/label/index.ts"
+    },
+    "./stack-frame/label/index.d.ts": {
+      "types": "./dist/types/stack-frame/label/index.d.ts",
+      "default": "./src/stack-frame/label/index.ts"
+    },
+    "./stack-frame/label/index.js": {
+      "types": "./dist/types/stack-frame/label/index.d.ts",
+      "import": "./dist/esm/stack-frame/label/index.mjs",
+      "require": "./dist/cjs/stack-frame/label/index.cjs",
+      "default": "./src/stack-frame/label/index.ts"
+    },
+    "./stack-frame/label/index.mjs": {
+      "types": "./dist/types/stack-frame/label/index.d.ts",
+      "import": "./dist/esm/stack-frame/label/index.mjs",
+      "require": "./dist/cjs/stack-frame/label/index.cjs",
+      "default": "./src/stack-frame/label/index.ts"
+    },
+    "./stack-frame/label/index": {
+      "types": "./dist/types/stack-frame/label/index.d.ts",
+      "import": "./dist/esm/stack-frame/label/index.mjs",
+      "require": "./dist/cjs/stack-frame/label/index.cjs",
+      "default": "./src/stack-frame/label/index.ts"
+    },
+    "./stack-frame/label": {
+      "types": "./dist/types/stack-frame/label/index.d.ts",
+      "import": "./dist/esm/stack-frame/label/index.mjs",
+      "require": "./dist/cjs/stack-frame/label/index.cjs",
+      "default": "./src/stack-frame/label/index.ts"
+    },
+    "./stack-frame/type/STACK_FRAME_TYPE_CALL.cjs": {
+      "types": "./dist/types/stack-frame/type/STACK_FRAME_TYPE_CALL.d.ts",
+      "import": "./dist/esm/stack-frame/type/STACK_FRAME_TYPE_CALL.mjs",
+      "require": "./dist/cjs/stack-frame/type/STACK_FRAME_TYPE_CALL.cjs",
+      "default": "./src/stack-frame/type/STACK_FRAME_TYPE_CALL.ts"
+    },
+    "./stack-frame/type/STACK_FRAME_TYPE_CALL.d.ts": {
+      "types": "./dist/types/stack-frame/type/STACK_FRAME_TYPE_CALL.d.ts",
+      "default": "./src/stack-frame/type/STACK_FRAME_TYPE_CALL.ts"
+    },
+    "./stack-frame/type/STACK_FRAME_TYPE_CALL.js": {
+      "types": "./dist/types/stack-frame/type/STACK_FRAME_TYPE_CALL.d.ts",
+      "import": "./dist/esm/stack-frame/type/STACK_FRAME_TYPE_CALL.mjs",
+      "require": "./dist/cjs/stack-frame/type/STACK_FRAME_TYPE_CALL.cjs",
+      "default": "./src/stack-frame/type/STACK_FRAME_TYPE_CALL.ts"
+    },
+    "./stack-frame/type/STACK_FRAME_TYPE_CALL.mjs": {
+      "types": "./dist/types/stack-frame/type/STACK_FRAME_TYPE_CALL.d.ts",
+      "import": "./dist/esm/stack-frame/type/STACK_FRAME_TYPE_CALL.mjs",
+      "require": "./dist/cjs/stack-frame/type/STACK_FRAME_TYPE_CALL.cjs",
+      "default": "./src/stack-frame/type/STACK_FRAME_TYPE_CALL.ts"
+    },
+    "./stack-frame/type/STACK_FRAME_TYPE_CALL": {
+      "types": "./dist/types/stack-frame/type/STACK_FRAME_TYPE_CALL.d.ts",
+      "import": "./dist/esm/stack-frame/type/STACK_FRAME_TYPE_CALL.mjs",
+      "require": "./dist/cjs/stack-frame/type/STACK_FRAME_TYPE_CALL.cjs",
+      "default": "./src/stack-frame/type/STACK_FRAME_TYPE_CALL.ts"
+    },
+    "./stack-frame/type/STACK_FRAME_TYPE_TAP.cjs": {
+      "types": "./dist/types/stack-frame/type/STACK_FRAME_TYPE_TAP.d.ts",
+      "import": "./dist/esm/stack-frame/type/STACK_FRAME_TYPE_TAP.mjs",
+      "require": "./dist/cjs/stack-frame/type/STACK_FRAME_TYPE_TAP.cjs",
+      "default": "./src/stack-frame/type/STACK_FRAME_TYPE_TAP.ts"
+    },
+    "./stack-frame/type/STACK_FRAME_TYPE_TAP.d.ts": {
+      "types": "./dist/types/stack-frame/type/STACK_FRAME_TYPE_TAP.d.ts",
+      "default": "./src/stack-frame/type/STACK_FRAME_TYPE_TAP.ts"
+    },
+    "./stack-frame/type/STACK_FRAME_TYPE_TAP.js": {
+      "types": "./dist/types/stack-frame/type/STACK_FRAME_TYPE_TAP.d.ts",
+      "import": "./dist/esm/stack-frame/type/STACK_FRAME_TYPE_TAP.mjs",
+      "require": "./dist/cjs/stack-frame/type/STACK_FRAME_TYPE_TAP.cjs",
+      "default": "./src/stack-frame/type/STACK_FRAME_TYPE_TAP.ts"
+    },
+    "./stack-frame/type/STACK_FRAME_TYPE_TAP.mjs": {
+      "types": "./dist/types/stack-frame/type/STACK_FRAME_TYPE_TAP.d.ts",
+      "import": "./dist/esm/stack-frame/type/STACK_FRAME_TYPE_TAP.mjs",
+      "require": "./dist/cjs/stack-frame/type/STACK_FRAME_TYPE_TAP.cjs",
+      "default": "./src/stack-frame/type/STACK_FRAME_TYPE_TAP.ts"
+    },
+    "./stack-frame/type/STACK_FRAME_TYPE_TAP": {
+      "types": "./dist/types/stack-frame/type/STACK_FRAME_TYPE_TAP.d.ts",
+      "import": "./dist/esm/stack-frame/type/STACK_FRAME_TYPE_TAP.mjs",
+      "require": "./dist/cjs/stack-frame/type/STACK_FRAME_TYPE_TAP.cjs",
+      "default": "./src/stack-frame/type/STACK_FRAME_TYPE_TAP.ts"
+    },
+    "./stack-frame/type/STACK_FRAME_TYPE_TRIGGER.cjs": {
+      "types": "./dist/types/stack-frame/type/STACK_FRAME_TYPE_TRIGGER.d.ts",
+      "import": "./dist/esm/stack-frame/type/STACK_FRAME_TYPE_TRIGGER.mjs",
+      "require": "./dist/cjs/stack-frame/type/STACK_FRAME_TYPE_TRIGGER.cjs",
+      "default": "./src/stack-frame/type/STACK_FRAME_TYPE_TRIGGER.ts"
+    },
+    "./stack-frame/type/STACK_FRAME_TYPE_TRIGGER.d.ts": {
+      "types": "./dist/types/stack-frame/type/STACK_FRAME_TYPE_TRIGGER.d.ts",
+      "default": "./src/stack-frame/type/STACK_FRAME_TYPE_TRIGGER.ts"
+    },
+    "./stack-frame/type/STACK_FRAME_TYPE_TRIGGER.js": {
+      "types": "./dist/types/stack-frame/type/STACK_FRAME_TYPE_TRIGGER.d.ts",
+      "import": "./dist/esm/stack-frame/type/STACK_FRAME_TYPE_TRIGGER.mjs",
+      "require": "./dist/cjs/stack-frame/type/STACK_FRAME_TYPE_TRIGGER.cjs",
+      "default": "./src/stack-frame/type/STACK_FRAME_TYPE_TRIGGER.ts"
+    },
+    "./stack-frame/type/STACK_FRAME_TYPE_TRIGGER.mjs": {
+      "types": "./dist/types/stack-frame/type/STACK_FRAME_TYPE_TRIGGER.d.ts",
+      "import": "./dist/esm/stack-frame/type/STACK_FRAME_TYPE_TRIGGER.mjs",
+      "require": "./dist/cjs/stack-frame/type/STACK_FRAME_TYPE_TRIGGER.cjs",
+      "default": "./src/stack-frame/type/STACK_FRAME_TYPE_TRIGGER.ts"
+    },
+    "./stack-frame/type/STACK_FRAME_TYPE_TRIGGER": {
+      "types": "./dist/types/stack-frame/type/STACK_FRAME_TYPE_TRIGGER.d.ts",
+      "import": "./dist/esm/stack-frame/type/STACK_FRAME_TYPE_TRIGGER.mjs",
+      "require": "./dist/cjs/stack-frame/type/STACK_FRAME_TYPE_TRIGGER.cjs",
+      "default": "./src/stack-frame/type/STACK_FRAME_TYPE_TRIGGER.ts"
+    },
+    "./stack-frame/type/StackFrameType.cjs": {
+      "types": "./dist/types/stack-frame/type/StackFrameType.d.ts",
+      "import": "./dist/esm/stack-frame/type/StackFrameType.mjs",
+      "require": "./dist/cjs/stack-frame/type/StackFrameType.cjs",
+      "default": "./src/stack-frame/type/StackFrameType.ts"
+    },
+    "./stack-frame/type/StackFrameType.d.ts": {
+      "types": "./dist/types/stack-frame/type/StackFrameType.d.ts",
+      "default": "./src/stack-frame/type/StackFrameType.ts"
+    },
+    "./stack-frame/type/StackFrameType.js": {
+      "types": "./dist/types/stack-frame/type/StackFrameType.d.ts",
+      "import": "./dist/esm/stack-frame/type/StackFrameType.mjs",
+      "require": "./dist/cjs/stack-frame/type/StackFrameType.cjs",
+      "default": "./src/stack-frame/type/StackFrameType.ts"
+    },
+    "./stack-frame/type/StackFrameType.mjs": {
+      "types": "./dist/types/stack-frame/type/StackFrameType.d.ts",
+      "import": "./dist/esm/stack-frame/type/StackFrameType.mjs",
+      "require": "./dist/cjs/stack-frame/type/StackFrameType.cjs",
+      "default": "./src/stack-frame/type/StackFrameType.ts"
+    },
+    "./stack-frame/type/StackFrameTypeString.cjs": {
+      "types": "./dist/types/stack-frame/type/StackFrameTypeString.d.ts",
+      "import": "./dist/esm/stack-frame/type/StackFrameTypeString.mjs",
+      "require": "./dist/cjs/stack-frame/type/StackFrameTypeString.cjs",
+      "default": "./src/stack-frame/type/StackFrameTypeString.ts"
+    },
+    "./stack-frame/type/StackFrameTypeString.d.ts": {
+      "types": "./dist/types/stack-frame/type/StackFrameTypeString.d.ts",
+      "default": "./src/stack-frame/type/StackFrameTypeString.ts"
+    },
+    "./stack-frame/type/StackFrameTypeString.js": {
+      "types": "./dist/types/stack-frame/type/StackFrameTypeString.d.ts",
+      "import": "./dist/esm/stack-frame/type/StackFrameTypeString.mjs",
+      "require": "./dist/cjs/stack-frame/type/StackFrameTypeString.cjs",
+      "default": "./src/stack-frame/type/StackFrameTypeString.ts"
+    },
+    "./stack-frame/type/StackFrameTypeString.mjs": {
+      "types": "./dist/types/stack-frame/type/StackFrameTypeString.d.ts",
+      "import": "./dist/esm/stack-frame/type/StackFrameTypeString.mjs",
+      "require": "./dist/cjs/stack-frame/type/StackFrameTypeString.cjs",
+      "default": "./src/stack-frame/type/StackFrameTypeString.ts"
+    },
+    "./stack-frame/type/StackFrameTypeString": {
+      "types": "./dist/types/stack-frame/type/StackFrameTypeString.d.ts",
+      "import": "./dist/esm/stack-frame/type/StackFrameTypeString.mjs",
+      "require": "./dist/cjs/stack-frame/type/StackFrameTypeString.cjs",
+      "default": "./src/stack-frame/type/StackFrameTypeString.ts"
+    },
+    "./stack-frame/type/StackFrameType": {
+      "types": "./dist/types/stack-frame/type/StackFrameType.d.ts",
+      "import": "./dist/esm/stack-frame/type/StackFrameType.mjs",
+      "require": "./dist/cjs/stack-frame/type/StackFrameType.cjs",
+      "default": "./src/stack-frame/type/StackFrameType.ts"
+    },
+    "./stack-frame/type/castStackFrameType.cjs": {
+      "types": "./dist/types/stack-frame/type/castStackFrameType.d.ts",
+      "import": "./dist/esm/stack-frame/type/castStackFrameType.mjs",
+      "require": "./dist/cjs/stack-frame/type/castStackFrameType.cjs",
+      "default": "./src/stack-frame/type/castStackFrameType.ts"
+    },
+    "./stack-frame/type/castStackFrameType.d.ts": {
+      "types": "./dist/types/stack-frame/type/castStackFrameType.d.ts",
+      "default": "./src/stack-frame/type/castStackFrameType.ts"
+    },
+    "./stack-frame/type/castStackFrameType.js": {
+      "types": "./dist/types/stack-frame/type/castStackFrameType.d.ts",
+      "import": "./dist/esm/stack-frame/type/castStackFrameType.mjs",
+      "require": "./dist/cjs/stack-frame/type/castStackFrameType.cjs",
+      "default": "./src/stack-frame/type/castStackFrameType.ts"
+    },
+    "./stack-frame/type/castStackFrameType.mjs": {
+      "types": "./dist/types/stack-frame/type/castStackFrameType.d.ts",
+      "import": "./dist/esm/stack-frame/type/castStackFrameType.mjs",
+      "require": "./dist/cjs/stack-frame/type/castStackFrameType.cjs",
+      "default": "./src/stack-frame/type/castStackFrameType.ts"
+    },
+    "./stack-frame/type/castStackFrameType": {
+      "types": "./dist/types/stack-frame/type/castStackFrameType.d.ts",
+      "import": "./dist/esm/stack-frame/type/castStackFrameType.mjs",
+      "require": "./dist/cjs/stack-frame/type/castStackFrameType.cjs",
+      "default": "./src/stack-frame/type/castStackFrameType.ts"
+    },
+    "./stack-frame/type/index.cjs": {
+      "types": "./dist/types/stack-frame/type/index.d.ts",
+      "import": "./dist/esm/stack-frame/type/index.mjs",
+      "require": "./dist/cjs/stack-frame/type/index.cjs",
+      "default": "./src/stack-frame/type/index.ts"
+    },
+    "./stack-frame/type/index.d.ts": {
+      "types": "./dist/types/stack-frame/type/index.d.ts",
+      "default": "./src/stack-frame/type/index.ts"
+    },
+    "./stack-frame/type/index.js": {
+      "types": "./dist/types/stack-frame/type/index.d.ts",
+      "import": "./dist/esm/stack-frame/type/index.mjs",
+      "require": "./dist/cjs/stack-frame/type/index.cjs",
+      "default": "./src/stack-frame/type/index.ts"
+    },
+    "./stack-frame/type/index.mjs": {
+      "types": "./dist/types/stack-frame/type/index.d.ts",
+      "import": "./dist/esm/stack-frame/type/index.mjs",
+      "require": "./dist/cjs/stack-frame/type/index.cjs",
+      "default": "./src/stack-frame/type/index.ts"
+    },
+    "./stack-frame/type/index": {
+      "types": "./dist/types/stack-frame/type/index.d.ts",
+      "import": "./dist/esm/stack-frame/type/index.mjs",
+      "require": "./dist/cjs/stack-frame/type/index.cjs",
+      "default": "./src/stack-frame/type/index.ts"
+    },
+    "./stack-frame/type": {
+      "types": "./dist/types/stack-frame/type/index.d.ts",
+      "import": "./dist/esm/stack-frame/type/index.mjs",
+      "require": "./dist/cjs/stack-frame/type/index.cjs",
+      "default": "./src/stack-frame/type/index.ts"
+    },
+    "./stack-frame": {
+      "types": "./dist/types/stack-frame/index.d.ts",
+      "import": "./dist/esm/stack-frame/index.mjs",
+      "require": "./dist/cjs/stack-frame/index.cjs",
+      "default": "./src/stack-frame/index.ts"
+    },
+    "./stack-trace/StackTrace.cjs": {
+      "types": "./dist/types/stack-trace/StackTrace.d.ts",
+      "import": "./dist/esm/stack-trace/StackTrace.mjs",
+      "require": "./dist/cjs/stack-trace/StackTrace.cjs",
+      "default": "./src/stack-trace/StackTrace.ts"
+    },
+    "./stack-trace/StackTrace.d.ts": {
+      "types": "./dist/types/stack-trace/StackTrace.d.ts",
+      "default": "./src/stack-trace/StackTrace.ts"
+    },
+    "./stack-trace/StackTrace.js": {
+      "types": "./dist/types/stack-trace/StackTrace.d.ts",
+      "import": "./dist/esm/stack-trace/StackTrace.mjs",
+      "require": "./dist/cjs/stack-trace/StackTrace.cjs",
+      "default": "./src/stack-trace/StackTrace.ts"
+    },
+    "./stack-trace/StackTrace.mjs": {
+      "types": "./dist/types/stack-trace/StackTrace.d.ts",
+      "import": "./dist/esm/stack-trace/StackTrace.mjs",
+      "require": "./dist/cjs/stack-trace/StackTrace.cjs",
+      "default": "./src/stack-trace/StackTrace.ts"
+    },
+    "./stack-trace/StackTrace": {
+      "types": "./dist/types/stack-trace/StackTrace.d.ts",
+      "import": "./dist/esm/stack-trace/StackTrace.mjs",
+      "require": "./dist/cjs/stack-trace/StackTrace.cjs",
+      "default": "./src/stack-trace/StackTrace.ts"
+    },
+    "./stack-trace/createStackTrace.cjs": {
+      "types": "./dist/types/stack-trace/createStackTrace.d.ts",
+      "import": "./dist/esm/stack-trace/createStackTrace.mjs",
+      "require": "./dist/cjs/stack-trace/createStackTrace.cjs",
+      "default": "./src/stack-trace/createStackTrace.ts"
+    },
+    "./stack-trace/createStackTrace.d.ts": {
+      "types": "./dist/types/stack-trace/createStackTrace.d.ts",
+      "default": "./src/stack-trace/createStackTrace.ts"
+    },
+    "./stack-trace/createStackTrace.js": {
+      "types": "./dist/types/stack-trace/createStackTrace.d.ts",
+      "import": "./dist/esm/stack-trace/createStackTrace.mjs",
+      "require": "./dist/cjs/stack-trace/createStackTrace.cjs",
+      "default": "./src/stack-trace/createStackTrace.ts"
+    },
+    "./stack-trace/createStackTrace.mjs": {
+      "types": "./dist/types/stack-trace/createStackTrace.d.ts",
+      "import": "./dist/esm/stack-trace/createStackTrace.mjs",
+      "require": "./dist/cjs/stack-trace/createStackTrace.cjs",
+      "default": "./src/stack-trace/createStackTrace.ts"
+    },
+    "./stack-trace/createStackTrace": {
+      "types": "./dist/types/stack-trace/createStackTrace.d.ts",
+      "import": "./dist/esm/stack-trace/createStackTrace.mjs",
+      "require": "./dist/cjs/stack-trace/createStackTrace.cjs",
+      "default": "./src/stack-trace/createStackTrace.ts"
+    },
+    "./stack-trace/dumpStackTrace.cjs": {
+      "types": "./dist/types/stack-trace/dumpStackTrace.d.ts",
+      "import": "./dist/esm/stack-trace/dumpStackTrace.mjs",
+      "require": "./dist/cjs/stack-trace/dumpStackTrace.cjs",
+      "default": "./src/stack-trace/dumpStackTrace.ts"
+    },
+    "./stack-trace/dumpStackTrace.d.ts": {
+      "types": "./dist/types/stack-trace/dumpStackTrace.d.ts",
+      "default": "./src/stack-trace/dumpStackTrace.ts"
+    },
+    "./stack-trace/dumpStackTrace.js": {
+      "types": "./dist/types/stack-trace/dumpStackTrace.d.ts",
+      "import": "./dist/esm/stack-trace/dumpStackTrace.mjs",
+      "require": "./dist/cjs/stack-trace/dumpStackTrace.cjs",
+      "default": "./src/stack-trace/dumpStackTrace.ts"
+    },
+    "./stack-trace/dumpStackTrace.mjs": {
+      "types": "./dist/types/stack-trace/dumpStackTrace.d.ts",
+      "import": "./dist/esm/stack-trace/dumpStackTrace.mjs",
+      "require": "./dist/cjs/stack-trace/dumpStackTrace.cjs",
+      "default": "./src/stack-trace/dumpStackTrace.ts"
+    },
+    "./stack-trace/dumpStackTrace": {
+      "types": "./dist/types/stack-trace/dumpStackTrace.d.ts",
+      "import": "./dist/esm/stack-trace/dumpStackTrace.mjs",
+      "require": "./dist/cjs/stack-trace/dumpStackTrace.cjs",
+      "default": "./src/stack-trace/dumpStackTrace.ts"
+    },
+    "./stack-trace/index.cjs": {
+      "types": "./dist/types/stack-trace/index.d.ts",
+      "import": "./dist/esm/stack-trace/index.mjs",
+      "require": "./dist/cjs/stack-trace/index.cjs",
+      "default": "./src/stack-trace/index.ts"
+    },
+    "./stack-trace/index.d.ts": {
+      "types": "./dist/types/stack-trace/index.d.ts",
+      "default": "./src/stack-trace/index.ts"
+    },
+    "./stack-trace/index.js": {
+      "types": "./dist/types/stack-trace/index.d.ts",
+      "import": "./dist/esm/stack-trace/index.mjs",
+      "require": "./dist/cjs/stack-trace/index.cjs",
+      "default": "./src/stack-trace/index.ts"
+    },
+    "./stack-trace/index.mjs": {
+      "types": "./dist/types/stack-trace/index.d.ts",
+      "import": "./dist/esm/stack-trace/index.mjs",
+      "require": "./dist/cjs/stack-trace/index.cjs",
+      "default": "./src/stack-trace/index.ts"
+    },
+    "./stack-trace/index": {
+      "types": "./dist/types/stack-trace/index.d.ts",
+      "import": "./dist/esm/stack-trace/index.mjs",
+      "require": "./dist/cjs/stack-trace/index.cjs",
+      "default": "./src/stack-trace/index.ts"
+    },
+    "./stack-trace/pushStackFrame.cjs": {
+      "types": "./dist/types/stack-trace/pushStackFrame.d.ts",
+      "import": "./dist/esm/stack-trace/pushStackFrame.mjs",
+      "require": "./dist/cjs/stack-trace/pushStackFrame.cjs",
+      "default": "./src/stack-trace/pushStackFrame.ts"
+    },
+    "./stack-trace/pushStackFrame.d.ts": {
+      "types": "./dist/types/stack-trace/pushStackFrame.d.ts",
+      "default": "./src/stack-trace/pushStackFrame.ts"
+    },
+    "./stack-trace/pushStackFrame.js": {
+      "types": "./dist/types/stack-trace/pushStackFrame.d.ts",
+      "import": "./dist/esm/stack-trace/pushStackFrame.mjs",
+      "require": "./dist/cjs/stack-trace/pushStackFrame.cjs",
+      "default": "./src/stack-trace/pushStackFrame.ts"
+    },
+    "./stack-trace/pushStackFrame.mjs": {
+      "types": "./dist/types/stack-trace/pushStackFrame.d.ts",
+      "import": "./dist/esm/stack-trace/pushStackFrame.mjs",
+      "require": "./dist/cjs/stack-trace/pushStackFrame.cjs",
+      "default": "./src/stack-trace/pushStackFrame.ts"
+    },
+    "./stack-trace/pushStackFrame": {
+      "types": "./dist/types/stack-trace/pushStackFrame.d.ts",
+      "import": "./dist/esm/stack-trace/pushStackFrame.mjs",
+      "require": "./dist/cjs/stack-trace/pushStackFrame.cjs",
+      "default": "./src/stack-trace/pushStackFrame.ts"
+    },
+    "./stack-trace": {
+      "types": "./dist/types/stack-trace/index.d.ts",
+      "import": "./dist/esm/stack-trace/index.mjs",
+      "require": "./dist/cjs/stack-trace/index.cjs",
+      "default": "./src/stack-trace/index.ts"
+    },
+    "./tap/index.cjs": {
+      "types": "./dist/types/tap/index.d.ts",
+      "import": "./dist/esm/tap/index.mjs",
+      "require": "./dist/cjs/tap/index.cjs",
+      "default": "./src/tap/index.ts"
+    },
+    "./tap/index.d.ts": {
+      "types": "./dist/types/tap/index.d.ts",
+      "default": "./src/tap/index.ts"
+    },
+    "./tap/index.js": {
+      "types": "./dist/types/tap/index.d.ts",
+      "import": "./dist/esm/tap/index.mjs",
+      "require": "./dist/cjs/tap/index.cjs",
+      "default": "./src/tap/index.ts"
+    },
+    "./tap/index.mjs": {
+      "types": "./dist/types/tap/index.d.ts",
+      "import": "./dist/esm/tap/index.mjs",
+      "require": "./dist/cjs/tap/index.cjs",
+      "default": "./src/tap/index.ts"
+    },
+    "./tap/index": {
+      "types": "./dist/types/tap/index.d.ts",
+      "import": "./dist/esm/tap/index.mjs",
+      "require": "./dist/cjs/tap/index.cjs",
+      "default": "./src/tap/index.ts"
+    },
+    "./tap/label/TapLabel.cjs": {
+      "types": "./dist/types/tap/label/TapLabel.d.ts",
+      "import": "./dist/esm/tap/label/TapLabel.mjs",
+      "require": "./dist/cjs/tap/label/TapLabel.cjs",
+      "default": "./src/tap/label/TapLabel.ts"
+    },
+    "./tap/label/TapLabel.d.ts": {
+      "types": "./dist/types/tap/label/TapLabel.d.ts",
+      "default": "./src/tap/label/TapLabel.ts"
+    },
+    "./tap/label/TapLabel.js": {
+      "types": "./dist/types/tap/label/TapLabel.d.ts",
+      "import": "./dist/esm/tap/label/TapLabel.mjs",
+      "require": "./dist/cjs/tap/label/TapLabel.cjs",
+      "default": "./src/tap/label/TapLabel.ts"
+    },
+    "./tap/label/TapLabel.mjs": {
+      "types": "./dist/types/tap/label/TapLabel.d.ts",
+      "import": "./dist/esm/tap/label/TapLabel.mjs",
+      "require": "./dist/cjs/tap/label/TapLabel.cjs",
+      "default": "./src/tap/label/TapLabel.ts"
+    },
+    "./tap/label/TapLabellerFunction.cjs": {
+      "types": "./dist/types/tap/label/TapLabellerFunction.d.ts",
+      "import": "./dist/esm/tap/label/TapLabellerFunction.mjs",
+      "require": "./dist/cjs/tap/label/TapLabellerFunction.cjs",
+      "default": "./src/tap/label/TapLabellerFunction.ts"
+    },
+    "./tap/label/TapLabellerFunction.d.ts": {
+      "types": "./dist/types/tap/label/TapLabellerFunction.d.ts",
+      "default": "./src/tap/label/TapLabellerFunction.ts"
+    },
+    "./tap/label/TapLabellerFunction.js": {
+      "types": "./dist/types/tap/label/TapLabellerFunction.d.ts",
+      "import": "./dist/esm/tap/label/TapLabellerFunction.mjs",
+      "require": "./dist/cjs/tap/label/TapLabellerFunction.cjs",
+      "default": "./src/tap/label/TapLabellerFunction.ts"
+    },
+    "./tap/label/TapLabellerFunction.mjs": {
+      "types": "./dist/types/tap/label/TapLabellerFunction.d.ts",
+      "import": "./dist/esm/tap/label/TapLabellerFunction.mjs",
+      "require": "./dist/cjs/tap/label/TapLabellerFunction.cjs",
+      "default": "./src/tap/label/TapLabellerFunction.ts"
+    },
+    "./tap/label/TapLabellerFunction": {
+      "types": "./dist/types/tap/label/TapLabellerFunction.d.ts",
+      "import": "./dist/esm/tap/label/TapLabellerFunction.mjs",
+      "require": "./dist/cjs/tap/label/TapLabellerFunction.cjs",
+      "default": "./src/tap/label/TapLabellerFunction.ts"
+    },
+    "./tap/label/TapLabel": {
+      "types": "./dist/types/tap/label/TapLabel.d.ts",
+      "import": "./dist/esm/tap/label/TapLabel.mjs",
+      "require": "./dist/cjs/tap/label/TapLabel.cjs",
+      "default": "./src/tap/label/TapLabel.ts"
+    },
+    "./tap/label/index.cjs": {
+      "types": "./dist/types/tap/label/index.d.ts",
+      "import": "./dist/esm/tap/label/index.mjs",
+      "require": "./dist/cjs/tap/label/index.cjs",
+      "default": "./src/tap/label/index.ts"
+    },
+    "./tap/label/index.d.ts": {
+      "types": "./dist/types/tap/label/index.d.ts",
+      "default": "./src/tap/label/index.ts"
+    },
+    "./tap/label/index.js": {
+      "types": "./dist/types/tap/label/index.d.ts",
+      "import": "./dist/esm/tap/label/index.mjs",
+      "require": "./dist/cjs/tap/label/index.cjs",
+      "default": "./src/tap/label/index.ts"
+    },
+    "./tap/label/index.mjs": {
+      "types": "./dist/types/tap/label/index.d.ts",
+      "import": "./dist/esm/tap/label/index.mjs",
+      "require": "./dist/cjs/tap/label/index.cjs",
+      "default": "./src/tap/label/index.ts"
+    },
+    "./tap/label/index": {
+      "types": "./dist/types/tap/label/index.d.ts",
+      "import": "./dist/esm/tap/label/index.mjs",
+      "require": "./dist/cjs/tap/label/index.cjs",
+      "default": "./src/tap/label/index.ts"
+    },
+    "./tap/label/labelTap.cjs": {
+      "types": "./dist/types/tap/label/labelTap.d.ts",
+      "import": "./dist/esm/tap/label/labelTap.mjs",
+      "require": "./dist/cjs/tap/label/labelTap.cjs",
+      "default": "./src/tap/label/labelTap.ts"
+    },
+    "./tap/label/labelTap.d.ts": {
+      "types": "./dist/types/tap/label/labelTap.d.ts",
+      "default": "./src/tap/label/labelTap.ts"
+    },
+    "./tap/label/labelTap.js": {
+      "types": "./dist/types/tap/label/labelTap.d.ts",
+      "import": "./dist/esm/tap/label/labelTap.mjs",
+      "require": "./dist/cjs/tap/label/labelTap.cjs",
+      "default": "./src/tap/label/labelTap.ts"
+    },
+    "./tap/label/labelTap.mjs": {
+      "types": "./dist/types/tap/label/labelTap.d.ts",
+      "import": "./dist/esm/tap/label/labelTap.mjs",
+      "require": "./dist/cjs/tap/label/labelTap.cjs",
+      "default": "./src/tap/label/labelTap.ts"
+    },
+    "./tap/label/labelTap": {
+      "types": "./dist/types/tap/label/labelTap.d.ts",
+      "import": "./dist/esm/tap/label/labelTap.mjs",
+      "require": "./dist/cjs/tap/label/labelTap.cjs",
+      "default": "./src/tap/label/labelTap.ts"
+    },
+    "./tap/label": {
+      "types": "./dist/types/tap/label/index.d.ts",
+      "import": "./dist/esm/tap/label/index.mjs",
+      "require": "./dist/cjs/tap/label/index.cjs",
+      "default": "./src/tap/label/index.ts"
+    },
+    "./tap": {
+      "types": "./dist/types/tap/index.d.ts",
+      "import": "./dist/esm/tap/index.mjs",
+      "require": "./dist/cjs/tap/index.cjs",
+      "default": "./src/tap/index.ts"
+    },
+    "./tracer/HookTracingOptions.cjs": {
+      "types": "./dist/types/tracer/HookTracingOptions.d.ts",
+      "import": "./dist/esm/tracer/HookTracingOptions.mjs",
+      "require": "./dist/cjs/tracer/HookTracingOptions.cjs",
+      "default": "./src/tracer/HookTracingOptions.ts"
+    },
+    "./tracer/HookTracingOptions.d.ts": {
+      "types": "./dist/types/tracer/HookTracingOptions.d.ts",
+      "default": "./src/tracer/HookTracingOptions.ts"
+    },
+    "./tracer/HookTracingOptions.js": {
+      "types": "./dist/types/tracer/HookTracingOptions.d.ts",
+      "import": "./dist/esm/tracer/HookTracingOptions.mjs",
+      "require": "./dist/cjs/tracer/HookTracingOptions.cjs",
+      "default": "./src/tracer/HookTracingOptions.ts"
+    },
+    "./tracer/HookTracingOptions.mjs": {
+      "types": "./dist/types/tracer/HookTracingOptions.d.ts",
+      "import": "./dist/esm/tracer/HookTracingOptions.mjs",
+      "require": "./dist/cjs/tracer/HookTracingOptions.cjs",
+      "default": "./src/tracer/HookTracingOptions.ts"
+    },
+    "./tracer/HookTracingOptions": {
+      "types": "./dist/types/tracer/HookTracingOptions.d.ts",
+      "import": "./dist/esm/tracer/HookTracingOptions.mjs",
+      "require": "./dist/cjs/tracer/HookTracingOptions.cjs",
+      "default": "./src/tracer/HookTracingOptions.ts"
+    },
+    "./tracer/Tracer.cjs": {
+      "types": "./dist/types/tracer/Tracer.d.ts",
+      "import": "./dist/esm/tracer/Tracer.mjs",
+      "require": "./dist/cjs/tracer/Tracer.cjs",
+      "default": "./src/tracer/Tracer.ts"
+    },
+    "./tracer/Tracer.d.ts": {
+      "types": "./dist/types/tracer/Tracer.d.ts",
+      "default": "./src/tracer/Tracer.ts"
+    },
+    "./tracer/Tracer.js": {
+      "types": "./dist/types/tracer/Tracer.d.ts",
+      "import": "./dist/esm/tracer/Tracer.mjs",
+      "require": "./dist/cjs/tracer/Tracer.cjs",
+      "default": "./src/tracer/Tracer.ts"
+    },
+    "./tracer/Tracer.mjs": {
+      "types": "./dist/types/tracer/Tracer.d.ts",
+      "import": "./dist/esm/tracer/Tracer.mjs",
+      "require": "./dist/cjs/tracer/Tracer.cjs",
+      "default": "./src/tracer/Tracer.ts"
+    },
+    "./tracer/TracerOptions.cjs": {
+      "types": "./dist/types/tracer/TracerOptions.d.ts",
+      "import": "./dist/esm/tracer/TracerOptions.mjs",
+      "require": "./dist/cjs/tracer/TracerOptions.cjs",
+      "default": "./src/tracer/TracerOptions.ts"
+    },
+    "./tracer/TracerOptions.d.ts": {
+      "types": "./dist/types/tracer/TracerOptions.d.ts",
+      "default": "./src/tracer/TracerOptions.ts"
+    },
+    "./tracer/TracerOptions.js": {
+      "types": "./dist/types/tracer/TracerOptions.d.ts",
+      "import": "./dist/esm/tracer/TracerOptions.mjs",
+      "require": "./dist/cjs/tracer/TracerOptions.cjs",
+      "default": "./src/tracer/TracerOptions.ts"
+    },
+    "./tracer/TracerOptions.mjs": {
+      "types": "./dist/types/tracer/TracerOptions.d.ts",
+      "import": "./dist/esm/tracer/TracerOptions.mjs",
+      "require": "./dist/cjs/tracer/TracerOptions.cjs",
+      "default": "./src/tracer/TracerOptions.ts"
+    },
+    "./tracer/TracerOptions": {
+      "types": "./dist/types/tracer/TracerOptions.d.ts",
+      "import": "./dist/esm/tracer/TracerOptions.mjs",
+      "require": "./dist/cjs/tracer/TracerOptions.cjs",
+      "default": "./src/tracer/TracerOptions.ts"
+    },
+    "./tracer/Tracer": {
+      "types": "./dist/types/tracer/Tracer.d.ts",
+      "import": "./dist/esm/tracer/Tracer.mjs",
+      "require": "./dist/cjs/tracer/Tracer.cjs",
+      "default": "./src/tracer/Tracer.ts"
+    },
+    "./tracer/callbacks/index.cjs": {
+      "types": "./dist/types/tracer/callbacks/index.d.ts",
+      "import": "./dist/esm/tracer/callbacks/index.mjs",
+      "require": "./dist/cjs/tracer/callbacks/index.cjs",
+      "default": "./src/tracer/callbacks/index.ts"
+    },
+    "./tracer/callbacks/index.d.ts": {
+      "types": "./dist/types/tracer/callbacks/index.d.ts",
+      "default": "./src/tracer/callbacks/index.ts"
+    },
+    "./tracer/callbacks/index.js": {
+      "types": "./dist/types/tracer/callbacks/index.d.ts",
+      "import": "./dist/esm/tracer/callbacks/index.mjs",
+      "require": "./dist/cjs/tracer/callbacks/index.cjs",
+      "default": "./src/tracer/callbacks/index.ts"
+    },
+    "./tracer/callbacks/index.mjs": {
+      "types": "./dist/types/tracer/callbacks/index.d.ts",
+      "import": "./dist/esm/tracer/callbacks/index.mjs",
+      "require": "./dist/cjs/tracer/callbacks/index.cjs",
+      "default": "./src/tracer/callbacks/index.ts"
+    },
+    "./tracer/callbacks/index": {
+      "types": "./dist/types/tracer/callbacks/index.d.ts",
+      "import": "./dist/esm/tracer/callbacks/index.mjs",
+      "require": "./dist/cjs/tracer/callbacks/index.cjs",
+      "default": "./src/tracer/callbacks/index.ts"
+    },
+    "./tracer/callbacks/stack-frame-handler/StackFrameHandler.cjs": {
+      "types": "./dist/types/tracer/callbacks/stack-frame-handler/StackFrameHandler.d.ts",
+      "import": "./dist/esm/tracer/callbacks/stack-frame-handler/StackFrameHandler.mjs",
+      "require": "./dist/cjs/tracer/callbacks/stack-frame-handler/StackFrameHandler.cjs",
+      "default": "./src/tracer/callbacks/stack-frame-handler/StackFrameHandler.ts"
+    },
+    "./tracer/callbacks/stack-frame-handler/StackFrameHandler.d.ts": {
+      "types": "./dist/types/tracer/callbacks/stack-frame-handler/StackFrameHandler.d.ts",
+      "default": "./src/tracer/callbacks/stack-frame-handler/StackFrameHandler.ts"
+    },
+    "./tracer/callbacks/stack-frame-handler/StackFrameHandler.js": {
+      "types": "./dist/types/tracer/callbacks/stack-frame-handler/StackFrameHandler.d.ts",
+      "import": "./dist/esm/tracer/callbacks/stack-frame-handler/StackFrameHandler.mjs",
+      "require": "./dist/cjs/tracer/callbacks/stack-frame-handler/StackFrameHandler.cjs",
+      "default": "./src/tracer/callbacks/stack-frame-handler/StackFrameHandler.ts"
+    },
+    "./tracer/callbacks/stack-frame-handler/StackFrameHandler.mjs": {
+      "types": "./dist/types/tracer/callbacks/stack-frame-handler/StackFrameHandler.d.ts",
+      "import": "./dist/esm/tracer/callbacks/stack-frame-handler/StackFrameHandler.mjs",
+      "require": "./dist/cjs/tracer/callbacks/stack-frame-handler/StackFrameHandler.cjs",
+      "default": "./src/tracer/callbacks/stack-frame-handler/StackFrameHandler.ts"
+    },
+    "./tracer/callbacks/stack-frame-handler/StackFrameHandler": {
+      "types": "./dist/types/tracer/callbacks/stack-frame-handler/StackFrameHandler.d.ts",
+      "import": "./dist/esm/tracer/callbacks/stack-frame-handler/StackFrameHandler.mjs",
+      "require": "./dist/cjs/tracer/callbacks/stack-frame-handler/StackFrameHandler.cjs",
+      "default": "./src/tracer/callbacks/stack-frame-handler/StackFrameHandler.ts"
+    },
+    "./tracer/callbacks/stack-frame-handler/index.cjs": {
+      "types": "./dist/types/tracer/callbacks/stack-frame-handler/index.d.ts",
+      "import": "./dist/esm/tracer/callbacks/stack-frame-handler/index.mjs",
+      "require": "./dist/cjs/tracer/callbacks/stack-frame-handler/index.cjs",
+      "default": "./src/tracer/callbacks/stack-frame-handler/index.ts"
+    },
+    "./tracer/callbacks/stack-frame-handler/index.d.ts": {
+      "types": "./dist/types/tracer/callbacks/stack-frame-handler/index.d.ts",
+      "default": "./src/tracer/callbacks/stack-frame-handler/index.ts"
+    },
+    "./tracer/callbacks/stack-frame-handler/index.js": {
+      "types": "./dist/types/tracer/callbacks/stack-frame-handler/index.d.ts",
+      "import": "./dist/esm/tracer/callbacks/stack-frame-handler/index.mjs",
+      "require": "./dist/cjs/tracer/callbacks/stack-frame-handler/index.cjs",
+      "default": "./src/tracer/callbacks/stack-frame-handler/index.ts"
+    },
+    "./tracer/callbacks/stack-frame-handler/index.mjs": {
+      "types": "./dist/types/tracer/callbacks/stack-frame-handler/index.d.ts",
+      "import": "./dist/esm/tracer/callbacks/stack-frame-handler/index.mjs",
+      "require": "./dist/cjs/tracer/callbacks/stack-frame-handler/index.cjs",
+      "default": "./src/tracer/callbacks/stack-frame-handler/index.ts"
+    },
+    "./tracer/callbacks/stack-frame-handler/index": {
+      "types": "./dist/types/tracer/callbacks/stack-frame-handler/index.d.ts",
+      "import": "./dist/esm/tracer/callbacks/stack-frame-handler/index.mjs",
+      "require": "./dist/cjs/tracer/callbacks/stack-frame-handler/index.cjs",
+      "default": "./src/tracer/callbacks/stack-frame-handler/index.ts"
+    },
+    "./tracer/callbacks/stack-frame-handler": {
+      "types": "./dist/types/tracer/callbacks/stack-frame-handler/index.d.ts",
+      "import": "./dist/esm/tracer/callbacks/stack-frame-handler/index.mjs",
+      "require": "./dist/cjs/tracer/callbacks/stack-frame-handler/index.cjs",
+      "default": "./src/tracer/callbacks/stack-frame-handler/index.ts"
+    },
+    "./tracer/callbacks": {
+      "types": "./dist/types/tracer/callbacks/index.d.ts",
+      "import": "./dist/esm/tracer/callbacks/index.mjs",
+      "require": "./dist/cjs/tracer/callbacks/index.cjs",
+      "default": "./src/tracer/callbacks/index.ts"
+    },
+    "./tracer/createTracer.cjs": {
+      "types": "./dist/types/tracer/createTracer.d.ts",
+      "import": "./dist/esm/tracer/createTracer.mjs",
+      "require": "./dist/cjs/tracer/createTracer.cjs",
+      "default": "./src/tracer/createTracer.ts"
+    },
+    "./tracer/createTracer.d.ts": {
+      "types": "./dist/types/tracer/createTracer.d.ts",
+      "default": "./src/tracer/createTracer.ts"
+    },
+    "./tracer/createTracer.js": {
+      "types": "./dist/types/tracer/createTracer.d.ts",
+      "import": "./dist/esm/tracer/createTracer.mjs",
+      "require": "./dist/cjs/tracer/createTracer.cjs",
+      "default": "./src/tracer/createTracer.ts"
+    },
+    "./tracer/createTracer.mjs": {
+      "types": "./dist/types/tracer/createTracer.d.ts",
+      "import": "./dist/esm/tracer/createTracer.mjs",
+      "require": "./dist/cjs/tracer/createTracer.cjs",
+      "default": "./src/tracer/createTracer.ts"
+    },
+    "./tracer/createTracer": {
+      "types": "./dist/types/tracer/createTracer.d.ts",
+      "import": "./dist/esm/tracer/createTracer.mjs",
+      "require": "./dist/cjs/tracer/createTracer.cjs",
+      "default": "./src/tracer/createTracer.ts"
+    },
+    "./tracer/index.cjs": {
+      "types": "./dist/types/tracer/index.d.ts",
+      "import": "./dist/esm/tracer/index.mjs",
+      "require": "./dist/cjs/tracer/index.cjs",
+      "default": "./src/tracer/index.ts"
+    },
+    "./tracer/index.d.ts": {
+      "types": "./dist/types/tracer/index.d.ts",
+      "default": "./src/tracer/index.ts"
+    },
+    "./tracer/index.js": {
+      "types": "./dist/types/tracer/index.d.ts",
+      "import": "./dist/esm/tracer/index.mjs",
+      "require": "./dist/cjs/tracer/index.cjs",
+      "default": "./src/tracer/index.ts"
+    },
+    "./tracer/index.mjs": {
+      "types": "./dist/types/tracer/index.d.ts",
+      "import": "./dist/esm/tracer/index.mjs",
+      "require": "./dist/cjs/tracer/index.cjs",
+      "default": "./src/tracer/index.ts"
+    },
+    "./tracer/index": {
+      "types": "./dist/types/tracer/index.d.ts",
+      "import": "./dist/esm/tracer/index.mjs",
+      "require": "./dist/cjs/tracer/index.cjs",
+      "default": "./src/tracer/index.ts"
+    },
+    "./tracer/traceHook.cjs": {
+      "types": "./dist/types/tracer/traceHook.d.ts",
+      "import": "./dist/esm/tracer/traceHook.mjs",
+      "require": "./dist/cjs/tracer/traceHook.cjs",
+      "default": "./src/tracer/traceHook.ts"
+    },
+    "./tracer/traceHook.d.ts": {
+      "types": "./dist/types/tracer/traceHook.d.ts",
+      "default": "./src/tracer/traceHook.ts"
+    },
+    "./tracer/traceHook.js": {
+      "types": "./dist/types/tracer/traceHook.d.ts",
+      "import": "./dist/esm/tracer/traceHook.mjs",
+      "require": "./dist/cjs/tracer/traceHook.cjs",
+      "default": "./src/tracer/traceHook.ts"
+    },
+    "./tracer/traceHook.mjs": {
+      "types": "./dist/types/tracer/traceHook.d.ts",
+      "import": "./dist/esm/tracer/traceHook.mjs",
+      "require": "./dist/cjs/tracer/traceHook.cjs",
+      "default": "./src/tracer/traceHook.ts"
+    },
+    "./tracer/traceHook": {
+      "types": "./dist/types/tracer/traceHook.d.ts",
+      "import": "./dist/esm/tracer/traceHook.mjs",
+      "require": "./dist/cjs/tracer/traceHook.cjs",
+      "default": "./src/tracer/traceHook.ts"
+    },
+    "./tracer": {
+      "types": "./dist/types/tracer/index.d.ts",
+      "import": "./dist/esm/tracer/index.mjs",
+      "require": "./dist/cjs/tracer/index.cjs",
+      "default": "./src/tracer/index.ts"
+    },
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/esm/index.mjs",
+      "require": "./dist/cjs/index.cjs",
+      "default": "./src/index.ts"
+    }
+  }
+}

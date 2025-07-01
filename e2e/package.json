@@ -1,0 +1,30 @@
+{
+  "name": "tapable-tracer-e2e",
+  "private": true,
+  "scripts": {
+    "clean": "yarn w:foreach::parallel run clean",
+    "prepare": "yarn w:foreach::parallel::topological run prepare",
+    "w:foreach": "yarn workspaces foreach --all --exclude 'tapable-tracer-e2e'",
+    "w:foreach::parallel": "yarn w:foreach --parallel",
+    "w:foreach::parallel::topological": "yarn w:foreach::parallel --topological-dev"
+  },
+  "devDependencies": {
+    "rimraf": "^6.0.1",
+    "tapable-tracer": "*"
+  },
+  "workspaces": [
+    "./uml/*/*"
+  ],
+  "resolutions": {
+    "tapable-tracer": "portal:..",
+    "tapable-tracer-e2e-uml-tapable-basic": "file:./uml/tapable/basic",
+    "tapable-tracer-e2e-uml-tapable-plugin": "file:./uml/tapable/plugin",
+    "tapable-tracer-e2e-uml-webpack-basic": "file:./uml/webpack/basic"
+  },
+  "files": [
+    "./package.json"
+  ],
+  "exports": {
+    "./package.json": "./package.json"
+  }
+}

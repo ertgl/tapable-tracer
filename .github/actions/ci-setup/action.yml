@@ -1,0 +1,173 @@
+name: Setup CI
+description: Setup CI environment
+
+inputs:
+  cache-build:
+    description: 'Should cache the build'
+    required: false
+    default: 'true'
+  cache-key-build:
+    description: 'Cache key for the build'
+    required: false
+    default: ''
+  cache-node-modules:
+    description: 'Should cache node_modules'
+    required: false
+    default: 'true'
+  cache-e2e-node-modules:
+    description: 'Should cache node_modules for E2E'
+    required: false
+    default: 'true'
+  cache-key-for-node-modules:
+    description: 'Cache key for node_modules'
+    required: false
+    default: ''
+  cache-key-for-e2e-node-modules:
+    description: 'Cache key for E2E node_modules'
+    required: false
+    default: ''
+  restore-build-cache:
+    description: 'Should restore the build cache'
+    required: false
+    default: 'true'
+  restore-node-modules-cache:
+    description: 'Should restore the node_modules cache'
+    required: false
+    default: 'true'
+  restore-e2e-node-modules-cache:
+    description: 'Should restore the node_modules cache for E2E'
+    required: false
+    default: 'true'
+
+outputs:
+  final-cache-key-build:
+    description: 'The final build cache key'
+    value: ${{ steps.determine-cache-key-build.outputs.final-cache-key-build }}
+
+runs:
+  using: composite
+  steps:
+    - name: Determine build cache key
+      id: determine-cache-key-build
+      shell: bash
+      env:
+        FINAL_BUILD_CACHE_KEY: ${{ inputs.cache-key-build || format('build-cache-{0}-{1}', runner.os, hashFiles('yarn.lock', 'src/**/*', 'babel.config.cjs.cjs', 'babel.config.esm.cjs', 'package.json', 'tsconfig.output.types.json', 'tsconfig.partial.base.json', 'tsconfig.scope.src.json')) }}
+      run: echo "final-cache-key-build=$(echo "$FINAL_BUILD_CACHE_KEY")" >> $GITHUB_OUTPUT
+
+    - name: Determine node_modules cache key
+      id: determine-cache-key-for-node-modules
+      shell: bash
+      env:
+        FINAL_NODE_MODULES_CACHE_KEY: ${{ inputs.cache-key-for-node-modules || format('node-modules-cache-{0}-{1}', runner.os, hashFiles('yarn.lock')) }}
+      run: echo "final-cache-key-for-node-modules=$(echo "$FINAL_NODE_MODULES_CACHE_KEY")" >> $GITHUB_OUTPUT
+
+    - name: Determine node_modules cache key for E2E
+      id: determine-cache-key-for-e2e-node-modules
+      shell: bash
+      env:
+        FINAL_E2E_NODE_MODULES_CACHE_KEY: ${{ inputs.cache-key-for-e2e-node-modules || format('e2e-node-modules-cache-{0}-{1}', runner.os, hashFiles('e2e/yarn.lock')) }}
+      run: echo "final-cache-key-for-e2e-node-modules=$(echo "$FINAL_E2E_NODE_MODULES_CACHE_KEY")" >> $GITHUB_OUTPUT
+
+    - name: Setup Node.js LTS
+      uses: actions/setup-node@v4
+      with:
+        node-version: lts/*
+        registry-url: 'https://registry.npmjs.org'
+
+    - name: Enable Corepack
+      shell: bash
+      run: corepack enable
+
+    - name: Restore build cache
+      id: restore-build-cache
+      if: ${{ inputs.restore-build-cache == 'true' }}
+      uses: actions/cache/restore@v4
+      with:
+        path: dist
+        key: ${{ steps.determine-cache-key-build.outputs.final-cache-key-build }}
+
+    - name: Restore node_modules cache
+      id: restore-node-modules-cache
+      if: ${{ inputs.restore-node-modules-cache == 'true' }}
+      uses: actions/cache/restore@v4
+      with:
+        path: node_modules
+        key: ${{ steps.determine-cache-key-for-node-modules.outputs.final-cache-key-for-node-modules }}
+
+    - name: Restore node_modules cache for E2E
+      id: restore-e2e-node-modules-cache
+      if: ${{ inputs.restore-e2e-node-modules-cache == 'true' }}
+      uses: actions/cache/restore@v4
+      with:
+        path: e2e/node_modules
+        key: ${{ steps.determine-cache-key-for-e2e-node-modules.outputs.final-cache-key-for-e2e-node-modules }}
+
+    - name: Install dependencies
+      id: install-dependencies
+      if: ${{ steps.restore-node-modules-cache.outputs.cache-hit != 'true' }}
+      shell: bash
+      run: yarn install --immutable
+
+    - name: Install E2E dependencies
+      id: install-e2e-dependencies
+      if: ${{ steps.restore-e2e-node-modules-cache.outputs.cache-hit != 'true' }}
+      shell: bash
+      run: yarn e2e:yarn install --immutable
+
+    - name: Cache node_modules
+      id: cache-node-modules
+      if: ${{ inputs.cache-node-modules == 'true' && steps.restore-node-modules-cache.outputs.cache-hit != 'true' && steps.install-dependencies.conclusion == 'success' }}
+      uses: actions/cache/save@v4
+      with:
+        path: node_modules
+        key: ${{ steps.determine-cache-key-for-node-modules.outputs.final-cache-key-for-node-modules }}
+
+    - name: Cache node_modules for E2E
+      id: cache-e2e-node-modules
+      if: ${{ inputs.cache-e2e-node-modules == 'true' && steps.restore-e2e-node-modules-cache.outputs.cache-hit != 'true' && steps.install-e2e-dependencies.conclusion == 'success' }}
+      uses: actions/cache/save@v4
+      with:
+        path: e2e/node_modules
+        key: ${{ steps.determine-cache-key-for-e2e-node-modules.outputs.final-cache-key-for-e2e-node-modules }}
+
+    - name: Prepare
+      if: ${{ steps.restore-build-cache.outputs.cache-hit != 'true' }}
+      shell: bash
+      run: yarn prepare
+
+    - name: Prepare E2E
+      if: ${{ steps.restore-e2e-node-modules-cache.outputs.cache-hit != 'true' }}
+      shell: bash
+      run: yarn e2e:yarn prepare
+
+    - name: Build types
+      id: build-types
+      if: steps.restore-build-cache.outputs.cache-hit != 'true'
+      shell: bash
+      run: yarn build::types
+
+    - name: Build CJS
+      id: build-cjs
+      if: steps.restore-build-cache.outputs.cache-hit != 'true'
+      shell: bash
+      run: yarn build::cjs
+
+    - name: Build ESM
+      id: build-esm
+      if: steps.restore-build-cache.outputs.cache-hit != 'true'
+      shell: bash
+      run: yarn build::esm
+
+    - name: Update package exports
+      id: update-package-exports
+      if: steps.restore-build-cache.outputs.cache-hit != 'true'
+      shell: bash
+      run: yarn exports:update
+
+    - name: Cache build
+      id: cache-build
+      if: ${{ inputs.cache-build == 'true' && steps.restore-build-cache.outputs.cache-hit != 'true' && steps.build-cjs.conclusion == 'success' && steps.build-esm.conclusion == 'success' && steps.build-types.conclusion == 'success' && steps.update-package-exports.conclusion == 'success' }}
+      uses: actions/cache/save@v4
+      with:
+        path: dist
+        key: ${{ steps.determine-cache-key-build.outputs.final-cache-key-build }}
