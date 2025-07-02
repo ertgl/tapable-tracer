@@ -11,6 +11,7 @@ Collect structured stack traces, and optionally export them as UML diagrams.
 - [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
+  - [UML Export](#uml-export)
 - [Configuration](#configuration)
   - [Tracer Options](#tracer-options)
   - [Hook Tracing Options](#hook-tracing-options)
@@ -18,10 +19,11 @@ Collect structured stack traces, and optionally export them as UML diagrams.
 
 ## Overview
 
-Below is a UML-style representation of webpack's internal hooks, captured at
-runtime. This diagram was generated without modifying webpack itself; every
-hook tap and call was traced dynamically using the `tapable-tracer` and its
-[webpack plugin](src/extensions/webpack/plugin/TapableTracerPlugin.ts).
+Have you ever wondered what the internals of webpack look like?
+Below is a UML-style representation of webpack's internal hooks captured at
+runtime. This diagram was generated using the `tapable-tracer` and its
+[webpack plugin](src/extensions/webpack/plugin/TapableTracerPlugin.ts) by
+tracing dynamically every hook tap and call in the system.
 
 <picture>
   <source
@@ -41,12 +43,13 @@ View the full interactive version here:
 
 ## Features
 
-- **Live Hook Tracing** — Observe `tap` and `call` flows.
-- **Structured Stack Map** — Interactions are stored as a directed graph.
-- **UML Export** — Generate a UML-like representation of your system from the trace.
-- **Non-intrusive** — No need to alter the hook source code or application logic.
-- **Framework Independent** — Works with any tapable usage, including but not
-  limited to webpack.
+- **Real-time**: Observe `tap` and `call` flows with a callback.
+- **Structured**: Frames are stored as a directed graph.
+- **Dynamic**: No need to alter the hook source code or application logic.
+- **Configurable**: Include or exclude the triggers, customize labels.
+- **UML Support**: Generate a UML representation of your system from the trace.
+- **Independent**: Works with any tapable usage, including but not limited to
+  webpack.
 
 ## Installation
 
@@ -62,27 +65,34 @@ yarn add tapable-tracer
 
 Import the tracer utilities and start tracing your tapable hooks.
 
-Below is a minimal example:
-
 ```ts
 import {
   createTracer,
   dumpStackTrace,
   traceHook,
 } from "tapable-tracer";
-import { generateMermaidUML } from "tapable-tracer/extensions/mermaid";
 
 // Create a tracer.
 const tracer = createTracer();
 
-// Start tracking the hooks.
+// Start tracing the hooks.
 traceHook(tracer, hook1);
 traceHook(tracer, hook2);
 
 // Get the encodable frames.
 const frames = dumpStackTrace(tracer.trace);
+```
 
-// Export a diagram.
+### UML Export
+
+`tapable-tracer` has a built-in extension for exporting the collected trace
+data as a UML diagram code using the Mermaid format. This allows for
+visualization of the relationships and flows between the tapable hooks.
+
+```ts
+import { generateMermaidUML } from "tapable-tracer/extensions/mermaid";
+
+// Export the diagram code.
 const uml = generateMermaidUML(frames);
 ```
 
@@ -90,16 +100,31 @@ const uml = generateMermaidUML(frames);
 
 ### Tracer Options
 
-You can customize the tracer by passing a
-[`TracerOptions`](src/tracer/TracerOptions.ts) object to the
-`createTracer(options?: TracerOptions)` function.
+To configure the tracer, pass a [`TracerOptions`](src/tracer/TracerOptions.ts)
+object to the `createTracer` function.
+
+The available options are listed below:
+
+- **handleStackFrame** ([`StackFrameHandler`](src/tracer/callbacks/stack-frame-handler/StackFrameHandler.ts)):
+  Real-time callback function.
+- **interceptorName** (`string`): Name of the interceptor to use.
+- **labelHook** ([`HookLabellerFunction`](src/hook/label/HookLabellerFunction.ts)):
+  Function to label hooks.
+- **labelTap** ([`TapLabellerFunction`](src/tap/label/TapLabellerFunction.ts)):
+  Function to label taps.
 
 ### Hook Tracing Options
 
-When tracing a hook with
-`traceHook(tracer, hook, options?: HookTracingOptions)`, you can further
-customize the tracing behavior using a
-[`HookTracingOptions`](src/tracer/HookTracingOptions.ts) object.
+To configure the process of tracing a single hook, pass a
+[`HookTracingOptions`](src/tracer/HookTracingOptions.ts) object to the
+`traceHook` function.
+
+The available options are listed below:
+
+- **includeTrigger** (`boolean`): Whether to include the trigger (outside
+  caller of the hook) in the trace.
+- **key** (`string`): The hook's identifier in a container data-structure
+  inside the system. Also used as the fallback label for the hook.
 
 ## License
 
