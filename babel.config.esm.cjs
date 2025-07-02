@@ -42,7 +42,13 @@ if (process.env.NODE_ENV !== "test")
         {
           find: /(?:\.[cm]?[jt]s[x]?)?$/iu,
           replace: TARGET_EXTENSION,
-          resolveIndex: true,
+          resolveIndex: {
+            extensions: [
+              ".ts",
+            ],
+            fallback: "index",
+            prioritize: true,
+          },
           test: /^[.\\/]+.*$/,
         },
       ],
