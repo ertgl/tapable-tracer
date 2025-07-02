@@ -1,7 +1,7 @@
 {
   "name": "tapable-tracer",
   "description": "Trace the connections and flows between tapable hooks.",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "license": "MIT",
   "repository": {
     "type": "git",
