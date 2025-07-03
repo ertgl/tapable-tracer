@@ -15,6 +15,8 @@ Collect structured stack traces, and optionally export them as UML diagrams.
 - [Configuration](#configuration)
   - [Tracer Options](#tracer-options)
   - [Hook Tracing Options](#hook-tracing-options)
+- [Technical Details](#technical-details)
+  - [Output](#output)
 - [License](#license)
 
 ## Overview
@@ -121,10 +123,118 @@ To configure the process of tracing a single hook, pass a
 
 The available options are listed below:
 
-- **includeTrigger** (`boolean`): Whether to include the trigger (outside
-  caller of the hook) in the trace.
+- **includeTrigger** (`boolean`): Whether to include the trigger in the trace.
 - **key** (`string`): The hook's identifier in a container data-structure
   inside the system. Also used as the fallback label for the hook.
+
+## Technical Details
+
+Tracing here is all about capturing the frames of the tapable hooks and their
+interactions. This section describes the internal mechanism of the tracer and
+how it captures the frames of the hooks.
+
+We have three types of frames that the tracer captures:
+
+- [`CallFrame`](src/stack-frame/CallFrame.ts): Represents a call to a tapable
+  hook.
+- [`TapFrame`](src/stack-frame/TapFrame.ts): Represents a tap added to a hook.
+- [`TriggerFrame`](src/stack-frame/TriggerFrame.ts): Represents the
+  deterministic callback point of a tap. Useful if the tap shares the same name
+  with the parent trigger (such as plugins in webpack).
+
+To capture these frames the tracer uses two separate states and one
+deterministic context object:
+
+1. **Stack**: A stack of frames that represents the current call stack.
+2. **Trace**: A list of frames that represents the entire trace of the hooks.
+3. [**`CallSite`**](src/tracer/stack/CallSite.ts): A context object that
+  contains the hook, tap, and the original callback function.
+
+For tracing a hook, the tracer intercepts the hook's `tap`, `call` and `loop`
+events.
+
+When a tap is added:
+
+1. A `CallSite` object is created for further reference.
+2. A `TapFrame` is created and pushed onto the `trace` list.
+3. The `tap.fn` function is overridden to capture the call events, by keeping
+  the `CallSite` object in the closure.
+
+When a `call` or `loop` event occurs:
+
+1. Create and push a `TriggerFrame` onto the `trace` list, if the
+  `includeTrigger` options is set to `true` for the hook and the
+  call was caused by a tap.
+2. Push the `CallSite` object onto the `stack`.
+3. Execute the original callback function.
+4. Pop the `CallSite` object from the `stack`.
+5. Create and push a `CallFrame` onto the `trace` list.
+
+### Output
+
+The output of the tracer is a list of frames that can be used to generate
+UML diagrams or other visualizations.
+
+<details>
+  <summary>
+    <b>Example: Output without triggers</b>
+  </summary>
+
+  ```ts
+  [
+    { hook: 'hook1', tap: 'hook2', type: 'tap' },
+    { hook: 'hook2', tap: 'hook3', type: 'tap' },
+    { hook: 'hook3', tap: 'hook4', type: 'tap' },
+    { callee: 'hook1', caller: null, type: 'call' },
+    { callee: 'hook2', caller: 'hook1', type: 'call' },
+    { callee: 'hook3', caller: 'hook2', type: 'call' },
+    { callee: 'hook4', caller: 'hook3', type: 'call' }
+  ]
+  ```
+
+  <picture>
+    <source
+      media="(prefers-color-scheme: dark)"
+      srcset="./assets/hook-graph-dark.svg"
+    />
+    <img
+      alt="Hook graph generated via tapable-tracer"
+      src="./assets/hook-graph-light.svg"
+    />
+  </picture>
+</details>
+
+<details>
+  <summary>
+    <b>Example: Output with triggers</b>
+  </summary>
+
+  ```ts
+  [
+    { hook: 'hook1', tap: 'Plugin2', type: 'tap' },
+    { hook: 'hook2', tap: 'Plugin3', type: 'tap' },
+    { hook: 'hook3', tap: 'Plugin4', type: 'tap' },
+    { callee: 'hook1', caller: null, type: 'call' },
+    { callee: 'Plugin2', caller: 'hook1', type: 'trigger' },
+    { callee: 'hook2', caller: 'Plugin2', type: 'call' },
+    { callee: 'Plugin3', caller: 'hook2', type: 'trigger' },
+    { callee: 'hook3', caller: 'Plugin3', type: 'call' },
+    { callee: 'Plugin4', caller: 'hook3', type: 'trigger' },
+    { callee: 'hook4', caller: 'Plugin4', type: 'call' }
+  ]
+  ```
+
+  <picture>
+    <source
+      media="(prefers-color-scheme: dark)"
+      srcset="./assets/plugin-graph-dark.svg"
+    />
+    <img
+      alt="Plugin graph generated via tapable-tracer"
+      src="./assets/plugin-graph-light.svg"
+    />
+  </picture>
+</details>
 
 ## License
 
