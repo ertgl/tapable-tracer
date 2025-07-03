@@ -233,7 +233,7 @@ describe(
                   {},
                 );
 
-                expect(label2).toBe("Tap #1");
+                expect(label2).toBe("Tap #0");
 
                 const label3 = tracer._getOrCreateLabelForTap(
                   hook2,
@@ -241,7 +241,7 @@ describe(
                   {},
                 );
 
-                expect(label3).toBe("Tap #2");
+                expect(label3).toBe("Tap #0");
 
                 return tap;
               },

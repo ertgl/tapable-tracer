@@ -10,12 +10,6 @@ import { createTapFrame } from "../stack-frame/createTapFrame";
 import { createTriggerFrame } from "../stack-frame/createTriggerFrame";
 import type { EncodableStackFrame } from "../stack-frame/encodable/EncodableStackFrame";
 import type { StackFrameLabel } from "../stack-frame/label/StackFrameLabel";
-import type { StackFrame } from "../stack-frame/StackFrame";
-import type { TapFrame } from "../stack-frame/TapFrame";
-import type { TriggerFrame } from "../stack-frame/TriggerFrame";
-import { STACK_FRAME_TYPE_CALL } from "../stack-frame/type/STACK_FRAME_TYPE_CALL";
-import { STACK_FRAME_TYPE_TAP } from "../stack-frame/type/STACK_FRAME_TYPE_TAP";
-import { STACK_FRAME_TYPE_TRIGGER } from "../stack-frame/type/STACK_FRAME_TYPE_TRIGGER";
 import { createStackTrace } from "../stack-trace/createStackTrace";
 import { dumpStackTrace } from "../stack-trace/dumpStackTrace";
 import { pushStackFrame } from "../stack-trace/pushStackFrame";
@@ -24,21 +18,24 @@ import { labelTap } from "../tap/label/labelTap";
 import type { TapLabel } from "../tap/label/TapLabel";
 
 import type { HookTracingOptions } from "./HookTracingOptions";
+import type { CallSite } from "./stack/CallSite";
 import type { TracerOptions } from "./TracerOptions";
 
 export class Tracer
 {
-  labelSequence: number;
+  readonly hookLabels: WeakMap<AnyHook, HookLabel>;
+
+  hookLabelSequence: number;
 
   readonly options: TracerOptions;
 
-  readonly stack: StackFrame[];
+  readonly stack: CallSite[];
 
-  tapSequence: number;
+  readonly tapLabels: WeakMap<FullTap, HookLabel>;
+
+  tapLabelSequence: number;
 
   readonly trace: StackTrace;
-
-  readonly unknownHookLabels: WeakMap<AnyHook, HookLabel>;
 
   constructor(
     options?: null | TracerOptions,
@@ -46,22 +43,22 @@ export class Tracer
   {
     this.options = options ?? {};
 
-    this.labelSequence = -1;
-    this.tapSequence = -1;
+    this.hookLabelSequence = -1;
+    this.hookLabels = new WeakMap();
 
-    this.unknownHookLabels = new WeakMap();
+    this.tapLabelSequence = -1;
+    this.tapLabels = new WeakMap();
 
     this.stack = [];
     this.trace = createStackTrace();
   }
 
   _callAsync(
-    frame: TapFrame,
-    superFn: HookCallback,
+    callSite: CallSite,
     args: unknown[],
   ): unknown
   {
-    this.stack.push(frame);
+    this.stack.push(callSite);
 
     const callback = (
       ...callbackArgs: unknown[]
@@ -73,7 +70,7 @@ export class Tracer
       this.stack.pop();
     };
 
-    const result: unknown = superFn(
+    const result: unknown = callSite.fn(
       ...args.slice(0, args.length - 1),
       callback,
     );
@@ -82,14 +79,13 @@ export class Tracer
   }
 
   async _callPromise(
-    frame: TapFrame,
-    superFn: HookCallback,
+    callSite: CallSite,
     args: unknown[],
   ): Promise<unknown>
   {
-    this.stack.push(frame);
+    this.stack.push(callSite);
 
-    const maybePromise: unknown = superFn(...args);
+    const maybePromise: unknown = callSite.fn(...args);
 
     const result: unknown = (
       maybePromise instanceof Promise
@@ -103,13 +99,12 @@ export class Tracer
   }
 
   _callSync(
-    frame: TapFrame,
-    superFn: HookCallback,
+    callSite: CallSite,
     args: unknown[],
   ): unknown
   {
-    this.stack.push(frame);
-    const result: unknown = superFn(...args);
+    this.stack.push(callSite);
+    const result: unknown = callSite.fn(...args);
     this.stack.pop();
 
     return result;
@@ -125,22 +120,22 @@ export class Tracer
     options: HookTracingOptions,
   ): HookLabel
   {
-    let label = this.unknownHookLabels.get(hook);
+    let label = this.hookLabels.get(hook);
 
     if (label == null)
     {
-      this.labelSequence++;
+      this.hookLabelSequence++;
 
       label = (
         this.options.labelHook
         ?? labelHook
       )(
         hook,
-        this.labelSequence,
+        this.hookLabelSequence,
         options,
       );
 
-      this.unknownHookLabels.set(
+      this.hookLabels.set(
         hook,
         label,
       );
@@ -155,47 +150,57 @@ export class Tracer
     options: HookTracingOptions,
   ): TapLabel
   {
-    this.tapSequence++;
+    let label = this.tapLabels.get(tap);
 
-    return (
-      this.options.labelTap
-      ?? labelTap
-    )(
-      hook,
-      tap,
-      this.tapSequence,
-      options,
-    );
+    if (label == null)
+    {
+      this.tapLabelSequence++;
+
+      label = (
+        this.options.labelTap
+        ?? labelTap
+      )(
+        hook,
+        tap,
+        this.tapLabelSequence,
+        options,
+      );
+
+      this.tapLabels.set(
+        tap,
+        label,
+      );
+    }
+
+    return label;
   }
 
   _getPreviousFrameLabel(
     options: HookTracingOptions,
   ): null | StackFrameLabel
   {
-    const previousFrame = this.stack[this.stack.length - 1] as StackFrame | undefined;
+    const callSite = this.stack[this.stack.length - 1] as CallSite | undefined;
 
-    if (previousFrame == null)
+    if (callSite == null)
     {
       return null;
     }
 
     let label: null | StackFrameLabel = null;
 
-    if (previousFrame.type === STACK_FRAME_TYPE_CALL)
+    if (options.includeTrigger)
     {
-      label = previousFrame.callee;
+      label = this._getOrCreateLabelForTap(
+        callSite.hook,
+        callSite.tap,
+        options,
+      );
     }
-    else if (previousFrame.type === STACK_FRAME_TYPE_TRIGGER)
+    else
     {
-      label = previousFrame.callee;
-    }
-    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-    else if (previousFrame.type === STACK_FRAME_TYPE_TAP)
-    {
-      label = (
-        options.includeTrigger
-          ? previousFrame.tap
-          : previousFrame.hook
+      label = this._getOrCreateLabelForHook(
+        callSite.hook,
+        options,
       );
     }
 
@@ -229,40 +234,35 @@ export class Tracer
   {
     options ??= {};
 
-    const frame = this.pushTapFrame(
+    const callSite: CallSite = {
+      fn: tap.fn as HookCallback,
       hook,
       tap,
-      tap.fn as HookCallback,
+    };
+
+    this.pushTapFrame(
+      callSite,
       options,
     );
 
     if (tap.type === "async")
     {
       this.wrapTapAsync(
-        hook,
-        tap,
-        frame,
-        tap.fn as HookCallback,
+        callSite,
         options,
       );
     }
     else if (tap.type === "promise")
     {
       this.wrapTapPromise(
-        hook,
-        tap,
-        frame,
-        tap.fn as HookCallback,
+        callSite,
         options,
       );
     }
     else
     {
       this.wrapTapSync(
-        hook,
-        tap,
-        frame,
-        tap.fn as HookCallback,
+        callSite,
         options,
       );
     }
@@ -300,24 +300,21 @@ export class Tracer
   }
 
   pushTapFrame(
-    hook: AnyHook,
-    tap: FullTap,
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
-    wrapped: Function,
+    callSite: CallSite,
     options: HookTracingOptions,
-  ): TapFrame
+  ): void
   {
     const frame = createTapFrame({
       hook: this._getOrCreateLabelForHook(
-        hook,
+        callSite.hook,
         options,
       ),
       tap: this._getOrCreateLabelForTap(
-        hook,
-        tap,
+        callSite.hook,
+        callSite.tap,
         options,
       ),
-      wrapped,
+      wrapped: callSite.fn,
     });
 
     pushStackFrame(
@@ -326,27 +323,30 @@ export class Tracer
     );
 
     this.options.handleStackFrame?.(
-      hook,
-      tap,
+      callSite.hook,
+      callSite.tap,
       frame,
       options,
     );
-
-    return frame;
   }
 
   pushTriggerFrame(
-    hook: AnyHook,
-    tap: FullTap,
-    tapFrame: TapFrame,
+    callSite: CallSite,
     args: unknown[],
     options: HookTracingOptions,
-  ): TriggerFrame
+  ): void
   {
     const frame = createTriggerFrame({
       args,
-      callee: tapFrame.tap,
-      caller: tapFrame.hook,
+      callee: this._getOrCreateLabelForTap(
+        callSite.hook,
+        callSite.tap,
+        options,
+      ),
+      caller: this._getOrCreateLabelForHook(
+        callSite.hook,
+        options,
+      ),
     });
 
     pushStackFrame(
@@ -355,13 +355,11 @@ export class Tracer
     );
 
     this.options.handleStackFrame?.(
-      hook,
-      tap,
+      callSite.hook,
+      callSite.tap,
       frame,
       options,
     );
-
-    return frame;
   }
 
   traceHook(
@@ -397,140 +395,83 @@ export class Tracer
   }
 
   wrapTapAsync(
-    hook: AnyHook,
-    tap: FullTap,
-    frame: TapFrame,
-    superFn: HookCallback,
+    callSite: CallSite,
     options?: HookTracingOptions | null,
   ): void
   {
     options ??= {};
 
-    if (options.includeTrigger)
+    callSite.tap.fn = (
+      ...args: unknown[]
+    ): unknown =>
     {
-      tap.fn = (
-        ...args: unknown[]
-      ): unknown =>
+      if (options.includeTrigger)
       {
         this.pushTriggerFrame(
-          hook,
-          tap,
-          frame,
+          callSite,
           args,
           options,
         );
+      }
 
-        return this._callAsync(
-          frame,
-          superFn,
-          args,
-        );
-      };
-    }
-    else
-    {
-      tap.fn = (
-        ...args: unknown[]
-      ): unknown =>
-      {
-        return this._callAsync(
-          frame,
-          superFn,
-          args,
-        );
-      };
-    }
+      return this._callAsync(
+        callSite,
+        args,
+      );
+    };
   }
 
   wrapTapPromise(
-    hook: AnyHook,
-    tap: FullTap,
-    frame: TapFrame,
-    superFn: HookCallback,
+    callSite: CallSite,
     options?: HookTracingOptions | null,
   ): void
   {
     options ??= {};
 
-    if (options.includeTrigger)
+    callSite.tap.fn = async (
+      ...args: unknown[]
+    ): Promise<unknown> =>
     {
-      tap.fn = async (
-        ...args: unknown[]
-      ): Promise<unknown> =>
+      if (options.includeTrigger)
       {
         this.pushTriggerFrame(
-          hook,
-          tap,
-          frame,
+          callSite,
           args,
           options,
         );
+      }
 
-        return await this._callPromise(
-          frame,
-          superFn,
-          args,
-        );
-      };
-    }
-    else
-    {
-      tap.fn = async (
-        ...args: unknown[]
-      ): Promise<unknown> =>
-      {
-        return await this._callPromise(
-          frame,
-          superFn,
-          args,
-        );
-      };
-    }
+      return await this._callPromise(
+        callSite,
+        args,
+      );
+    };
   }
 
   wrapTapSync(
-    hook: AnyHook,
-    tap: FullTap,
-    frame: TapFrame,
-    superFn: HookCallback,
+    callSite: CallSite,
     options?: HookTracingOptions | null,
   ): void
   {
     options ??= {};
 
-    if (options.includeTrigger)
+    callSite.tap.fn = (
+      ...args: unknown[]
+    ): unknown =>
     {
-      tap.fn = (
-        ...args: unknown[]
-      ): unknown =>
+      if (options.includeTrigger)
       {
         this.pushTriggerFrame(
-          hook,
-          tap,
-          frame,
+          callSite,
           args,
           options,
         );
+      }
 
-        return this._callSync(
-          frame,
-          superFn,
-          args,
-        );
-      };
-    }
-    else
-    {
-      tap.fn = (
-        ...args: unknown[]
-      ): unknown =>
-      {
-        return this._callSync(
-          frame,
-          superFn,
-          args,
-        );
-      };
-    }
+      return this._callSync(
+        callSite,
+        args,
+      );
+    };
   }
 }

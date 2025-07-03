@@ -2612,6 +2612,68 @@
       "require": "./dist/cjs/tracer/index.cjs",
       "default": "./src/tracer/index.ts"
     },
+    "./tracer/stack/CallSite.cjs": {
+      "types": "./dist/types/tracer/stack/CallSite.d.ts",
+      "import": "./dist/esm/tracer/stack/CallSite.mjs",
+      "require": "./dist/cjs/tracer/stack/CallSite.cjs",
+      "default": "./src/tracer/stack/CallSite.ts"
+    },
+    "./tracer/stack/CallSite.d.ts": {
+      "types": "./dist/types/tracer/stack/CallSite.d.ts",
+      "default": "./src/tracer/stack/CallSite.ts"
+    },
+    "./tracer/stack/CallSite.js": {
+      "types": "./dist/types/tracer/stack/CallSite.d.ts",
+      "import": "./dist/esm/tracer/stack/CallSite.mjs",
+      "require": "./dist/cjs/tracer/stack/CallSite.cjs",
+      "default": "./src/tracer/stack/CallSite.ts"
+    },
+    "./tracer/stack/CallSite.mjs": {
+      "types": "./dist/types/tracer/stack/CallSite.d.ts",
+      "import": "./dist/esm/tracer/stack/CallSite.mjs",
+      "require": "./dist/cjs/tracer/stack/CallSite.cjs",
+      "default": "./src/tracer/stack/CallSite.ts"
+    },
+    "./tracer/stack/CallSite": {
+      "types": "./dist/types/tracer/stack/CallSite.d.ts",
+      "import": "./dist/esm/tracer/stack/CallSite.mjs",
+      "require": "./dist/cjs/tracer/stack/CallSite.cjs",
+      "default": "./src/tracer/stack/CallSite.ts"
+    },
+    "./tracer/stack/index.cjs": {
+      "types": "./dist/types/tracer/stack/index.d.ts",
+      "import": "./dist/esm/tracer/stack/index.mjs",
+      "require": "./dist/cjs/tracer/stack/index.cjs",
+      "default": "./src/tracer/stack/index.ts"
+    },
+    "./tracer/stack/index.d.ts": {
+      "types": "./dist/types/tracer/stack/index.d.ts",
+      "default": "./src/tracer/stack/index.ts"
+    },
+    "./tracer/stack/index.js": {
+      "types": "./dist/types/tracer/stack/index.d.ts",
+      "import": "./dist/esm/tracer/stack/index.mjs",
+      "require": "./dist/cjs/tracer/stack/index.cjs",
+      "default": "./src/tracer/stack/index.ts"
+    },
+    "./tracer/stack/index.mjs": {
+      "types": "./dist/types/tracer/stack/index.d.ts",
+      "import": "./dist/esm/tracer/stack/index.mjs",
+      "require": "./dist/cjs/tracer/stack/index.cjs",
+      "default": "./src/tracer/stack/index.ts"
+    },
+    "./tracer/stack/index": {
+      "types": "./dist/types/tracer/stack/index.d.ts",
+      "import": "./dist/esm/tracer/stack/index.mjs",
+      "require": "./dist/cjs/tracer/stack/index.cjs",
+      "default": "./src/tracer/stack/index.ts"
+    },
+    "./tracer/stack": {
+      "types": "./dist/types/tracer/stack/index.d.ts",
+      "import": "./dist/esm/tracer/stack/index.mjs",
+      "require": "./dist/cjs/tracer/stack/index.cjs",
+      "default": "./src/tracer/stack/index.ts"
+    },
     "./tracer/traceHook.cjs": {
       "types": "./dist/types/tracer/traceHook.d.ts",
       "import": "./dist/esm/tracer/traceHook.mjs",
