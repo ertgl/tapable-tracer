@@ -129,11 +129,10 @@ The available options are listed below:
 
 ## Technical Details
 
-Tracing here is all about capturing the frames of the tapable hooks and their
-interactions. This section describes the internal mechanism of the tracer and
-how it captures the frames of the hooks.
+This section describes the internal mechanism of the tracer and how it captures
+the frames of the hooks.
 
-We have three types of frames that the tracer captures:
+The tracer captures three different frame types:
 
 - [`CallFrame`](src/stack-frame/CallFrame.ts): Represents a call to a tapable
   hook.
@@ -142,13 +141,14 @@ We have three types of frames that the tracer captures:
   deterministic callback point of a tap. Useful if the tap shares the same name
   with the parent trigger (such as plugins in webpack).
 
-To capture these frames the tracer uses two separate states and one
-deterministic context object:
+Additionally, it uses a [`CallSite`](src/tracer/stack/CallSite.ts) context
+object per tap, for storing the hook, tap, and the original callback function.
 
-1. **Stack**: A stack of frames that represents the current call stack.
-2. **Trace**: A list of frames that represents the entire trace of the hooks.
-3. [**`CallSite`**](src/tracer/stack/CallSite.ts): A context object that
-  contains the hook, tap, and the original callback function.
+To capture these frames the tracer uses two separate states:
+
+1. Stack: A stack of `CallSite` objects that represents the current call
+  stack.
+2. Trace: A list of frames that represents the entire trace of the hooks.
 
 For tracing a hook, the tracer intercepts the hook's `tap`, `call` and `loop`
 events.
