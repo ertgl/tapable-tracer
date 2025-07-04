@@ -17,6 +17,7 @@
   ],
   "resolutions": {
     "tapable-tracer": "portal:..",
+    "tapable-tracer-e2e-uml-nextjs-basic": "file:./uml/nextjs/basic",
     "tapable-tracer-e2e-uml-tapable-basic": "file:./uml/tapable/basic",
     "tapable-tracer-e2e-uml-tapable-plugin": "file:./uml/tapable/plugin",
     "tapable-tracer-e2e-uml-webpack-basic": "file:./uml/webpack/basic"

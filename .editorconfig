@@ -12,7 +12,15 @@ trim_trailing_whitespace = true
 indent_size = 2
 indent_style = space
 
+[*.{cjs,js,mjs}x]
+indent_size = 2
+indent_style = space
+
 [*.{cts,mts,ts}]
+indent_size = 2
+indent_style = space
+
+[*.{cts,mts,ts}x]
 indent_size = 2
 indent_style = space
 

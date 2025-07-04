@@ -1,6 +1,8 @@
-/.yarn/**            linguist-vendored
-/.yarn/releases/*    binary
-/.yarn/plugins/**/*  binary
-coverage/**          linguist-generated
-dist/**              linguist-generated
-yarn.lock            linguist-vendored
+/.yarn/**                    linguist-vendored
+/.yarn/releases/*            binary
+/.yarn/plugins/**/*          binary
+coverage/**                  linguist-generated
+dist/**                      linguist-generated
+yarn.lock                    linguist-vendored
+/e2e/uml/nextjs/*/public/**  linguist-vendored
+/e2e/uml/nextjs/*/src/**     linguist-vendored

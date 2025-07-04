@@ -458,6 +458,26 @@ export default typescriptPlugin.config([
   },
 
   {
+    ignores: [
+      resolvePath(
+        E2E_DIR_PATH,
+        "uml",
+        "nextjs",
+        "*",
+      ),
+    ].map(
+      (absoluteIgnorePath) =>
+      {
+        return joinPaths(
+          getRelativePath(__dirname, absoluteIgnorePath),
+          "**",
+          "*",
+        );
+      },
+    ),
+  },
+
+  {
     ignores: E2E_WORKSPACE_DIR_PATHS.flatMap(
       (e2eWorkspaceDirPath) =>
       {
