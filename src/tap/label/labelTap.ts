@@ -1,7 +1,7 @@
 import type { FullTap } from "tapable";
 
 import type { AnyHook } from "../../hook/AnyHook";
-import type { HookTracingOptions } from "../../tracer/HookTracingOptions";
+import type { HookTracingOptions } from "../../tracer/options/HookTracingOptions";
 
 import type { TapLabel } from "./TapLabel";
 

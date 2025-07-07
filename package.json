@@ -2376,34 +2376,6 @@
       "require": "./dist/cjs/tap/index.cjs",
       "default": "./src/tap/index.ts"
     },
-    "./tracer/HookTracingOptions.cjs": {
-      "types": "./dist/types/tracer/HookTracingOptions.d.ts",
-      "import": "./dist/esm/tracer/HookTracingOptions.mjs",
-      "require": "./dist/cjs/tracer/HookTracingOptions.cjs",
-      "default": "./src/tracer/HookTracingOptions.ts"
-    },
-    "./tracer/HookTracingOptions.d.ts": {
-      "types": "./dist/types/tracer/HookTracingOptions.d.ts",
-      "default": "./src/tracer/HookTracingOptions.ts"
-    },
-    "./tracer/HookTracingOptions.js": {
-      "types": "./dist/types/tracer/HookTracingOptions.d.ts",
-      "import": "./dist/esm/tracer/HookTracingOptions.mjs",
-      "require": "./dist/cjs/tracer/HookTracingOptions.cjs",
-      "default": "./src/tracer/HookTracingOptions.ts"
-    },
-    "./tracer/HookTracingOptions.mjs": {
-      "types": "./dist/types/tracer/HookTracingOptions.d.ts",
-      "import": "./dist/esm/tracer/HookTracingOptions.mjs",
-      "require": "./dist/cjs/tracer/HookTracingOptions.cjs",
-      "default": "./src/tracer/HookTracingOptions.ts"
-    },
-    "./tracer/HookTracingOptions": {
-      "types": "./dist/types/tracer/HookTracingOptions.d.ts",
-      "import": "./dist/esm/tracer/HookTracingOptions.mjs",
-      "require": "./dist/cjs/tracer/HookTracingOptions.cjs",
-      "default": "./src/tracer/HookTracingOptions.ts"
-    },
     "./tracer/Tracer.cjs": {
       "types": "./dist/types/tracer/Tracer.d.ts",
       "import": "./dist/esm/tracer/Tracer.mjs",
@@ -2426,135 +2398,11 @@
       "require": "./dist/cjs/tracer/Tracer.cjs",
       "default": "./src/tracer/Tracer.ts"
     },
-    "./tracer/TracerOptions.cjs": {
-      "types": "./dist/types/tracer/TracerOptions.d.ts",
-      "import": "./dist/esm/tracer/TracerOptions.mjs",
-      "require": "./dist/cjs/tracer/TracerOptions.cjs",
-      "default": "./src/tracer/TracerOptions.ts"
-    },
-    "./tracer/TracerOptions.d.ts": {
-      "types": "./dist/types/tracer/TracerOptions.d.ts",
-      "default": "./src/tracer/TracerOptions.ts"
-    },
-    "./tracer/TracerOptions.js": {
-      "types": "./dist/types/tracer/TracerOptions.d.ts",
-      "import": "./dist/esm/tracer/TracerOptions.mjs",
-      "require": "./dist/cjs/tracer/TracerOptions.cjs",
-      "default": "./src/tracer/TracerOptions.ts"
-    },
-    "./tracer/TracerOptions.mjs": {
-      "types": "./dist/types/tracer/TracerOptions.d.ts",
-      "import": "./dist/esm/tracer/TracerOptions.mjs",
-      "require": "./dist/cjs/tracer/TracerOptions.cjs",
-      "default": "./src/tracer/TracerOptions.ts"
-    },
-    "./tracer/TracerOptions": {
-      "types": "./dist/types/tracer/TracerOptions.d.ts",
-      "import": "./dist/esm/tracer/TracerOptions.mjs",
-      "require": "./dist/cjs/tracer/TracerOptions.cjs",
-      "default": "./src/tracer/TracerOptions.ts"
-    },
     "./tracer/Tracer": {
       "types": "./dist/types/tracer/Tracer.d.ts",
       "import": "./dist/esm/tracer/Tracer.mjs",
       "require": "./dist/cjs/tracer/Tracer.cjs",
       "default": "./src/tracer/Tracer.ts"
-    },
-    "./tracer/callbacks/index.cjs": {
-      "types": "./dist/types/tracer/callbacks/index.d.ts",
-      "import": "./dist/esm/tracer/callbacks/index.mjs",
-      "require": "./dist/cjs/tracer/callbacks/index.cjs",
-      "default": "./src/tracer/callbacks/index.ts"
-    },
-    "./tracer/callbacks/index.d.ts": {
-      "types": "./dist/types/tracer/callbacks/index.d.ts",
-      "default": "./src/tracer/callbacks/index.ts"
-    },
-    "./tracer/callbacks/index.js": {
-      "types": "./dist/types/tracer/callbacks/index.d.ts",
-      "import": "./dist/esm/tracer/callbacks/index.mjs",
-      "require": "./dist/cjs/tracer/callbacks/index.cjs",
-      "default": "./src/tracer/callbacks/index.ts"
-    },
-    "./tracer/callbacks/index.mjs": {
-      "types": "./dist/types/tracer/callbacks/index.d.ts",
-      "import": "./dist/esm/tracer/callbacks/index.mjs",
-      "require": "./dist/cjs/tracer/callbacks/index.cjs",
-      "default": "./src/tracer/callbacks/index.ts"
-    },
-    "./tracer/callbacks/index": {
-      "types": "./dist/types/tracer/callbacks/index.d.ts",
-      "import": "./dist/esm/tracer/callbacks/index.mjs",
-      "require": "./dist/cjs/tracer/callbacks/index.cjs",
-      "default": "./src/tracer/callbacks/index.ts"
-    },
-    "./tracer/callbacks/stack-frame-handler/StackFrameHandler.cjs": {
-      "types": "./dist/types/tracer/callbacks/stack-frame-handler/StackFrameHandler.d.ts",
-      "import": "./dist/esm/tracer/callbacks/stack-frame-handler/StackFrameHandler.mjs",
-      "require": "./dist/cjs/tracer/callbacks/stack-frame-handler/StackFrameHandler.cjs",
-      "default": "./src/tracer/callbacks/stack-frame-handler/StackFrameHandler.ts"
-    },
-    "./tracer/callbacks/stack-frame-handler/StackFrameHandler.d.ts": {
-      "types": "./dist/types/tracer/callbacks/stack-frame-handler/StackFrameHandler.d.ts",
-      "default": "./src/tracer/callbacks/stack-frame-handler/StackFrameHandler.ts"
-    },
-    "./tracer/callbacks/stack-frame-handler/StackFrameHandler.js": {
-      "types": "./dist/types/tracer/callbacks/stack-frame-handler/StackFrameHandler.d.ts",
-      "import": "./dist/esm/tracer/callbacks/stack-frame-handler/StackFrameHandler.mjs",
-      "require": "./dist/cjs/tracer/callbacks/stack-frame-handler/StackFrameHandler.cjs",
-      "default": "./src/tracer/callbacks/stack-frame-handler/StackFrameHandler.ts"
-    },
-    "./tracer/callbacks/stack-frame-handler/StackFrameHandler.mjs": {
-      "types": "./dist/types/tracer/callbacks/stack-frame-handler/StackFrameHandler.d.ts",
-      "import": "./dist/esm/tracer/callbacks/stack-frame-handler/StackFrameHandler.mjs",
-      "require": "./dist/cjs/tracer/callbacks/stack-frame-handler/StackFrameHandler.cjs",
-      "default": "./src/tracer/callbacks/stack-frame-handler/StackFrameHandler.ts"
-    },
-    "./tracer/callbacks/stack-frame-handler/StackFrameHandler": {
-      "types": "./dist/types/tracer/callbacks/stack-frame-handler/StackFrameHandler.d.ts",
-      "import": "./dist/esm/tracer/callbacks/stack-frame-handler/StackFrameHandler.mjs",
-      "require": "./dist/cjs/tracer/callbacks/stack-frame-handler/StackFrameHandler.cjs",
-      "default": "./src/tracer/callbacks/stack-frame-handler/StackFrameHandler.ts"
-    },
-    "./tracer/callbacks/stack-frame-handler/index.cjs": {
-      "types": "./dist/types/tracer/callbacks/stack-frame-handler/index.d.ts",
-      "import": "./dist/esm/tracer/callbacks/stack-frame-handler/index.mjs",
-      "require": "./dist/cjs/tracer/callbacks/stack-frame-handler/index.cjs",
-      "default": "./src/tracer/callbacks/stack-frame-handler/index.ts"
-    },
-    "./tracer/callbacks/stack-frame-handler/index.d.ts": {
-      "types": "./dist/types/tracer/callbacks/stack-frame-handler/index.d.ts",
-      "default": "./src/tracer/callbacks/stack-frame-handler/index.ts"
-    },
-    "./tracer/callbacks/stack-frame-handler/index.js": {
-      "types": "./dist/types/tracer/callbacks/stack-frame-handler/index.d.ts",
-      "import": "./dist/esm/tracer/callbacks/stack-frame-handler/index.mjs",
-      "require": "./dist/cjs/tracer/callbacks/stack-frame-handler/index.cjs",
-      "default": "./src/tracer/callbacks/stack-frame-handler/index.ts"
-    },
-    "./tracer/callbacks/stack-frame-handler/index.mjs": {
-      "types": "./dist/types/tracer/callbacks/stack-frame-handler/index.d.ts",
-      "import": "./dist/esm/tracer/callbacks/stack-frame-handler/index.mjs",
-      "require": "./dist/cjs/tracer/callbacks/stack-frame-handler/index.cjs",
-      "default": "./src/tracer/callbacks/stack-frame-handler/index.ts"
-    },
-    "./tracer/callbacks/stack-frame-handler/index": {
-      "types": "./dist/types/tracer/callbacks/stack-frame-handler/index.d.ts",
-      "import": "./dist/esm/tracer/callbacks/stack-frame-handler/index.mjs",
-      "require": "./dist/cjs/tracer/callbacks/stack-frame-handler/index.cjs",
-      "default": "./src/tracer/callbacks/stack-frame-handler/index.ts"
-    },
-    "./tracer/callbacks/stack-frame-handler": {
-      "types": "./dist/types/tracer/callbacks/stack-frame-handler/index.d.ts",
-      "import": "./dist/esm/tracer/callbacks/stack-frame-handler/index.mjs",
-      "require": "./dist/cjs/tracer/callbacks/stack-frame-handler/index.cjs",
-      "default": "./src/tracer/callbacks/stack-frame-handler/index.ts"
-    },
-    "./tracer/callbacks": {
-      "types": "./dist/types/tracer/callbacks/index.d.ts",
-      "import": "./dist/esm/tracer/callbacks/index.mjs",
-      "require": "./dist/cjs/tracer/callbacks/index.cjs",
-      "default": "./src/tracer/callbacks/index.ts"
     },
     "./tracer/createTracer.cjs": {
       "types": "./dist/types/tracer/createTracer.d.ts",
@@ -2584,6 +2432,602 @@
       "require": "./dist/cjs/tracer/createTracer.cjs",
       "default": "./src/tracer/createTracer.ts"
     },
+    "./tracer/hook/index.cjs": {
+      "types": "./dist/types/tracer/hook/index.d.ts",
+      "import": "./dist/esm/tracer/hook/index.mjs",
+      "require": "./dist/cjs/tracer/hook/index.cjs",
+      "default": "./src/tracer/hook/index.ts"
+    },
+    "./tracer/hook/index.d.ts": {
+      "types": "./dist/types/tracer/hook/index.d.ts",
+      "default": "./src/tracer/hook/index.ts"
+    },
+    "./tracer/hook/index.js": {
+      "types": "./dist/types/tracer/hook/index.d.ts",
+      "import": "./dist/esm/tracer/hook/index.mjs",
+      "require": "./dist/cjs/tracer/hook/index.cjs",
+      "default": "./src/tracer/hook/index.ts"
+    },
+    "./tracer/hook/index.mjs": {
+      "types": "./dist/types/tracer/hook/index.d.ts",
+      "import": "./dist/esm/tracer/hook/index.mjs",
+      "require": "./dist/cjs/tracer/hook/index.cjs",
+      "default": "./src/tracer/hook/index.ts"
+    },
+    "./tracer/hook/index": {
+      "types": "./dist/types/tracer/hook/index.d.ts",
+      "import": "./dist/esm/tracer/hook/index.mjs",
+      "require": "./dist/cjs/tracer/hook/index.cjs",
+      "default": "./src/tracer/hook/index.ts"
+    },
+    "./tracer/hook/registry/TracerHookRegistry.cjs": {
+      "types": "./dist/types/tracer/hook/registry/TracerHookRegistry.d.ts",
+      "import": "./dist/esm/tracer/hook/registry/TracerHookRegistry.mjs",
+      "require": "./dist/cjs/tracer/hook/registry/TracerHookRegistry.cjs",
+      "default": "./src/tracer/hook/registry/TracerHookRegistry.ts"
+    },
+    "./tracer/hook/registry/TracerHookRegistry.d.ts": {
+      "types": "./dist/types/tracer/hook/registry/TracerHookRegistry.d.ts",
+      "default": "./src/tracer/hook/registry/TracerHookRegistry.ts"
+    },
+    "./tracer/hook/registry/TracerHookRegistry.js": {
+      "types": "./dist/types/tracer/hook/registry/TracerHookRegistry.d.ts",
+      "import": "./dist/esm/tracer/hook/registry/TracerHookRegistry.mjs",
+      "require": "./dist/cjs/tracer/hook/registry/TracerHookRegistry.cjs",
+      "default": "./src/tracer/hook/registry/TracerHookRegistry.ts"
+    },
+    "./tracer/hook/registry/TracerHookRegistry.mjs": {
+      "types": "./dist/types/tracer/hook/registry/TracerHookRegistry.d.ts",
+      "import": "./dist/esm/tracer/hook/registry/TracerHookRegistry.mjs",
+      "require": "./dist/cjs/tracer/hook/registry/TracerHookRegistry.cjs",
+      "default": "./src/tracer/hook/registry/TracerHookRegistry.ts"
+    },
+    "./tracer/hook/registry/TracerHookRegistry": {
+      "types": "./dist/types/tracer/hook/registry/TracerHookRegistry.d.ts",
+      "import": "./dist/esm/tracer/hook/registry/TracerHookRegistry.mjs",
+      "require": "./dist/cjs/tracer/hook/registry/TracerHookRegistry.cjs",
+      "default": "./src/tracer/hook/registry/TracerHookRegistry.ts"
+    },
+    "./tracer/hook/registry/createTracerHookRegistry.cjs": {
+      "types": "./dist/types/tracer/hook/registry/createTracerHookRegistry.d.ts",
+      "import": "./dist/esm/tracer/hook/registry/createTracerHookRegistry.mjs",
+      "require": "./dist/cjs/tracer/hook/registry/createTracerHookRegistry.cjs",
+      "default": "./src/tracer/hook/registry/createTracerHookRegistry.ts"
+    },
+    "./tracer/hook/registry/createTracerHookRegistry.d.ts": {
+      "types": "./dist/types/tracer/hook/registry/createTracerHookRegistry.d.ts",
+      "default": "./src/tracer/hook/registry/createTracerHookRegistry.ts"
+    },
+    "./tracer/hook/registry/createTracerHookRegistry.js": {
+      "types": "./dist/types/tracer/hook/registry/createTracerHookRegistry.d.ts",
+      "import": "./dist/esm/tracer/hook/registry/createTracerHookRegistry.mjs",
+      "require": "./dist/cjs/tracer/hook/registry/createTracerHookRegistry.cjs",
+      "default": "./src/tracer/hook/registry/createTracerHookRegistry.ts"
+    },
+    "./tracer/hook/registry/createTracerHookRegistry.mjs": {
+      "types": "./dist/types/tracer/hook/registry/createTracerHookRegistry.d.ts",
+      "import": "./dist/esm/tracer/hook/registry/createTracerHookRegistry.mjs",
+      "require": "./dist/cjs/tracer/hook/registry/createTracerHookRegistry.cjs",
+      "default": "./src/tracer/hook/registry/createTracerHookRegistry.ts"
+    },
+    "./tracer/hook/registry/createTracerHookRegistry": {
+      "types": "./dist/types/tracer/hook/registry/createTracerHookRegistry.d.ts",
+      "import": "./dist/esm/tracer/hook/registry/createTracerHookRegistry.mjs",
+      "require": "./dist/cjs/tracer/hook/registry/createTracerHookRegistry.cjs",
+      "default": "./src/tracer/hook/registry/createTracerHookRegistry.ts"
+    },
+    "./tracer/hook/registry/index.cjs": {
+      "types": "./dist/types/tracer/hook/registry/index.d.ts",
+      "import": "./dist/esm/tracer/hook/registry/index.mjs",
+      "require": "./dist/cjs/tracer/hook/registry/index.cjs",
+      "default": "./src/tracer/hook/registry/index.ts"
+    },
+    "./tracer/hook/registry/index.d.ts": {
+      "types": "./dist/types/tracer/hook/registry/index.d.ts",
+      "default": "./src/tracer/hook/registry/index.ts"
+    },
+    "./tracer/hook/registry/index.js": {
+      "types": "./dist/types/tracer/hook/registry/index.d.ts",
+      "import": "./dist/esm/tracer/hook/registry/index.mjs",
+      "require": "./dist/cjs/tracer/hook/registry/index.cjs",
+      "default": "./src/tracer/hook/registry/index.ts"
+    },
+    "./tracer/hook/registry/index.mjs": {
+      "types": "./dist/types/tracer/hook/registry/index.d.ts",
+      "import": "./dist/esm/tracer/hook/registry/index.mjs",
+      "require": "./dist/cjs/tracer/hook/registry/index.cjs",
+      "default": "./src/tracer/hook/registry/index.ts"
+    },
+    "./tracer/hook/registry/index": {
+      "types": "./dist/types/tracer/hook/registry/index.d.ts",
+      "import": "./dist/esm/tracer/hook/registry/index.mjs",
+      "require": "./dist/cjs/tracer/hook/registry/index.cjs",
+      "default": "./src/tracer/hook/registry/index.ts"
+    },
+    "./tracer/hook/registry": {
+      "types": "./dist/types/tracer/hook/registry/index.d.ts",
+      "import": "./dist/esm/tracer/hook/registry/index.mjs",
+      "require": "./dist/cjs/tracer/hook/registry/index.cjs",
+      "default": "./src/tracer/hook/registry/index.ts"
+    },
+    "./tracer/hooks/handle-stack-frame/HOOK_NAME_HANDLE_STACK_FRAME.cjs": {
+      "types": "./dist/types/tracer/hooks/handle-stack-frame/HOOK_NAME_HANDLE_STACK_FRAME.d.ts",
+      "import": "./dist/esm/tracer/hooks/handle-stack-frame/HOOK_NAME_HANDLE_STACK_FRAME.mjs",
+      "require": "./dist/cjs/tracer/hooks/handle-stack-frame/HOOK_NAME_HANDLE_STACK_FRAME.cjs",
+      "default": "./src/tracer/hooks/handle-stack-frame/HOOK_NAME_HANDLE_STACK_FRAME.ts"
+    },
+    "./tracer/hooks/handle-stack-frame/HOOK_NAME_HANDLE_STACK_FRAME.d.ts": {
+      "types": "./dist/types/tracer/hooks/handle-stack-frame/HOOK_NAME_HANDLE_STACK_FRAME.d.ts",
+      "default": "./src/tracer/hooks/handle-stack-frame/HOOK_NAME_HANDLE_STACK_FRAME.ts"
+    },
+    "./tracer/hooks/handle-stack-frame/HOOK_NAME_HANDLE_STACK_FRAME.js": {
+      "types": "./dist/types/tracer/hooks/handle-stack-frame/HOOK_NAME_HANDLE_STACK_FRAME.d.ts",
+      "import": "./dist/esm/tracer/hooks/handle-stack-frame/HOOK_NAME_HANDLE_STACK_FRAME.mjs",
+      "require": "./dist/cjs/tracer/hooks/handle-stack-frame/HOOK_NAME_HANDLE_STACK_FRAME.cjs",
+      "default": "./src/tracer/hooks/handle-stack-frame/HOOK_NAME_HANDLE_STACK_FRAME.ts"
+    },
+    "./tracer/hooks/handle-stack-frame/HOOK_NAME_HANDLE_STACK_FRAME.mjs": {
+      "types": "./dist/types/tracer/hooks/handle-stack-frame/HOOK_NAME_HANDLE_STACK_FRAME.d.ts",
+      "import": "./dist/esm/tracer/hooks/handle-stack-frame/HOOK_NAME_HANDLE_STACK_FRAME.mjs",
+      "require": "./dist/cjs/tracer/hooks/handle-stack-frame/HOOK_NAME_HANDLE_STACK_FRAME.cjs",
+      "default": "./src/tracer/hooks/handle-stack-frame/HOOK_NAME_HANDLE_STACK_FRAME.ts"
+    },
+    "./tracer/hooks/handle-stack-frame/HOOK_NAME_HANDLE_STACK_FRAME": {
+      "types": "./dist/types/tracer/hooks/handle-stack-frame/HOOK_NAME_HANDLE_STACK_FRAME.d.ts",
+      "import": "./dist/esm/tracer/hooks/handle-stack-frame/HOOK_NAME_HANDLE_STACK_FRAME.mjs",
+      "require": "./dist/cjs/tracer/hooks/handle-stack-frame/HOOK_NAME_HANDLE_STACK_FRAME.cjs",
+      "default": "./src/tracer/hooks/handle-stack-frame/HOOK_NAME_HANDLE_STACK_FRAME.ts"
+    },
+    "./tracer/hooks/handle-stack-frame/HandleStackFrameHook.cjs": {
+      "types": "./dist/types/tracer/hooks/handle-stack-frame/HandleStackFrameHook.d.ts",
+      "import": "./dist/esm/tracer/hooks/handle-stack-frame/HandleStackFrameHook.mjs",
+      "require": "./dist/cjs/tracer/hooks/handle-stack-frame/HandleStackFrameHook.cjs",
+      "default": "./src/tracer/hooks/handle-stack-frame/HandleStackFrameHook.ts"
+    },
+    "./tracer/hooks/handle-stack-frame/HandleStackFrameHook.d.ts": {
+      "types": "./dist/types/tracer/hooks/handle-stack-frame/HandleStackFrameHook.d.ts",
+      "default": "./src/tracer/hooks/handle-stack-frame/HandleStackFrameHook.ts"
+    },
+    "./tracer/hooks/handle-stack-frame/HandleStackFrameHook.js": {
+      "types": "./dist/types/tracer/hooks/handle-stack-frame/HandleStackFrameHook.d.ts",
+      "import": "./dist/esm/tracer/hooks/handle-stack-frame/HandleStackFrameHook.mjs",
+      "require": "./dist/cjs/tracer/hooks/handle-stack-frame/HandleStackFrameHook.cjs",
+      "default": "./src/tracer/hooks/handle-stack-frame/HandleStackFrameHook.ts"
+    },
+    "./tracer/hooks/handle-stack-frame/HandleStackFrameHook.mjs": {
+      "types": "./dist/types/tracer/hooks/handle-stack-frame/HandleStackFrameHook.d.ts",
+      "import": "./dist/esm/tracer/hooks/handle-stack-frame/HandleStackFrameHook.mjs",
+      "require": "./dist/cjs/tracer/hooks/handle-stack-frame/HandleStackFrameHook.cjs",
+      "default": "./src/tracer/hooks/handle-stack-frame/HandleStackFrameHook.ts"
+    },
+    "./tracer/hooks/handle-stack-frame/HandleStackFrameHookPayload.cjs": {
+      "types": "./dist/types/tracer/hooks/handle-stack-frame/HandleStackFrameHookPayload.d.ts",
+      "import": "./dist/esm/tracer/hooks/handle-stack-frame/HandleStackFrameHookPayload.mjs",
+      "require": "./dist/cjs/tracer/hooks/handle-stack-frame/HandleStackFrameHookPayload.cjs",
+      "default": "./src/tracer/hooks/handle-stack-frame/HandleStackFrameHookPayload.ts"
+    },
+    "./tracer/hooks/handle-stack-frame/HandleStackFrameHookPayload.d.ts": {
+      "types": "./dist/types/tracer/hooks/handle-stack-frame/HandleStackFrameHookPayload.d.ts",
+      "default": "./src/tracer/hooks/handle-stack-frame/HandleStackFrameHookPayload.ts"
+    },
+    "./tracer/hooks/handle-stack-frame/HandleStackFrameHookPayload.js": {
+      "types": "./dist/types/tracer/hooks/handle-stack-frame/HandleStackFrameHookPayload.d.ts",
+      "import": "./dist/esm/tracer/hooks/handle-stack-frame/HandleStackFrameHookPayload.mjs",
+      "require": "./dist/cjs/tracer/hooks/handle-stack-frame/HandleStackFrameHookPayload.cjs",
+      "default": "./src/tracer/hooks/handle-stack-frame/HandleStackFrameHookPayload.ts"
+    },
+    "./tracer/hooks/handle-stack-frame/HandleStackFrameHookPayload.mjs": {
+      "types": "./dist/types/tracer/hooks/handle-stack-frame/HandleStackFrameHookPayload.d.ts",
+      "import": "./dist/esm/tracer/hooks/handle-stack-frame/HandleStackFrameHookPayload.mjs",
+      "require": "./dist/cjs/tracer/hooks/handle-stack-frame/HandleStackFrameHookPayload.cjs",
+      "default": "./src/tracer/hooks/handle-stack-frame/HandleStackFrameHookPayload.ts"
+    },
+    "./tracer/hooks/handle-stack-frame/HandleStackFrameHookPayload": {
+      "types": "./dist/types/tracer/hooks/handle-stack-frame/HandleStackFrameHookPayload.d.ts",
+      "import": "./dist/esm/tracer/hooks/handle-stack-frame/HandleStackFrameHookPayload.mjs",
+      "require": "./dist/cjs/tracer/hooks/handle-stack-frame/HandleStackFrameHookPayload.cjs",
+      "default": "./src/tracer/hooks/handle-stack-frame/HandleStackFrameHookPayload.ts"
+    },
+    "./tracer/hooks/handle-stack-frame/HandleStackFrameHook": {
+      "types": "./dist/types/tracer/hooks/handle-stack-frame/HandleStackFrameHook.d.ts",
+      "import": "./dist/esm/tracer/hooks/handle-stack-frame/HandleStackFrameHook.mjs",
+      "require": "./dist/cjs/tracer/hooks/handle-stack-frame/HandleStackFrameHook.cjs",
+      "default": "./src/tracer/hooks/handle-stack-frame/HandleStackFrameHook.ts"
+    },
+    "./tracer/hooks/handle-stack-frame/createHandleStackFrameHook.cjs": {
+      "types": "./dist/types/tracer/hooks/handle-stack-frame/createHandleStackFrameHook.d.ts",
+      "import": "./dist/esm/tracer/hooks/handle-stack-frame/createHandleStackFrameHook.mjs",
+      "require": "./dist/cjs/tracer/hooks/handle-stack-frame/createHandleStackFrameHook.cjs",
+      "default": "./src/tracer/hooks/handle-stack-frame/createHandleStackFrameHook.ts"
+    },
+    "./tracer/hooks/handle-stack-frame/createHandleStackFrameHook.d.ts": {
+      "types": "./dist/types/tracer/hooks/handle-stack-frame/createHandleStackFrameHook.d.ts",
+      "default": "./src/tracer/hooks/handle-stack-frame/createHandleStackFrameHook.ts"
+    },
+    "./tracer/hooks/handle-stack-frame/createHandleStackFrameHook.js": {
+      "types": "./dist/types/tracer/hooks/handle-stack-frame/createHandleStackFrameHook.d.ts",
+      "import": "./dist/esm/tracer/hooks/handle-stack-frame/createHandleStackFrameHook.mjs",
+      "require": "./dist/cjs/tracer/hooks/handle-stack-frame/createHandleStackFrameHook.cjs",
+      "default": "./src/tracer/hooks/handle-stack-frame/createHandleStackFrameHook.ts"
+    },
+    "./tracer/hooks/handle-stack-frame/createHandleStackFrameHook.mjs": {
+      "types": "./dist/types/tracer/hooks/handle-stack-frame/createHandleStackFrameHook.d.ts",
+      "import": "./dist/esm/tracer/hooks/handle-stack-frame/createHandleStackFrameHook.mjs",
+      "require": "./dist/cjs/tracer/hooks/handle-stack-frame/createHandleStackFrameHook.cjs",
+      "default": "./src/tracer/hooks/handle-stack-frame/createHandleStackFrameHook.ts"
+    },
+    "./tracer/hooks/handle-stack-frame/createHandleStackFrameHook": {
+      "types": "./dist/types/tracer/hooks/handle-stack-frame/createHandleStackFrameHook.d.ts",
+      "import": "./dist/esm/tracer/hooks/handle-stack-frame/createHandleStackFrameHook.mjs",
+      "require": "./dist/cjs/tracer/hooks/handle-stack-frame/createHandleStackFrameHook.cjs",
+      "default": "./src/tracer/hooks/handle-stack-frame/createHandleStackFrameHook.ts"
+    },
+    "./tracer/hooks/handle-stack-frame/index.cjs": {
+      "types": "./dist/types/tracer/hooks/handle-stack-frame/index.d.ts",
+      "import": "./dist/esm/tracer/hooks/handle-stack-frame/index.mjs",
+      "require": "./dist/cjs/tracer/hooks/handle-stack-frame/index.cjs",
+      "default": "./src/tracer/hooks/handle-stack-frame/index.ts"
+    },
+    "./tracer/hooks/handle-stack-frame/index.d.ts": {
+      "types": "./dist/types/tracer/hooks/handle-stack-frame/index.d.ts",
+      "default": "./src/tracer/hooks/handle-stack-frame/index.ts"
+    },
+    "./tracer/hooks/handle-stack-frame/index.js": {
+      "types": "./dist/types/tracer/hooks/handle-stack-frame/index.d.ts",
+      "import": "./dist/esm/tracer/hooks/handle-stack-frame/index.mjs",
+      "require": "./dist/cjs/tracer/hooks/handle-stack-frame/index.cjs",
+      "default": "./src/tracer/hooks/handle-stack-frame/index.ts"
+    },
+    "./tracer/hooks/handle-stack-frame/index.mjs": {
+      "types": "./dist/types/tracer/hooks/handle-stack-frame/index.d.ts",
+      "import": "./dist/esm/tracer/hooks/handle-stack-frame/index.mjs",
+      "require": "./dist/cjs/tracer/hooks/handle-stack-frame/index.cjs",
+      "default": "./src/tracer/hooks/handle-stack-frame/index.ts"
+    },
+    "./tracer/hooks/handle-stack-frame/index": {
+      "types": "./dist/types/tracer/hooks/handle-stack-frame/index.d.ts",
+      "import": "./dist/esm/tracer/hooks/handle-stack-frame/index.mjs",
+      "require": "./dist/cjs/tracer/hooks/handle-stack-frame/index.cjs",
+      "default": "./src/tracer/hooks/handle-stack-frame/index.ts"
+    },
+    "./tracer/hooks/handle-stack-frame": {
+      "types": "./dist/types/tracer/hooks/handle-stack-frame/index.d.ts",
+      "import": "./dist/esm/tracer/hooks/handle-stack-frame/index.mjs",
+      "require": "./dist/cjs/tracer/hooks/handle-stack-frame/index.cjs",
+      "default": "./src/tracer/hooks/handle-stack-frame/index.ts"
+    },
+    "./tracer/hooks/index.cjs": {
+      "types": "./dist/types/tracer/hooks/index.d.ts",
+      "import": "./dist/esm/tracer/hooks/index.mjs",
+      "require": "./dist/cjs/tracer/hooks/index.cjs",
+      "default": "./src/tracer/hooks/index.ts"
+    },
+    "./tracer/hooks/index.d.ts": {
+      "types": "./dist/types/tracer/hooks/index.d.ts",
+      "default": "./src/tracer/hooks/index.ts"
+    },
+    "./tracer/hooks/index.js": {
+      "types": "./dist/types/tracer/hooks/index.d.ts",
+      "import": "./dist/esm/tracer/hooks/index.mjs",
+      "require": "./dist/cjs/tracer/hooks/index.cjs",
+      "default": "./src/tracer/hooks/index.ts"
+    },
+    "./tracer/hooks/index.mjs": {
+      "types": "./dist/types/tracer/hooks/index.d.ts",
+      "import": "./dist/esm/tracer/hooks/index.mjs",
+      "require": "./dist/cjs/tracer/hooks/index.cjs",
+      "default": "./src/tracer/hooks/index.ts"
+    },
+    "./tracer/hooks/index": {
+      "types": "./dist/types/tracer/hooks/index.d.ts",
+      "import": "./dist/esm/tracer/hooks/index.mjs",
+      "require": "./dist/cjs/tracer/hooks/index.cjs",
+      "default": "./src/tracer/hooks/index.ts"
+    },
+    "./tracer/hooks/post-call/HOOK_NAME_POST_CALL.cjs": {
+      "types": "./dist/types/tracer/hooks/post-call/HOOK_NAME_POST_CALL.d.ts",
+      "import": "./dist/esm/tracer/hooks/post-call/HOOK_NAME_POST_CALL.mjs",
+      "require": "./dist/cjs/tracer/hooks/post-call/HOOK_NAME_POST_CALL.cjs",
+      "default": "./src/tracer/hooks/post-call/HOOK_NAME_POST_CALL.ts"
+    },
+    "./tracer/hooks/post-call/HOOK_NAME_POST_CALL.d.ts": {
+      "types": "./dist/types/tracer/hooks/post-call/HOOK_NAME_POST_CALL.d.ts",
+      "default": "./src/tracer/hooks/post-call/HOOK_NAME_POST_CALL.ts"
+    },
+    "./tracer/hooks/post-call/HOOK_NAME_POST_CALL.js": {
+      "types": "./dist/types/tracer/hooks/post-call/HOOK_NAME_POST_CALL.d.ts",
+      "import": "./dist/esm/tracer/hooks/post-call/HOOK_NAME_POST_CALL.mjs",
+      "require": "./dist/cjs/tracer/hooks/post-call/HOOK_NAME_POST_CALL.cjs",
+      "default": "./src/tracer/hooks/post-call/HOOK_NAME_POST_CALL.ts"
+    },
+    "./tracer/hooks/post-call/HOOK_NAME_POST_CALL.mjs": {
+      "types": "./dist/types/tracer/hooks/post-call/HOOK_NAME_POST_CALL.d.ts",
+      "import": "./dist/esm/tracer/hooks/post-call/HOOK_NAME_POST_CALL.mjs",
+      "require": "./dist/cjs/tracer/hooks/post-call/HOOK_NAME_POST_CALL.cjs",
+      "default": "./src/tracer/hooks/post-call/HOOK_NAME_POST_CALL.ts"
+    },
+    "./tracer/hooks/post-call/HOOK_NAME_POST_CALL": {
+      "types": "./dist/types/tracer/hooks/post-call/HOOK_NAME_POST_CALL.d.ts",
+      "import": "./dist/esm/tracer/hooks/post-call/HOOK_NAME_POST_CALL.mjs",
+      "require": "./dist/cjs/tracer/hooks/post-call/HOOK_NAME_POST_CALL.cjs",
+      "default": "./src/tracer/hooks/post-call/HOOK_NAME_POST_CALL.ts"
+    },
+    "./tracer/hooks/post-call/PostCallHook.cjs": {
+      "types": "./dist/types/tracer/hooks/post-call/PostCallHook.d.ts",
+      "import": "./dist/esm/tracer/hooks/post-call/PostCallHook.mjs",
+      "require": "./dist/cjs/tracer/hooks/post-call/PostCallHook.cjs",
+      "default": "./src/tracer/hooks/post-call/PostCallHook.ts"
+    },
+    "./tracer/hooks/post-call/PostCallHook.d.ts": {
+      "types": "./dist/types/tracer/hooks/post-call/PostCallHook.d.ts",
+      "default": "./src/tracer/hooks/post-call/PostCallHook.ts"
+    },
+    "./tracer/hooks/post-call/PostCallHook.js": {
+      "types": "./dist/types/tracer/hooks/post-call/PostCallHook.d.ts",
+      "import": "./dist/esm/tracer/hooks/post-call/PostCallHook.mjs",
+      "require": "./dist/cjs/tracer/hooks/post-call/PostCallHook.cjs",
+      "default": "./src/tracer/hooks/post-call/PostCallHook.ts"
+    },
+    "./tracer/hooks/post-call/PostCallHook.mjs": {
+      "types": "./dist/types/tracer/hooks/post-call/PostCallHook.d.ts",
+      "import": "./dist/esm/tracer/hooks/post-call/PostCallHook.mjs",
+      "require": "./dist/cjs/tracer/hooks/post-call/PostCallHook.cjs",
+      "default": "./src/tracer/hooks/post-call/PostCallHook.ts"
+    },
+    "./tracer/hooks/post-call/PostCallHookPayload.cjs": {
+      "types": "./dist/types/tracer/hooks/post-call/PostCallHookPayload.d.ts",
+      "import": "./dist/esm/tracer/hooks/post-call/PostCallHookPayload.mjs",
+      "require": "./dist/cjs/tracer/hooks/post-call/PostCallHookPayload.cjs",
+      "default": "./src/tracer/hooks/post-call/PostCallHookPayload.ts"
+    },
+    "./tracer/hooks/post-call/PostCallHookPayload.d.ts": {
+      "types": "./dist/types/tracer/hooks/post-call/PostCallHookPayload.d.ts",
+      "default": "./src/tracer/hooks/post-call/PostCallHookPayload.ts"
+    },
+    "./tracer/hooks/post-call/PostCallHookPayload.js": {
+      "types": "./dist/types/tracer/hooks/post-call/PostCallHookPayload.d.ts",
+      "import": "./dist/esm/tracer/hooks/post-call/PostCallHookPayload.mjs",
+      "require": "./dist/cjs/tracer/hooks/post-call/PostCallHookPayload.cjs",
+      "default": "./src/tracer/hooks/post-call/PostCallHookPayload.ts"
+    },
+    "./tracer/hooks/post-call/PostCallHookPayload.mjs": {
+      "types": "./dist/types/tracer/hooks/post-call/PostCallHookPayload.d.ts",
+      "import": "./dist/esm/tracer/hooks/post-call/PostCallHookPayload.mjs",
+      "require": "./dist/cjs/tracer/hooks/post-call/PostCallHookPayload.cjs",
+      "default": "./src/tracer/hooks/post-call/PostCallHookPayload.ts"
+    },
+    "./tracer/hooks/post-call/PostCallHookPayload": {
+      "types": "./dist/types/tracer/hooks/post-call/PostCallHookPayload.d.ts",
+      "import": "./dist/esm/tracer/hooks/post-call/PostCallHookPayload.mjs",
+      "require": "./dist/cjs/tracer/hooks/post-call/PostCallHookPayload.cjs",
+      "default": "./src/tracer/hooks/post-call/PostCallHookPayload.ts"
+    },
+    "./tracer/hooks/post-call/PostCallHook": {
+      "types": "./dist/types/tracer/hooks/post-call/PostCallHook.d.ts",
+      "import": "./dist/esm/tracer/hooks/post-call/PostCallHook.mjs",
+      "require": "./dist/cjs/tracer/hooks/post-call/PostCallHook.cjs",
+      "default": "./src/tracer/hooks/post-call/PostCallHook.ts"
+    },
+    "./tracer/hooks/post-call/createPostCallHook.cjs": {
+      "types": "./dist/types/tracer/hooks/post-call/createPostCallHook.d.ts",
+      "import": "./dist/esm/tracer/hooks/post-call/createPostCallHook.mjs",
+      "require": "./dist/cjs/tracer/hooks/post-call/createPostCallHook.cjs",
+      "default": "./src/tracer/hooks/post-call/createPostCallHook.ts"
+    },
+    "./tracer/hooks/post-call/createPostCallHook.d.ts": {
+      "types": "./dist/types/tracer/hooks/post-call/createPostCallHook.d.ts",
+      "default": "./src/tracer/hooks/post-call/createPostCallHook.ts"
+    },
+    "./tracer/hooks/post-call/createPostCallHook.js": {
+      "types": "./dist/types/tracer/hooks/post-call/createPostCallHook.d.ts",
+      "import": "./dist/esm/tracer/hooks/post-call/createPostCallHook.mjs",
+      "require": "./dist/cjs/tracer/hooks/post-call/createPostCallHook.cjs",
+      "default": "./src/tracer/hooks/post-call/createPostCallHook.ts"
+    },
+    "./tracer/hooks/post-call/createPostCallHook.mjs": {
+      "types": "./dist/types/tracer/hooks/post-call/createPostCallHook.d.ts",
+      "import": "./dist/esm/tracer/hooks/post-call/createPostCallHook.mjs",
+      "require": "./dist/cjs/tracer/hooks/post-call/createPostCallHook.cjs",
+      "default": "./src/tracer/hooks/post-call/createPostCallHook.ts"
+    },
+    "./tracer/hooks/post-call/createPostCallHook": {
+      "types": "./dist/types/tracer/hooks/post-call/createPostCallHook.d.ts",
+      "import": "./dist/esm/tracer/hooks/post-call/createPostCallHook.mjs",
+      "require": "./dist/cjs/tracer/hooks/post-call/createPostCallHook.cjs",
+      "default": "./src/tracer/hooks/post-call/createPostCallHook.ts"
+    },
+    "./tracer/hooks/post-call/index.cjs": {
+      "types": "./dist/types/tracer/hooks/post-call/index.d.ts",
+      "import": "./dist/esm/tracer/hooks/post-call/index.mjs",
+      "require": "./dist/cjs/tracer/hooks/post-call/index.cjs",
+      "default": "./src/tracer/hooks/post-call/index.ts"
+    },
+    "./tracer/hooks/post-call/index.d.ts": {
+      "types": "./dist/types/tracer/hooks/post-call/index.d.ts",
+      "default": "./src/tracer/hooks/post-call/index.ts"
+    },
+    "./tracer/hooks/post-call/index.js": {
+      "types": "./dist/types/tracer/hooks/post-call/index.d.ts",
+      "import": "./dist/esm/tracer/hooks/post-call/index.mjs",
+      "require": "./dist/cjs/tracer/hooks/post-call/index.cjs",
+      "default": "./src/tracer/hooks/post-call/index.ts"
+    },
+    "./tracer/hooks/post-call/index.mjs": {
+      "types": "./dist/types/tracer/hooks/post-call/index.d.ts",
+      "import": "./dist/esm/tracer/hooks/post-call/index.mjs",
+      "require": "./dist/cjs/tracer/hooks/post-call/index.cjs",
+      "default": "./src/tracer/hooks/post-call/index.ts"
+    },
+    "./tracer/hooks/post-call/index": {
+      "types": "./dist/types/tracer/hooks/post-call/index.d.ts",
+      "import": "./dist/esm/tracer/hooks/post-call/index.mjs",
+      "require": "./dist/cjs/tracer/hooks/post-call/index.cjs",
+      "default": "./src/tracer/hooks/post-call/index.ts"
+    },
+    "./tracer/hooks/post-call": {
+      "types": "./dist/types/tracer/hooks/post-call/index.d.ts",
+      "import": "./dist/esm/tracer/hooks/post-call/index.mjs",
+      "require": "./dist/cjs/tracer/hooks/post-call/index.cjs",
+      "default": "./src/tracer/hooks/post-call/index.ts"
+    },
+    "./tracer/hooks/pre-call/HOOK_NAME_PRE_CALL.cjs": {
+      "types": "./dist/types/tracer/hooks/pre-call/HOOK_NAME_PRE_CALL.d.ts",
+      "import": "./dist/esm/tracer/hooks/pre-call/HOOK_NAME_PRE_CALL.mjs",
+      "require": "./dist/cjs/tracer/hooks/pre-call/HOOK_NAME_PRE_CALL.cjs",
+      "default": "./src/tracer/hooks/pre-call/HOOK_NAME_PRE_CALL.ts"
+    },
+    "./tracer/hooks/pre-call/HOOK_NAME_PRE_CALL.d.ts": {
+      "types": "./dist/types/tracer/hooks/pre-call/HOOK_NAME_PRE_CALL.d.ts",
+      "default": "./src/tracer/hooks/pre-call/HOOK_NAME_PRE_CALL.ts"
+    },
+    "./tracer/hooks/pre-call/HOOK_NAME_PRE_CALL.js": {
+      "types": "./dist/types/tracer/hooks/pre-call/HOOK_NAME_PRE_CALL.d.ts",
+      "import": "./dist/esm/tracer/hooks/pre-call/HOOK_NAME_PRE_CALL.mjs",
+      "require": "./dist/cjs/tracer/hooks/pre-call/HOOK_NAME_PRE_CALL.cjs",
+      "default": "./src/tracer/hooks/pre-call/HOOK_NAME_PRE_CALL.ts"
+    },
+    "./tracer/hooks/pre-call/HOOK_NAME_PRE_CALL.mjs": {
+      "types": "./dist/types/tracer/hooks/pre-call/HOOK_NAME_PRE_CALL.d.ts",
+      "import": "./dist/esm/tracer/hooks/pre-call/HOOK_NAME_PRE_CALL.mjs",
+      "require": "./dist/cjs/tracer/hooks/pre-call/HOOK_NAME_PRE_CALL.cjs",
+      "default": "./src/tracer/hooks/pre-call/HOOK_NAME_PRE_CALL.ts"
+    },
+    "./tracer/hooks/pre-call/HOOK_NAME_PRE_CALL": {
+      "types": "./dist/types/tracer/hooks/pre-call/HOOK_NAME_PRE_CALL.d.ts",
+      "import": "./dist/esm/tracer/hooks/pre-call/HOOK_NAME_PRE_CALL.mjs",
+      "require": "./dist/cjs/tracer/hooks/pre-call/HOOK_NAME_PRE_CALL.cjs",
+      "default": "./src/tracer/hooks/pre-call/HOOK_NAME_PRE_CALL.ts"
+    },
+    "./tracer/hooks/pre-call/PreCallHook.cjs": {
+      "types": "./dist/types/tracer/hooks/pre-call/PreCallHook.d.ts",
+      "import": "./dist/esm/tracer/hooks/pre-call/PreCallHook.mjs",
+      "require": "./dist/cjs/tracer/hooks/pre-call/PreCallHook.cjs",
+      "default": "./src/tracer/hooks/pre-call/PreCallHook.ts"
+    },
+    "./tracer/hooks/pre-call/PreCallHook.d.ts": {
+      "types": "./dist/types/tracer/hooks/pre-call/PreCallHook.d.ts",
+      "default": "./src/tracer/hooks/pre-call/PreCallHook.ts"
+    },
+    "./tracer/hooks/pre-call/PreCallHook.js": {
+      "types": "./dist/types/tracer/hooks/pre-call/PreCallHook.d.ts",
+      "import": "./dist/esm/tracer/hooks/pre-call/PreCallHook.mjs",
+      "require": "./dist/cjs/tracer/hooks/pre-call/PreCallHook.cjs",
+      "default": "./src/tracer/hooks/pre-call/PreCallHook.ts"
+    },
+    "./tracer/hooks/pre-call/PreCallHook.mjs": {
+      "types": "./dist/types/tracer/hooks/pre-call/PreCallHook.d.ts",
+      "import": "./dist/esm/tracer/hooks/pre-call/PreCallHook.mjs",
+      "require": "./dist/cjs/tracer/hooks/pre-call/PreCallHook.cjs",
+      "default": "./src/tracer/hooks/pre-call/PreCallHook.ts"
+    },
+    "./tracer/hooks/pre-call/PreCallHookPayload.cjs": {
+      "types": "./dist/types/tracer/hooks/pre-call/PreCallHookPayload.d.ts",
+      "import": "./dist/esm/tracer/hooks/pre-call/PreCallHookPayload.mjs",
+      "require": "./dist/cjs/tracer/hooks/pre-call/PreCallHookPayload.cjs",
+      "default": "./src/tracer/hooks/pre-call/PreCallHookPayload.ts"
+    },
+    "./tracer/hooks/pre-call/PreCallHookPayload.d.ts": {
+      "types": "./dist/types/tracer/hooks/pre-call/PreCallHookPayload.d.ts",
+      "default": "./src/tracer/hooks/pre-call/PreCallHookPayload.ts"
+    },
+    "./tracer/hooks/pre-call/PreCallHookPayload.js": {
+      "types": "./dist/types/tracer/hooks/pre-call/PreCallHookPayload.d.ts",
+      "import": "./dist/esm/tracer/hooks/pre-call/PreCallHookPayload.mjs",
+      "require": "./dist/cjs/tracer/hooks/pre-call/PreCallHookPayload.cjs",
+      "default": "./src/tracer/hooks/pre-call/PreCallHookPayload.ts"
+    },
+    "./tracer/hooks/pre-call/PreCallHookPayload.mjs": {
+      "types": "./dist/types/tracer/hooks/pre-call/PreCallHookPayload.d.ts",
+      "import": "./dist/esm/tracer/hooks/pre-call/PreCallHookPayload.mjs",
+      "require": "./dist/cjs/tracer/hooks/pre-call/PreCallHookPayload.cjs",
+      "default": "./src/tracer/hooks/pre-call/PreCallHookPayload.ts"
+    },
+    "./tracer/hooks/pre-call/PreCallHookPayload": {
+      "types": "./dist/types/tracer/hooks/pre-call/PreCallHookPayload.d.ts",
+      "import": "./dist/esm/tracer/hooks/pre-call/PreCallHookPayload.mjs",
+      "require": "./dist/cjs/tracer/hooks/pre-call/PreCallHookPayload.cjs",
+      "default": "./src/tracer/hooks/pre-call/PreCallHookPayload.ts"
+    },
+    "./tracer/hooks/pre-call/PreCallHook": {
+      "types": "./dist/types/tracer/hooks/pre-call/PreCallHook.d.ts",
+      "import": "./dist/esm/tracer/hooks/pre-call/PreCallHook.mjs",
+      "require": "./dist/cjs/tracer/hooks/pre-call/PreCallHook.cjs",
+      "default": "./src/tracer/hooks/pre-call/PreCallHook.ts"
+    },
+    "./tracer/hooks/pre-call/createPreCallHook.cjs": {
+      "types": "./dist/types/tracer/hooks/pre-call/createPreCallHook.d.ts",
+      "import": "./dist/esm/tracer/hooks/pre-call/createPreCallHook.mjs",
+      "require": "./dist/cjs/tracer/hooks/pre-call/createPreCallHook.cjs",
+      "default": "./src/tracer/hooks/pre-call/createPreCallHook.ts"
+    },
+    "./tracer/hooks/pre-call/createPreCallHook.d.ts": {
+      "types": "./dist/types/tracer/hooks/pre-call/createPreCallHook.d.ts",
+      "default": "./src/tracer/hooks/pre-call/createPreCallHook.ts"
+    },
+    "./tracer/hooks/pre-call/createPreCallHook.js": {
+      "types": "./dist/types/tracer/hooks/pre-call/createPreCallHook.d.ts",
+      "import": "./dist/esm/tracer/hooks/pre-call/createPreCallHook.mjs",
+      "require": "./dist/cjs/tracer/hooks/pre-call/createPreCallHook.cjs",
+      "default": "./src/tracer/hooks/pre-call/createPreCallHook.ts"
+    },
+    "./tracer/hooks/pre-call/createPreCallHook.mjs": {
+      "types": "./dist/types/tracer/hooks/pre-call/createPreCallHook.d.ts",
+      "import": "./dist/esm/tracer/hooks/pre-call/createPreCallHook.mjs",
+      "require": "./dist/cjs/tracer/hooks/pre-call/createPreCallHook.cjs",
+      "default": "./src/tracer/hooks/pre-call/createPreCallHook.ts"
+    },
+    "./tracer/hooks/pre-call/createPreCallHook": {
+      "types": "./dist/types/tracer/hooks/pre-call/createPreCallHook.d.ts",
+      "import": "./dist/esm/tracer/hooks/pre-call/createPreCallHook.mjs",
+      "require": "./dist/cjs/tracer/hooks/pre-call/createPreCallHook.cjs",
+      "default": "./src/tracer/hooks/pre-call/createPreCallHook.ts"
+    },
+    "./tracer/hooks/pre-call/index.cjs": {
+      "types": "./dist/types/tracer/hooks/pre-call/index.d.ts",
+      "import": "./dist/esm/tracer/hooks/pre-call/index.mjs",
+      "require": "./dist/cjs/tracer/hooks/pre-call/index.cjs",
+      "default": "./src/tracer/hooks/pre-call/index.ts"
+    },
+    "./tracer/hooks/pre-call/index.d.ts": {
+      "types": "./dist/types/tracer/hooks/pre-call/index.d.ts",
+      "default": "./src/tracer/hooks/pre-call/index.ts"
+    },
+    "./tracer/hooks/pre-call/index.js": {
+      "types": "./dist/types/tracer/hooks/pre-call/index.d.ts",
+      "import": "./dist/esm/tracer/hooks/pre-call/index.mjs",
+      "require": "./dist/cjs/tracer/hooks/pre-call/index.cjs",
+      "default": "./src/tracer/hooks/pre-call/index.ts"
+    },
+    "./tracer/hooks/pre-call/index.mjs": {
+      "types": "./dist/types/tracer/hooks/pre-call/index.d.ts",
+      "import": "./dist/esm/tracer/hooks/pre-call/index.mjs",
+      "require": "./dist/cjs/tracer/hooks/pre-call/index.cjs",
+      "default": "./src/tracer/hooks/pre-call/index.ts"
+    },
+    "./tracer/hooks/pre-call/index": {
+      "types": "./dist/types/tracer/hooks/pre-call/index.d.ts",
+      "import": "./dist/esm/tracer/hooks/pre-call/index.mjs",
+      "require": "./dist/cjs/tracer/hooks/pre-call/index.cjs",
+      "default": "./src/tracer/hooks/pre-call/index.ts"
+    },
+    "./tracer/hooks/pre-call": {
+      "types": "./dist/types/tracer/hooks/pre-call/index.d.ts",
+      "import": "./dist/esm/tracer/hooks/pre-call/index.mjs",
+      "require": "./dist/cjs/tracer/hooks/pre-call/index.cjs",
+      "default": "./src/tracer/hooks/pre-call/index.ts"
+    },
+    "./tracer/hooks": {
+      "types": "./dist/types/tracer/hooks/index.d.ts",
+      "import": "./dist/esm/tracer/hooks/index.mjs",
+      "require": "./dist/cjs/tracer/hooks/index.cjs",
+      "default": "./src/tracer/hooks/index.ts"
+    },
+    "./tracer/hook": {
+      "types": "./dist/types/tracer/hook/index.d.ts",
+      "import": "./dist/esm/tracer/hook/index.mjs",
+      "require": "./dist/cjs/tracer/hook/index.cjs",
+      "default": "./src/tracer/hook/index.ts"
+    },
     "./tracer/index.cjs": {
       "types": "./dist/types/tracer/index.d.ts",
       "import": "./dist/esm/tracer/index.mjs",
@@ -2611,6 +3055,96 @@
       "import": "./dist/esm/tracer/index.mjs",
       "require": "./dist/cjs/tracer/index.cjs",
       "default": "./src/tracer/index.ts"
+    },
+    "./tracer/options/HookTracingOptions.cjs": {
+      "types": "./dist/types/tracer/options/HookTracingOptions.d.ts",
+      "import": "./dist/esm/tracer/options/HookTracingOptions.mjs",
+      "require": "./dist/cjs/tracer/options/HookTracingOptions.cjs",
+      "default": "./src/tracer/options/HookTracingOptions.ts"
+    },
+    "./tracer/options/HookTracingOptions.d.ts": {
+      "types": "./dist/types/tracer/options/HookTracingOptions.d.ts",
+      "default": "./src/tracer/options/HookTracingOptions.ts"
+    },
+    "./tracer/options/HookTracingOptions.js": {
+      "types": "./dist/types/tracer/options/HookTracingOptions.d.ts",
+      "import": "./dist/esm/tracer/options/HookTracingOptions.mjs",
+      "require": "./dist/cjs/tracer/options/HookTracingOptions.cjs",
+      "default": "./src/tracer/options/HookTracingOptions.ts"
+    },
+    "./tracer/options/HookTracingOptions.mjs": {
+      "types": "./dist/types/tracer/options/HookTracingOptions.d.ts",
+      "import": "./dist/esm/tracer/options/HookTracingOptions.mjs",
+      "require": "./dist/cjs/tracer/options/HookTracingOptions.cjs",
+      "default": "./src/tracer/options/HookTracingOptions.ts"
+    },
+    "./tracer/options/HookTracingOptions": {
+      "types": "./dist/types/tracer/options/HookTracingOptions.d.ts",
+      "import": "./dist/esm/tracer/options/HookTracingOptions.mjs",
+      "require": "./dist/cjs/tracer/options/HookTracingOptions.cjs",
+      "default": "./src/tracer/options/HookTracingOptions.ts"
+    },
+    "./tracer/options/TracerOptions.cjs": {
+      "types": "./dist/types/tracer/options/TracerOptions.d.ts",
+      "import": "./dist/esm/tracer/options/TracerOptions.mjs",
+      "require": "./dist/cjs/tracer/options/TracerOptions.cjs",
+      "default": "./src/tracer/options/TracerOptions.ts"
+    },
+    "./tracer/options/TracerOptions.d.ts": {
+      "types": "./dist/types/tracer/options/TracerOptions.d.ts",
+      "default": "./src/tracer/options/TracerOptions.ts"
+    },
+    "./tracer/options/TracerOptions.js": {
+      "types": "./dist/types/tracer/options/TracerOptions.d.ts",
+      "import": "./dist/esm/tracer/options/TracerOptions.mjs",
+      "require": "./dist/cjs/tracer/options/TracerOptions.cjs",
+      "default": "./src/tracer/options/TracerOptions.ts"
+    },
+    "./tracer/options/TracerOptions.mjs": {
+      "types": "./dist/types/tracer/options/TracerOptions.d.ts",
+      "import": "./dist/esm/tracer/options/TracerOptions.mjs",
+      "require": "./dist/cjs/tracer/options/TracerOptions.cjs",
+      "default": "./src/tracer/options/TracerOptions.ts"
+    },
+    "./tracer/options/TracerOptions": {
+      "types": "./dist/types/tracer/options/TracerOptions.d.ts",
+      "import": "./dist/esm/tracer/options/TracerOptions.mjs",
+      "require": "./dist/cjs/tracer/options/TracerOptions.cjs",
+      "default": "./src/tracer/options/TracerOptions.ts"
+    },
+    "./tracer/options/index.cjs": {
+      "types": "./dist/types/tracer/options/index.d.ts",
+      "import": "./dist/esm/tracer/options/index.mjs",
+      "require": "./dist/cjs/tracer/options/index.cjs",
+      "default": "./src/tracer/options/index.ts"
+    },
+    "./tracer/options/index.d.ts": {
+      "types": "./dist/types/tracer/options/index.d.ts",
+      "default": "./src/tracer/options/index.ts"
+    },
+    "./tracer/options/index.js": {
+      "types": "./dist/types/tracer/options/index.d.ts",
+      "import": "./dist/esm/tracer/options/index.mjs",
+      "require": "./dist/cjs/tracer/options/index.cjs",
+      "default": "./src/tracer/options/index.ts"
+    },
+    "./tracer/options/index.mjs": {
+      "types": "./dist/types/tracer/options/index.d.ts",
+      "import": "./dist/esm/tracer/options/index.mjs",
+      "require": "./dist/cjs/tracer/options/index.cjs",
+      "default": "./src/tracer/options/index.ts"
+    },
+    "./tracer/options/index": {
+      "types": "./dist/types/tracer/options/index.d.ts",
+      "import": "./dist/esm/tracer/options/index.mjs",
+      "require": "./dist/cjs/tracer/options/index.cjs",
+      "default": "./src/tracer/options/index.ts"
+    },
+    "./tracer/options": {
+      "types": "./dist/types/tracer/options/index.d.ts",
+      "import": "./dist/esm/tracer/options/index.mjs",
+      "require": "./dist/cjs/tracer/options/index.cjs",
+      "default": "./src/tracer/options/index.ts"
     },
     "./tracer/stack/CallSite.cjs": {
       "types": "./dist/types/tracer/stack/CallSite.d.ts",

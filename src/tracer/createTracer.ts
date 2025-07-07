@@ -1,5 +1,5 @@
+import type { TracerOptions } from "./options/TracerOptions";
 import { Tracer } from "./Tracer";
-import type { TracerOptions } from "./TracerOptions";
 
 export function createTracer(
   options?: null | TracerOptions,

@@ -1,6 +1,6 @@
 import type { AnyHook } from "../hook/AnyHook";
 
-import type { HookTracingOptions } from "./HookTracingOptions";
+import type { HookTracingOptions } from "./options/HookTracingOptions";
 import type { Tracer } from "./Tracer";
 
 export function traceHook(

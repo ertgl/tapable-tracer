@@ -17,9 +17,11 @@ import type { StackTrace } from "../stack-trace/StackTrace";
 import { labelTap } from "../tap/label/labelTap";
 import type { TapLabel } from "../tap/label/TapLabel";
 
-import type { HookTracingOptions } from "./HookTracingOptions";
+import { createTracerHookRegistry } from "./hook/registry/createTracerHookRegistry";
+import type { TracerHookRegistry } from "./hook/registry/TracerHookRegistry";
+import type { HookTracingOptions } from "./options/HookTracingOptions";
+import type { TracerOptions } from "./options/TracerOptions";
 import type { CallSite } from "./stack/CallSite";
-import type { TracerOptions } from "./TracerOptions";
 
 export class Tracer
 {
@@ -37,11 +39,15 @@ export class Tracer
 
   readonly trace: StackTrace;
 
+  readonly tracerHooks: TracerHookRegistry;
+
   constructor(
     options?: null | TracerOptions,
   )
   {
     this.options = options ?? {};
+
+    this.tracerHooks = createTracerHookRegistry();
 
     this.hookLabelSequence = -1;
     this.hookLabels = new WeakMap();
@@ -55,6 +61,7 @@ export class Tracer
 
   _callAsync(
     callSite: CallSite,
+    options: HookTracingOptions,
     args: unknown[],
   ): unknown
   {
@@ -70,16 +77,31 @@ export class Tracer
       this.stack.pop();
     };
 
+    this.tracerHooks.preCall.call({
+      fn: callSite.fn,
+      hook: callSite.hook,
+      options,
+      tap: callSite.tap,
+    });
+
     const result: unknown = callSite.fn(
       ...args.slice(0, args.length - 1),
       callback,
     );
+
+    this.tracerHooks.postCall.call({
+      fn: callSite.fn,
+      hook: callSite.hook,
+      options,
+      tap: callSite.tap,
+    });
 
     return result;
   }
 
   async _callPromise(
     callSite: CallSite,
+    options: HookTracingOptions,
     args: unknown[],
   ): Promise<unknown>
   {
@@ -87,11 +109,25 @@ export class Tracer
 
     const maybePromise: unknown = callSite.fn(...args);
 
+    this.tracerHooks.preCall.call({
+      fn: callSite.fn,
+      hook: callSite.hook,
+      options,
+      tap: callSite.tap,
+    });
+
     const result: unknown = (
       maybePromise instanceof Promise
         ? await maybePromise
         : maybePromise
     );
+
+    this.tracerHooks.postCall.call({
+      fn: callSite.fn,
+      hook: callSite.hook,
+      options,
+      tap: callSite.tap,
+    });
 
     this.stack.pop();
 
@@ -100,11 +136,28 @@ export class Tracer
 
   _callSync(
     callSite: CallSite,
+    options: HookTracingOptions,
     args: unknown[],
   ): unknown
   {
     this.stack.push(callSite);
+
+    this.tracerHooks.preCall.call({
+      fn: callSite.fn,
+      hook: callSite.hook,
+      options,
+      tap: callSite.tap,
+    });
+
     const result: unknown = callSite.fn(...args);
+
+    this.tracerHooks.postCall.call({
+      fn: callSite.fn,
+      hook: callSite.hook,
+      options,
+      tap: callSite.tap,
+    });
+
     this.stack.pop();
 
     return result;
@@ -220,7 +273,6 @@ export class Tracer
   {
     this.pushCallFrame(
       hook,
-      null,
       args,
       options,
     );
@@ -270,7 +322,6 @@ export class Tracer
 
   pushCallFrame(
     hook: AnyHook,
-    tap: FullTap | null,
     args: unknown[],
     options: HookTracingOptions,
   ): CallFrame
@@ -289,12 +340,12 @@ export class Tracer
       frame,
     );
 
-    this.options.handleStackFrame?.(
-      hook,
-      tap,
+    this.tracerHooks.handleStackFrame.call({
       frame,
+      hook,
       options,
-    );
+      tap: null,
+    });
 
     return frame;
   }
@@ -322,12 +373,12 @@ export class Tracer
       frame,
     );
 
-    this.options.handleStackFrame?.(
-      callSite.hook,
-      callSite.tap,
+    this.tracerHooks.handleStackFrame.call({
       frame,
+      hook: callSite.hook,
       options,
-    );
+      tap: callSite.tap,
+    });
   }
 
   pushTriggerFrame(
@@ -354,12 +405,12 @@ export class Tracer
       frame,
     );
 
-    this.options.handleStackFrame?.(
-      callSite.hook,
-      callSite.tap,
+    this.tracerHooks.handleStackFrame.call({
       frame,
+      hook: callSite.hook,
       options,
-    );
+      tap: callSite.tap,
+    });
   }
 
   traceHook(
@@ -416,6 +467,7 @@ export class Tracer
 
       return this._callAsync(
         callSite,
+        options,
         args,
       );
     };
@@ -443,6 +495,7 @@ export class Tracer
 
       return await this._callPromise(
         callSite,
+        options,
         args,
       );
     };
@@ -470,6 +523,7 @@ export class Tracer
 
       return this._callSync(
         callSite,
+        options,
         args,
       );
     };

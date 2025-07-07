@@ -1,4 +1,4 @@
-import type { HookTracingOptions } from "../../tracer/HookTracingOptions";
+import type { HookTracingOptions } from "../../tracer/options/HookTracingOptions";
 import type { AnyHook } from "../AnyHook";
 
 import type { HookLabel } from "./HookLabel";
