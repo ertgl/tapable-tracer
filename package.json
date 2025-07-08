@@ -169,40 +169,6 @@
       "require": "./dist/cjs/extensions/mermaid/labels/LABEL_ROOT.cjs",
       "default": "./src/extensions/mermaid/labels/LABEL_ROOT.ts"
     },
-    "./extensions/mermaid/labels/index.cjs": {
-      "types": "./dist/types/extensions/mermaid/labels/index.d.ts",
-      "import": "./dist/esm/extensions/mermaid/labels/index.mjs",
-      "require": "./dist/cjs/extensions/mermaid/labels/index.cjs",
-      "default": "./src/extensions/mermaid/labels/index.ts"
-    },
-    "./extensions/mermaid/labels/index.d.ts": {
-      "types": "./dist/types/extensions/mermaid/labels/index.d.ts",
-      "default": "./src/extensions/mermaid/labels/index.ts"
-    },
-    "./extensions/mermaid/labels/index.js": {
-      "types": "./dist/types/extensions/mermaid/labels/index.d.ts",
-      "import": "./dist/esm/extensions/mermaid/labels/index.mjs",
-      "require": "./dist/cjs/extensions/mermaid/labels/index.cjs",
-      "default": "./src/extensions/mermaid/labels/index.ts"
-    },
-    "./extensions/mermaid/labels/index.mjs": {
-      "types": "./dist/types/extensions/mermaid/labels/index.d.ts",
-      "import": "./dist/esm/extensions/mermaid/labels/index.mjs",
-      "require": "./dist/cjs/extensions/mermaid/labels/index.cjs",
-      "default": "./src/extensions/mermaid/labels/index.ts"
-    },
-    "./extensions/mermaid/labels/index": {
-      "types": "./dist/types/extensions/mermaid/labels/index.d.ts",
-      "import": "./dist/esm/extensions/mermaid/labels/index.mjs",
-      "require": "./dist/cjs/extensions/mermaid/labels/index.cjs",
-      "default": "./src/extensions/mermaid/labels/index.ts"
-    },
-    "./extensions/mermaid/labels": {
-      "types": "./dist/types/extensions/mermaid/labels/index.d.ts",
-      "import": "./dist/esm/extensions/mermaid/labels/index.mjs",
-      "require": "./dist/cjs/extensions/mermaid/labels/index.cjs",
-      "default": "./src/extensions/mermaid/labels/index.ts"
-    },
     "./extensions/mermaid/uml/codegen/generateMermaidUML.cjs": {
       "types": "./dist/types/extensions/mermaid/uml/codegen/generateMermaidUML.d.ts",
       "import": "./dist/esm/extensions/mermaid/uml/codegen/generateMermaidUML.mjs",
@@ -343,40 +309,6 @@
       "require": "./dist/cjs/extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForTriggerFrame.cjs",
       "default": "./src/extensions/mermaid/uml/codegen/graph-edge/generateMermaidGraphEdgeForTriggerFrame.ts"
     },
-    "./extensions/mermaid/uml/codegen/graph-edge/index.cjs": {
-      "types": "./dist/types/extensions/mermaid/uml/codegen/graph-edge/index.d.ts",
-      "import": "./dist/esm/extensions/mermaid/uml/codegen/graph-edge/index.mjs",
-      "require": "./dist/cjs/extensions/mermaid/uml/codegen/graph-edge/index.cjs",
-      "default": "./src/extensions/mermaid/uml/codegen/graph-edge/index.ts"
-    },
-    "./extensions/mermaid/uml/codegen/graph-edge/index.d.ts": {
-      "types": "./dist/types/extensions/mermaid/uml/codegen/graph-edge/index.d.ts",
-      "default": "./src/extensions/mermaid/uml/codegen/graph-edge/index.ts"
-    },
-    "./extensions/mermaid/uml/codegen/graph-edge/index.js": {
-      "types": "./dist/types/extensions/mermaid/uml/codegen/graph-edge/index.d.ts",
-      "import": "./dist/esm/extensions/mermaid/uml/codegen/graph-edge/index.mjs",
-      "require": "./dist/cjs/extensions/mermaid/uml/codegen/graph-edge/index.cjs",
-      "default": "./src/extensions/mermaid/uml/codegen/graph-edge/index.ts"
-    },
-    "./extensions/mermaid/uml/codegen/graph-edge/index.mjs": {
-      "types": "./dist/types/extensions/mermaid/uml/codegen/graph-edge/index.d.ts",
-      "import": "./dist/esm/extensions/mermaid/uml/codegen/graph-edge/index.mjs",
-      "require": "./dist/cjs/extensions/mermaid/uml/codegen/graph-edge/index.cjs",
-      "default": "./src/extensions/mermaid/uml/codegen/graph-edge/index.ts"
-    },
-    "./extensions/mermaid/uml/codegen/graph-edge/index": {
-      "types": "./dist/types/extensions/mermaid/uml/codegen/graph-edge/index.d.ts",
-      "import": "./dist/esm/extensions/mermaid/uml/codegen/graph-edge/index.mjs",
-      "require": "./dist/cjs/extensions/mermaid/uml/codegen/graph-edge/index.cjs",
-      "default": "./src/extensions/mermaid/uml/codegen/graph-edge/index.ts"
-    },
-    "./extensions/mermaid/uml/codegen/graph-edge": {
-      "types": "./dist/types/extensions/mermaid/uml/codegen/graph-edge/index.d.ts",
-      "import": "./dist/esm/extensions/mermaid/uml/codegen/graph-edge/index.mjs",
-      "require": "./dist/cjs/extensions/mermaid/uml/codegen/graph-edge/index.cjs",
-      "default": "./src/extensions/mermaid/uml/codegen/graph-edge/index.ts"
-    },
     "./extensions/mermaid/uml/codegen/graph/generateMermaidGraphForFrames.cjs": {
       "types": "./dist/types/extensions/mermaid/uml/codegen/graph/generateMermaidGraphForFrames.d.ts",
       "import": "./dist/esm/extensions/mermaid/uml/codegen/graph/generateMermaidGraphForFrames.mjs",
@@ -404,34 +336,6 @@
       "import": "./dist/esm/extensions/mermaid/uml/codegen/graph/generateMermaidGraphForFrames.mjs",
       "require": "./dist/cjs/extensions/mermaid/uml/codegen/graph/generateMermaidGraphForFrames.cjs",
       "default": "./src/extensions/mermaid/uml/codegen/graph/generateMermaidGraphForFrames.ts"
-    },
-    "./extensions/mermaid/uml/codegen/graph/index.cjs": {
-      "types": "./dist/types/extensions/mermaid/uml/codegen/graph/index.d.ts",
-      "import": "./dist/esm/extensions/mermaid/uml/codegen/graph/index.mjs",
-      "require": "./dist/cjs/extensions/mermaid/uml/codegen/graph/index.cjs",
-      "default": "./src/extensions/mermaid/uml/codegen/graph/index.ts"
-    },
-    "./extensions/mermaid/uml/codegen/graph/index.d.ts": {
-      "types": "./dist/types/extensions/mermaid/uml/codegen/graph/index.d.ts",
-      "default": "./src/extensions/mermaid/uml/codegen/graph/index.ts"
-    },
-    "./extensions/mermaid/uml/codegen/graph/index.js": {
-      "types": "./dist/types/extensions/mermaid/uml/codegen/graph/index.d.ts",
-      "import": "./dist/esm/extensions/mermaid/uml/codegen/graph/index.mjs",
-      "require": "./dist/cjs/extensions/mermaid/uml/codegen/graph/index.cjs",
-      "default": "./src/extensions/mermaid/uml/codegen/graph/index.ts"
-    },
-    "./extensions/mermaid/uml/codegen/graph/index.mjs": {
-      "types": "./dist/types/extensions/mermaid/uml/codegen/graph/index.d.ts",
-      "import": "./dist/esm/extensions/mermaid/uml/codegen/graph/index.mjs",
-      "require": "./dist/cjs/extensions/mermaid/uml/codegen/graph/index.cjs",
-      "default": "./src/extensions/mermaid/uml/codegen/graph/index.ts"
-    },
-    "./extensions/mermaid/uml/codegen/graph/index": {
-      "types": "./dist/types/extensions/mermaid/uml/codegen/graph/index.d.ts",
-      "import": "./dist/esm/extensions/mermaid/uml/codegen/graph/index.mjs",
-      "require": "./dist/cjs/extensions/mermaid/uml/codegen/graph/index.cjs",
-      "default": "./src/extensions/mermaid/uml/codegen/graph/index.ts"
     },
     "./extensions/mermaid/uml/codegen/graph/state/MermaidGraphCodeGenState.cjs": {
       "types": "./dist/types/extensions/mermaid/uml/codegen/graph/state/MermaidGraphCodeGenState.d.ts",
@@ -488,108 +392,6 @@
       "import": "./dist/esm/extensions/mermaid/uml/codegen/graph/state/createMermaidGraphCodeGenState.mjs",
       "require": "./dist/cjs/extensions/mermaid/uml/codegen/graph/state/createMermaidGraphCodeGenState.cjs",
       "default": "./src/extensions/mermaid/uml/codegen/graph/state/createMermaidGraphCodeGenState.ts"
-    },
-    "./extensions/mermaid/uml/codegen/graph/state/index.cjs": {
-      "types": "./dist/types/extensions/mermaid/uml/codegen/graph/state/index.d.ts",
-      "import": "./dist/esm/extensions/mermaid/uml/codegen/graph/state/index.mjs",
-      "require": "./dist/cjs/extensions/mermaid/uml/codegen/graph/state/index.cjs",
-      "default": "./src/extensions/mermaid/uml/codegen/graph/state/index.ts"
-    },
-    "./extensions/mermaid/uml/codegen/graph/state/index.d.ts": {
-      "types": "./dist/types/extensions/mermaid/uml/codegen/graph/state/index.d.ts",
-      "default": "./src/extensions/mermaid/uml/codegen/graph/state/index.ts"
-    },
-    "./extensions/mermaid/uml/codegen/graph/state/index.js": {
-      "types": "./dist/types/extensions/mermaid/uml/codegen/graph/state/index.d.ts",
-      "import": "./dist/esm/extensions/mermaid/uml/codegen/graph/state/index.mjs",
-      "require": "./dist/cjs/extensions/mermaid/uml/codegen/graph/state/index.cjs",
-      "default": "./src/extensions/mermaid/uml/codegen/graph/state/index.ts"
-    },
-    "./extensions/mermaid/uml/codegen/graph/state/index.mjs": {
-      "types": "./dist/types/extensions/mermaid/uml/codegen/graph/state/index.d.ts",
-      "import": "./dist/esm/extensions/mermaid/uml/codegen/graph/state/index.mjs",
-      "require": "./dist/cjs/extensions/mermaid/uml/codegen/graph/state/index.cjs",
-      "default": "./src/extensions/mermaid/uml/codegen/graph/state/index.ts"
-    },
-    "./extensions/mermaid/uml/codegen/graph/state/index": {
-      "types": "./dist/types/extensions/mermaid/uml/codegen/graph/state/index.d.ts",
-      "import": "./dist/esm/extensions/mermaid/uml/codegen/graph/state/index.mjs",
-      "require": "./dist/cjs/extensions/mermaid/uml/codegen/graph/state/index.cjs",
-      "default": "./src/extensions/mermaid/uml/codegen/graph/state/index.ts"
-    },
-    "./extensions/mermaid/uml/codegen/graph/state": {
-      "types": "./dist/types/extensions/mermaid/uml/codegen/graph/state/index.d.ts",
-      "import": "./dist/esm/extensions/mermaid/uml/codegen/graph/state/index.mjs",
-      "require": "./dist/cjs/extensions/mermaid/uml/codegen/graph/state/index.cjs",
-      "default": "./src/extensions/mermaid/uml/codegen/graph/state/index.ts"
-    },
-    "./extensions/mermaid/uml/codegen/graph": {
-      "types": "./dist/types/extensions/mermaid/uml/codegen/graph/index.d.ts",
-      "import": "./dist/esm/extensions/mermaid/uml/codegen/graph/index.mjs",
-      "require": "./dist/cjs/extensions/mermaid/uml/codegen/graph/index.cjs",
-      "default": "./src/extensions/mermaid/uml/codegen/graph/index.ts"
-    },
-    "./extensions/mermaid/uml/codegen/index.cjs": {
-      "types": "./dist/types/extensions/mermaid/uml/codegen/index.d.ts",
-      "import": "./dist/esm/extensions/mermaid/uml/codegen/index.mjs",
-      "require": "./dist/cjs/extensions/mermaid/uml/codegen/index.cjs",
-      "default": "./src/extensions/mermaid/uml/codegen/index.ts"
-    },
-    "./extensions/mermaid/uml/codegen/index.d.ts": {
-      "types": "./dist/types/extensions/mermaid/uml/codegen/index.d.ts",
-      "default": "./src/extensions/mermaid/uml/codegen/index.ts"
-    },
-    "./extensions/mermaid/uml/codegen/index.js": {
-      "types": "./dist/types/extensions/mermaid/uml/codegen/index.d.ts",
-      "import": "./dist/esm/extensions/mermaid/uml/codegen/index.mjs",
-      "require": "./dist/cjs/extensions/mermaid/uml/codegen/index.cjs",
-      "default": "./src/extensions/mermaid/uml/codegen/index.ts"
-    },
-    "./extensions/mermaid/uml/codegen/index.mjs": {
-      "types": "./dist/types/extensions/mermaid/uml/codegen/index.d.ts",
-      "import": "./dist/esm/extensions/mermaid/uml/codegen/index.mjs",
-      "require": "./dist/cjs/extensions/mermaid/uml/codegen/index.cjs",
-      "default": "./src/extensions/mermaid/uml/codegen/index.ts"
-    },
-    "./extensions/mermaid/uml/codegen/index": {
-      "types": "./dist/types/extensions/mermaid/uml/codegen/index.d.ts",
-      "import": "./dist/esm/extensions/mermaid/uml/codegen/index.mjs",
-      "require": "./dist/cjs/extensions/mermaid/uml/codegen/index.cjs",
-      "default": "./src/extensions/mermaid/uml/codegen/index.ts"
-    },
-    "./extensions/mermaid/uml/codegen": {
-      "types": "./dist/types/extensions/mermaid/uml/codegen/index.d.ts",
-      "import": "./dist/esm/extensions/mermaid/uml/codegen/index.mjs",
-      "require": "./dist/cjs/extensions/mermaid/uml/codegen/index.cjs",
-      "default": "./src/extensions/mermaid/uml/codegen/index.ts"
-    },
-    "./extensions/mermaid/uml/index.cjs": {
-      "types": "./dist/types/extensions/mermaid/uml/index.d.ts",
-      "import": "./dist/esm/extensions/mermaid/uml/index.mjs",
-      "require": "./dist/cjs/extensions/mermaid/uml/index.cjs",
-      "default": "./src/extensions/mermaid/uml/index.ts"
-    },
-    "./extensions/mermaid/uml/index.d.ts": {
-      "types": "./dist/types/extensions/mermaid/uml/index.d.ts",
-      "default": "./src/extensions/mermaid/uml/index.ts"
-    },
-    "./extensions/mermaid/uml/index.js": {
-      "types": "./dist/types/extensions/mermaid/uml/index.d.ts",
-      "import": "./dist/esm/extensions/mermaid/uml/index.mjs",
-      "require": "./dist/cjs/extensions/mermaid/uml/index.cjs",
-      "default": "./src/extensions/mermaid/uml/index.ts"
-    },
-    "./extensions/mermaid/uml/index.mjs": {
-      "types": "./dist/types/extensions/mermaid/uml/index.d.ts",
-      "import": "./dist/esm/extensions/mermaid/uml/index.mjs",
-      "require": "./dist/cjs/extensions/mermaid/uml/index.cjs",
-      "default": "./src/extensions/mermaid/uml/index.ts"
-    },
-    "./extensions/mermaid/uml/index": {
-      "types": "./dist/types/extensions/mermaid/uml/index.d.ts",
-      "import": "./dist/esm/extensions/mermaid/uml/index.mjs",
-      "require": "./dist/cjs/extensions/mermaid/uml/index.cjs",
-      "default": "./src/extensions/mermaid/uml/index.ts"
     },
     "./extensions/mermaid/uml/lexemes/CONFIG_ELK.cjs": {
       "types": "./dist/types/extensions/mermaid/uml/lexemes/CONFIG_ELK.d.ts",
@@ -759,46 +561,6 @@
       "require": "./dist/cjs/extensions/mermaid/uml/lexemes/SPACE.cjs",
       "default": "./src/extensions/mermaid/uml/lexemes/SPACE.ts"
     },
-    "./extensions/mermaid/uml/lexemes/index.cjs": {
-      "types": "./dist/types/extensions/mermaid/uml/lexemes/index.d.ts",
-      "import": "./dist/esm/extensions/mermaid/uml/lexemes/index.mjs",
-      "require": "./dist/cjs/extensions/mermaid/uml/lexemes/index.cjs",
-      "default": "./src/extensions/mermaid/uml/lexemes/index.ts"
-    },
-    "./extensions/mermaid/uml/lexemes/index.d.ts": {
-      "types": "./dist/types/extensions/mermaid/uml/lexemes/index.d.ts",
-      "default": "./src/extensions/mermaid/uml/lexemes/index.ts"
-    },
-    "./extensions/mermaid/uml/lexemes/index.js": {
-      "types": "./dist/types/extensions/mermaid/uml/lexemes/index.d.ts",
-      "import": "./dist/esm/extensions/mermaid/uml/lexemes/index.mjs",
-      "require": "./dist/cjs/extensions/mermaid/uml/lexemes/index.cjs",
-      "default": "./src/extensions/mermaid/uml/lexemes/index.ts"
-    },
-    "./extensions/mermaid/uml/lexemes/index.mjs": {
-      "types": "./dist/types/extensions/mermaid/uml/lexemes/index.d.ts",
-      "import": "./dist/esm/extensions/mermaid/uml/lexemes/index.mjs",
-      "require": "./dist/cjs/extensions/mermaid/uml/lexemes/index.cjs",
-      "default": "./src/extensions/mermaid/uml/lexemes/index.ts"
-    },
-    "./extensions/mermaid/uml/lexemes/index": {
-      "types": "./dist/types/extensions/mermaid/uml/lexemes/index.d.ts",
-      "import": "./dist/esm/extensions/mermaid/uml/lexemes/index.mjs",
-      "require": "./dist/cjs/extensions/mermaid/uml/lexemes/index.cjs",
-      "default": "./src/extensions/mermaid/uml/lexemes/index.ts"
-    },
-    "./extensions/mermaid/uml/lexemes": {
-      "types": "./dist/types/extensions/mermaid/uml/lexemes/index.d.ts",
-      "import": "./dist/esm/extensions/mermaid/uml/lexemes/index.mjs",
-      "require": "./dist/cjs/extensions/mermaid/uml/lexemes/index.cjs",
-      "default": "./src/extensions/mermaid/uml/lexemes/index.ts"
-    },
-    "./extensions/mermaid/uml": {
-      "types": "./dist/types/extensions/mermaid/uml/index.d.ts",
-      "import": "./dist/esm/extensions/mermaid/uml/index.mjs",
-      "require": "./dist/cjs/extensions/mermaid/uml/index.cjs",
-      "default": "./src/extensions/mermaid/uml/index.ts"
-    },
     "./extensions/mermaid": {
       "types": "./dist/types/extensions/mermaid/index.d.ts",
       "import": "./dist/esm/extensions/mermaid/index.mjs",
@@ -832,74 +594,6 @@
       "import": "./dist/esm/extensions/webpack/callbacks/done/DoneCallback.mjs",
       "require": "./dist/cjs/extensions/webpack/callbacks/done/DoneCallback.cjs",
       "default": "./src/extensions/webpack/callbacks/done/DoneCallback.ts"
-    },
-    "./extensions/webpack/callbacks/done/index.cjs": {
-      "types": "./dist/types/extensions/webpack/callbacks/done/index.d.ts",
-      "import": "./dist/esm/extensions/webpack/callbacks/done/index.mjs",
-      "require": "./dist/cjs/extensions/webpack/callbacks/done/index.cjs",
-      "default": "./src/extensions/webpack/callbacks/done/index.ts"
-    },
-    "./extensions/webpack/callbacks/done/index.d.ts": {
-      "types": "./dist/types/extensions/webpack/callbacks/done/index.d.ts",
-      "default": "./src/extensions/webpack/callbacks/done/index.ts"
-    },
-    "./extensions/webpack/callbacks/done/index.js": {
-      "types": "./dist/types/extensions/webpack/callbacks/done/index.d.ts",
-      "import": "./dist/esm/extensions/webpack/callbacks/done/index.mjs",
-      "require": "./dist/cjs/extensions/webpack/callbacks/done/index.cjs",
-      "default": "./src/extensions/webpack/callbacks/done/index.ts"
-    },
-    "./extensions/webpack/callbacks/done/index.mjs": {
-      "types": "./dist/types/extensions/webpack/callbacks/done/index.d.ts",
-      "import": "./dist/esm/extensions/webpack/callbacks/done/index.mjs",
-      "require": "./dist/cjs/extensions/webpack/callbacks/done/index.cjs",
-      "default": "./src/extensions/webpack/callbacks/done/index.ts"
-    },
-    "./extensions/webpack/callbacks/done/index": {
-      "types": "./dist/types/extensions/webpack/callbacks/done/index.d.ts",
-      "import": "./dist/esm/extensions/webpack/callbacks/done/index.mjs",
-      "require": "./dist/cjs/extensions/webpack/callbacks/done/index.cjs",
-      "default": "./src/extensions/webpack/callbacks/done/index.ts"
-    },
-    "./extensions/webpack/callbacks/done": {
-      "types": "./dist/types/extensions/webpack/callbacks/done/index.d.ts",
-      "import": "./dist/esm/extensions/webpack/callbacks/done/index.mjs",
-      "require": "./dist/cjs/extensions/webpack/callbacks/done/index.cjs",
-      "default": "./src/extensions/webpack/callbacks/done/index.ts"
-    },
-    "./extensions/webpack/callbacks/index.cjs": {
-      "types": "./dist/types/extensions/webpack/callbacks/index.d.ts",
-      "import": "./dist/esm/extensions/webpack/callbacks/index.mjs",
-      "require": "./dist/cjs/extensions/webpack/callbacks/index.cjs",
-      "default": "./src/extensions/webpack/callbacks/index.ts"
-    },
-    "./extensions/webpack/callbacks/index.d.ts": {
-      "types": "./dist/types/extensions/webpack/callbacks/index.d.ts",
-      "default": "./src/extensions/webpack/callbacks/index.ts"
-    },
-    "./extensions/webpack/callbacks/index.js": {
-      "types": "./dist/types/extensions/webpack/callbacks/index.d.ts",
-      "import": "./dist/esm/extensions/webpack/callbacks/index.mjs",
-      "require": "./dist/cjs/extensions/webpack/callbacks/index.cjs",
-      "default": "./src/extensions/webpack/callbacks/index.ts"
-    },
-    "./extensions/webpack/callbacks/index.mjs": {
-      "types": "./dist/types/extensions/webpack/callbacks/index.d.ts",
-      "import": "./dist/esm/extensions/webpack/callbacks/index.mjs",
-      "require": "./dist/cjs/extensions/webpack/callbacks/index.cjs",
-      "default": "./src/extensions/webpack/callbacks/index.ts"
-    },
-    "./extensions/webpack/callbacks/index": {
-      "types": "./dist/types/extensions/webpack/callbacks/index.d.ts",
-      "import": "./dist/esm/extensions/webpack/callbacks/index.mjs",
-      "require": "./dist/cjs/extensions/webpack/callbacks/index.cjs",
-      "default": "./src/extensions/webpack/callbacks/index.ts"
-    },
-    "./extensions/webpack/callbacks": {
-      "types": "./dist/types/extensions/webpack/callbacks/index.d.ts",
-      "import": "./dist/esm/extensions/webpack/callbacks/index.mjs",
-      "require": "./dist/cjs/extensions/webpack/callbacks/index.cjs",
-      "default": "./src/extensions/webpack/callbacks/index.ts"
     },
     "./extensions/webpack/index.cjs": {
       "types": "./dist/types/extensions/webpack/index.d.ts",
@@ -1013,40 +707,6 @@
       "require": "./dist/cjs/extensions/webpack/plugin/TapableTracerPlugin.cjs",
       "default": "./src/extensions/webpack/plugin/TapableTracerPlugin.ts"
     },
-    "./extensions/webpack/plugin/index.cjs": {
-      "types": "./dist/types/extensions/webpack/plugin/index.d.ts",
-      "import": "./dist/esm/extensions/webpack/plugin/index.mjs",
-      "require": "./dist/cjs/extensions/webpack/plugin/index.cjs",
-      "default": "./src/extensions/webpack/plugin/index.ts"
-    },
-    "./extensions/webpack/plugin/index.d.ts": {
-      "types": "./dist/types/extensions/webpack/plugin/index.d.ts",
-      "default": "./src/extensions/webpack/plugin/index.ts"
-    },
-    "./extensions/webpack/plugin/index.js": {
-      "types": "./dist/types/extensions/webpack/plugin/index.d.ts",
-      "import": "./dist/esm/extensions/webpack/plugin/index.mjs",
-      "require": "./dist/cjs/extensions/webpack/plugin/index.cjs",
-      "default": "./src/extensions/webpack/plugin/index.ts"
-    },
-    "./extensions/webpack/plugin/index.mjs": {
-      "types": "./dist/types/extensions/webpack/plugin/index.d.ts",
-      "import": "./dist/esm/extensions/webpack/plugin/index.mjs",
-      "require": "./dist/cjs/extensions/webpack/plugin/index.cjs",
-      "default": "./src/extensions/webpack/plugin/index.ts"
-    },
-    "./extensions/webpack/plugin/index": {
-      "types": "./dist/types/extensions/webpack/plugin/index.d.ts",
-      "import": "./dist/esm/extensions/webpack/plugin/index.mjs",
-      "require": "./dist/cjs/extensions/webpack/plugin/index.cjs",
-      "default": "./src/extensions/webpack/plugin/index.ts"
-    },
-    "./extensions/webpack/plugin": {
-      "types": "./dist/types/extensions/webpack/plugin/index.d.ts",
-      "import": "./dist/esm/extensions/webpack/plugin/index.mjs",
-      "require": "./dist/cjs/extensions/webpack/plugin/index.cjs",
-      "default": "./src/extensions/webpack/plugin/index.ts"
-    },
     "./extensions/webpack": {
       "types": "./dist/types/extensions/webpack/index.d.ts",
       "import": "./dist/esm/extensions/webpack/index.mjs",
@@ -1109,68 +769,6 @@
       "require": "./dist/cjs/hook/callback/HookCallback.cjs",
       "default": "./src/hook/callback/HookCallback.ts"
     },
-    "./hook/callback/index.cjs": {
-      "types": "./dist/types/hook/callback/index.d.ts",
-      "import": "./dist/esm/hook/callback/index.mjs",
-      "require": "./dist/cjs/hook/callback/index.cjs",
-      "default": "./src/hook/callback/index.ts"
-    },
-    "./hook/callback/index.d.ts": {
-      "types": "./dist/types/hook/callback/index.d.ts",
-      "default": "./src/hook/callback/index.ts"
-    },
-    "./hook/callback/index.js": {
-      "types": "./dist/types/hook/callback/index.d.ts",
-      "import": "./dist/esm/hook/callback/index.mjs",
-      "require": "./dist/cjs/hook/callback/index.cjs",
-      "default": "./src/hook/callback/index.ts"
-    },
-    "./hook/callback/index.mjs": {
-      "types": "./dist/types/hook/callback/index.d.ts",
-      "import": "./dist/esm/hook/callback/index.mjs",
-      "require": "./dist/cjs/hook/callback/index.cjs",
-      "default": "./src/hook/callback/index.ts"
-    },
-    "./hook/callback/index": {
-      "types": "./dist/types/hook/callback/index.d.ts",
-      "import": "./dist/esm/hook/callback/index.mjs",
-      "require": "./dist/cjs/hook/callback/index.cjs",
-      "default": "./src/hook/callback/index.ts"
-    },
-    "./hook/callback": {
-      "types": "./dist/types/hook/callback/index.d.ts",
-      "import": "./dist/esm/hook/callback/index.mjs",
-      "require": "./dist/cjs/hook/callback/index.cjs",
-      "default": "./src/hook/callback/index.ts"
-    },
-    "./hook/index.cjs": {
-      "types": "./dist/types/hook/index.d.ts",
-      "import": "./dist/esm/hook/index.mjs",
-      "require": "./dist/cjs/hook/index.cjs",
-      "default": "./src/hook/index.ts"
-    },
-    "./hook/index.d.ts": {
-      "types": "./dist/types/hook/index.d.ts",
-      "default": "./src/hook/index.ts"
-    },
-    "./hook/index.js": {
-      "types": "./dist/types/hook/index.d.ts",
-      "import": "./dist/esm/hook/index.mjs",
-      "require": "./dist/cjs/hook/index.cjs",
-      "default": "./src/hook/index.ts"
-    },
-    "./hook/index.mjs": {
-      "types": "./dist/types/hook/index.d.ts",
-      "import": "./dist/esm/hook/index.mjs",
-      "require": "./dist/cjs/hook/index.cjs",
-      "default": "./src/hook/index.ts"
-    },
-    "./hook/index": {
-      "types": "./dist/types/hook/index.d.ts",
-      "import": "./dist/esm/hook/index.mjs",
-      "require": "./dist/cjs/hook/index.cjs",
-      "default": "./src/hook/index.ts"
-    },
     "./hook/label/HookLabel.cjs": {
       "types": "./dist/types/hook/label/HookLabel.d.ts",
       "import": "./dist/esm/hook/label/HookLabel.mjs",
@@ -1227,34 +825,6 @@
       "require": "./dist/cjs/hook/label/HookLabel.cjs",
       "default": "./src/hook/label/HookLabel.ts"
     },
-    "./hook/label/index.cjs": {
-      "types": "./dist/types/hook/label/index.d.ts",
-      "import": "./dist/esm/hook/label/index.mjs",
-      "require": "./dist/cjs/hook/label/index.cjs",
-      "default": "./src/hook/label/index.ts"
-    },
-    "./hook/label/index.d.ts": {
-      "types": "./dist/types/hook/label/index.d.ts",
-      "default": "./src/hook/label/index.ts"
-    },
-    "./hook/label/index.js": {
-      "types": "./dist/types/hook/label/index.d.ts",
-      "import": "./dist/esm/hook/label/index.mjs",
-      "require": "./dist/cjs/hook/label/index.cjs",
-      "default": "./src/hook/label/index.ts"
-    },
-    "./hook/label/index.mjs": {
-      "types": "./dist/types/hook/label/index.d.ts",
-      "import": "./dist/esm/hook/label/index.mjs",
-      "require": "./dist/cjs/hook/label/index.cjs",
-      "default": "./src/hook/label/index.ts"
-    },
-    "./hook/label/index": {
-      "types": "./dist/types/hook/label/index.d.ts",
-      "import": "./dist/esm/hook/label/index.mjs",
-      "require": "./dist/cjs/hook/label/index.cjs",
-      "default": "./src/hook/label/index.ts"
-    },
     "./hook/label/labelHook.cjs": {
       "types": "./dist/types/hook/label/labelHook.d.ts",
       "import": "./dist/esm/hook/label/labelHook.mjs",
@@ -1282,18 +852,6 @@
       "import": "./dist/esm/hook/label/labelHook.mjs",
       "require": "./dist/cjs/hook/label/labelHook.cjs",
       "default": "./src/hook/label/labelHook.ts"
-    },
-    "./hook/label": {
-      "types": "./dist/types/hook/label/index.d.ts",
-      "import": "./dist/esm/hook/label/index.mjs",
-      "require": "./dist/cjs/hook/label/index.cjs",
-      "default": "./src/hook/label/index.ts"
-    },
-    "./hook": {
-      "types": "./dist/types/hook/index.d.ts",
-      "import": "./dist/esm/hook/index.mjs",
-      "require": "./dist/cjs/hook/index.cjs",
-      "default": "./src/hook/index.ts"
     },
     "./index.cjs": {
       "types": "./dist/types/index.d.ts",
@@ -1634,34 +1192,6 @@
       "require": "./dist/cjs/stack-frame/encodable/EncodableTriggerFrame.cjs",
       "default": "./src/stack-frame/encodable/EncodableTriggerFrame.ts"
     },
-    "./stack-frame/encodable/index.cjs": {
-      "types": "./dist/types/stack-frame/encodable/index.d.ts",
-      "import": "./dist/esm/stack-frame/encodable/index.mjs",
-      "require": "./dist/cjs/stack-frame/encodable/index.cjs",
-      "default": "./src/stack-frame/encodable/index.ts"
-    },
-    "./stack-frame/encodable/index.d.ts": {
-      "types": "./dist/types/stack-frame/encodable/index.d.ts",
-      "default": "./src/stack-frame/encodable/index.ts"
-    },
-    "./stack-frame/encodable/index.js": {
-      "types": "./dist/types/stack-frame/encodable/index.d.ts",
-      "import": "./dist/esm/stack-frame/encodable/index.mjs",
-      "require": "./dist/cjs/stack-frame/encodable/index.cjs",
-      "default": "./src/stack-frame/encodable/index.ts"
-    },
-    "./stack-frame/encodable/index.mjs": {
-      "types": "./dist/types/stack-frame/encodable/index.d.ts",
-      "import": "./dist/esm/stack-frame/encodable/index.mjs",
-      "require": "./dist/cjs/stack-frame/encodable/index.cjs",
-      "default": "./src/stack-frame/encodable/index.ts"
-    },
-    "./stack-frame/encodable/index": {
-      "types": "./dist/types/stack-frame/encodable/index.d.ts",
-      "import": "./dist/esm/stack-frame/encodable/index.mjs",
-      "require": "./dist/cjs/stack-frame/encodable/index.cjs",
-      "default": "./src/stack-frame/encodable/index.ts"
-    },
     "./stack-frame/encodable/toEncodableCallFrame.cjs": {
       "types": "./dist/types/stack-frame/encodable/toEncodableCallFrame.d.ts",
       "import": "./dist/esm/stack-frame/encodable/toEncodableCallFrame.mjs",
@@ -1774,40 +1304,6 @@
       "require": "./dist/cjs/stack-frame/encodable/toEncodableTriggerFrame.cjs",
       "default": "./src/stack-frame/encodable/toEncodableTriggerFrame.ts"
     },
-    "./stack-frame/encodable": {
-      "types": "./dist/types/stack-frame/encodable/index.d.ts",
-      "import": "./dist/esm/stack-frame/encodable/index.mjs",
-      "require": "./dist/cjs/stack-frame/encodable/index.cjs",
-      "default": "./src/stack-frame/encodable/index.ts"
-    },
-    "./stack-frame/index.cjs": {
-      "types": "./dist/types/stack-frame/index.d.ts",
-      "import": "./dist/esm/stack-frame/index.mjs",
-      "require": "./dist/cjs/stack-frame/index.cjs",
-      "default": "./src/stack-frame/index.ts"
-    },
-    "./stack-frame/index.d.ts": {
-      "types": "./dist/types/stack-frame/index.d.ts",
-      "default": "./src/stack-frame/index.ts"
-    },
-    "./stack-frame/index.js": {
-      "types": "./dist/types/stack-frame/index.d.ts",
-      "import": "./dist/esm/stack-frame/index.mjs",
-      "require": "./dist/cjs/stack-frame/index.cjs",
-      "default": "./src/stack-frame/index.ts"
-    },
-    "./stack-frame/index.mjs": {
-      "types": "./dist/types/stack-frame/index.d.ts",
-      "import": "./dist/esm/stack-frame/index.mjs",
-      "require": "./dist/cjs/stack-frame/index.cjs",
-      "default": "./src/stack-frame/index.ts"
-    },
-    "./stack-frame/index": {
-      "types": "./dist/types/stack-frame/index.d.ts",
-      "import": "./dist/esm/stack-frame/index.mjs",
-      "require": "./dist/cjs/stack-frame/index.cjs",
-      "default": "./src/stack-frame/index.ts"
-    },
     "./stack-frame/label/StackFrameLabel.cjs": {
       "types": "./dist/types/stack-frame/label/StackFrameLabel.d.ts",
       "import": "./dist/esm/stack-frame/label/StackFrameLabel.mjs",
@@ -1835,40 +1331,6 @@
       "import": "./dist/esm/stack-frame/label/StackFrameLabel.mjs",
       "require": "./dist/cjs/stack-frame/label/StackFrameLabel.cjs",
       "default": "./src/stack-frame/label/StackFrameLabel.ts"
-    },
-    "./stack-frame/label/index.cjs": {
-      "types": "./dist/types/stack-frame/label/index.d.ts",
-      "import": "./dist/esm/stack-frame/label/index.mjs",
-      "require": "./dist/cjs/stack-frame/label/index.cjs",
-      "default": "./src/stack-frame/label/index.ts"
-    },
-    "./stack-frame/label/index.d.ts": {
-      "types": "./dist/types/stack-frame/label/index.d.ts",
-      "default": "./src/stack-frame/label/index.ts"
-    },
-    "./stack-frame/label/index.js": {
-      "types": "./dist/types/stack-frame/label/index.d.ts",
-      "import": "./dist/esm/stack-frame/label/index.mjs",
-      "require": "./dist/cjs/stack-frame/label/index.cjs",
-      "default": "./src/stack-frame/label/index.ts"
-    },
-    "./stack-frame/label/index.mjs": {
-      "types": "./dist/types/stack-frame/label/index.d.ts",
-      "import": "./dist/esm/stack-frame/label/index.mjs",
-      "require": "./dist/cjs/stack-frame/label/index.cjs",
-      "default": "./src/stack-frame/label/index.ts"
-    },
-    "./stack-frame/label/index": {
-      "types": "./dist/types/stack-frame/label/index.d.ts",
-      "import": "./dist/esm/stack-frame/label/index.mjs",
-      "require": "./dist/cjs/stack-frame/label/index.cjs",
-      "default": "./src/stack-frame/label/index.ts"
-    },
-    "./stack-frame/label": {
-      "types": "./dist/types/stack-frame/label/index.d.ts",
-      "import": "./dist/esm/stack-frame/label/index.mjs",
-      "require": "./dist/cjs/stack-frame/label/index.cjs",
-      "default": "./src/stack-frame/label/index.ts"
     },
     "./stack-frame/type/STACK_FRAME_TYPE_CALL.cjs": {
       "types": "./dist/types/stack-frame/type/STACK_FRAME_TYPE_CALL.d.ts",
@@ -2038,46 +1500,6 @@
       "require": "./dist/cjs/stack-frame/type/castStackFrameType.cjs",
       "default": "./src/stack-frame/type/castStackFrameType.ts"
     },
-    "./stack-frame/type/index.cjs": {
-      "types": "./dist/types/stack-frame/type/index.d.ts",
-      "import": "./dist/esm/stack-frame/type/index.mjs",
-      "require": "./dist/cjs/stack-frame/type/index.cjs",
-      "default": "./src/stack-frame/type/index.ts"
-    },
-    "./stack-frame/type/index.d.ts": {
-      "types": "./dist/types/stack-frame/type/index.d.ts",
-      "default": "./src/stack-frame/type/index.ts"
-    },
-    "./stack-frame/type/index.js": {
-      "types": "./dist/types/stack-frame/type/index.d.ts",
-      "import": "./dist/esm/stack-frame/type/index.mjs",
-      "require": "./dist/cjs/stack-frame/type/index.cjs",
-      "default": "./src/stack-frame/type/index.ts"
-    },
-    "./stack-frame/type/index.mjs": {
-      "types": "./dist/types/stack-frame/type/index.d.ts",
-      "import": "./dist/esm/stack-frame/type/index.mjs",
-      "require": "./dist/cjs/stack-frame/type/index.cjs",
-      "default": "./src/stack-frame/type/index.ts"
-    },
-    "./stack-frame/type/index": {
-      "types": "./dist/types/stack-frame/type/index.d.ts",
-      "import": "./dist/esm/stack-frame/type/index.mjs",
-      "require": "./dist/cjs/stack-frame/type/index.cjs",
-      "default": "./src/stack-frame/type/index.ts"
-    },
-    "./stack-frame/type": {
-      "types": "./dist/types/stack-frame/type/index.d.ts",
-      "import": "./dist/esm/stack-frame/type/index.mjs",
-      "require": "./dist/cjs/stack-frame/type/index.cjs",
-      "default": "./src/stack-frame/type/index.ts"
-    },
-    "./stack-frame": {
-      "types": "./dist/types/stack-frame/index.d.ts",
-      "import": "./dist/esm/stack-frame/index.mjs",
-      "require": "./dist/cjs/stack-frame/index.cjs",
-      "default": "./src/stack-frame/index.ts"
-    },
     "./stack-trace/StackTrace.cjs": {
       "types": "./dist/types/stack-trace/StackTrace.d.ts",
       "import": "./dist/esm/stack-trace/StackTrace.mjs",
@@ -2162,34 +1584,6 @@
       "require": "./dist/cjs/stack-trace/dumpStackTrace.cjs",
       "default": "./src/stack-trace/dumpStackTrace.ts"
     },
-    "./stack-trace/index.cjs": {
-      "types": "./dist/types/stack-trace/index.d.ts",
-      "import": "./dist/esm/stack-trace/index.mjs",
-      "require": "./dist/cjs/stack-trace/index.cjs",
-      "default": "./src/stack-trace/index.ts"
-    },
-    "./stack-trace/index.d.ts": {
-      "types": "./dist/types/stack-trace/index.d.ts",
-      "default": "./src/stack-trace/index.ts"
-    },
-    "./stack-trace/index.js": {
-      "types": "./dist/types/stack-trace/index.d.ts",
-      "import": "./dist/esm/stack-trace/index.mjs",
-      "require": "./dist/cjs/stack-trace/index.cjs",
-      "default": "./src/stack-trace/index.ts"
-    },
-    "./stack-trace/index.mjs": {
-      "types": "./dist/types/stack-trace/index.d.ts",
-      "import": "./dist/esm/stack-trace/index.mjs",
-      "require": "./dist/cjs/stack-trace/index.cjs",
-      "default": "./src/stack-trace/index.ts"
-    },
-    "./stack-trace/index": {
-      "types": "./dist/types/stack-trace/index.d.ts",
-      "import": "./dist/esm/stack-trace/index.mjs",
-      "require": "./dist/cjs/stack-trace/index.cjs",
-      "default": "./src/stack-trace/index.ts"
-    },
     "./stack-trace/pushStackFrame.cjs": {
       "types": "./dist/types/stack-trace/pushStackFrame.d.ts",
       "import": "./dist/esm/stack-trace/pushStackFrame.mjs",
@@ -2217,40 +1611,6 @@
       "import": "./dist/esm/stack-trace/pushStackFrame.mjs",
       "require": "./dist/cjs/stack-trace/pushStackFrame.cjs",
       "default": "./src/stack-trace/pushStackFrame.ts"
-    },
-    "./stack-trace": {
-      "types": "./dist/types/stack-trace/index.d.ts",
-      "import": "./dist/esm/stack-trace/index.mjs",
-      "require": "./dist/cjs/stack-trace/index.cjs",
-      "default": "./src/stack-trace/index.ts"
-    },
-    "./tap/index.cjs": {
-      "types": "./dist/types/tap/index.d.ts",
-      "import": "./dist/esm/tap/index.mjs",
-      "require": "./dist/cjs/tap/index.cjs",
-      "default": "./src/tap/index.ts"
-    },
-    "./tap/index.d.ts": {
-      "types": "./dist/types/tap/index.d.ts",
-      "default": "./src/tap/index.ts"
-    },
-    "./tap/index.js": {
-      "types": "./dist/types/tap/index.d.ts",
-      "import": "./dist/esm/tap/index.mjs",
-      "require": "./dist/cjs/tap/index.cjs",
-      "default": "./src/tap/index.ts"
-    },
-    "./tap/index.mjs": {
-      "types": "./dist/types/tap/index.d.ts",
-      "import": "./dist/esm/tap/index.mjs",
-      "require": "./dist/cjs/tap/index.cjs",
-      "default": "./src/tap/index.ts"
-    },
-    "./tap/index": {
-      "types": "./dist/types/tap/index.d.ts",
-      "import": "./dist/esm/tap/index.mjs",
-      "require": "./dist/cjs/tap/index.cjs",
-      "default": "./src/tap/index.ts"
     },
     "./tap/label/TapLabel.cjs": {
       "types": "./dist/types/tap/label/TapLabel.d.ts",
@@ -2308,34 +1668,6 @@
       "require": "./dist/cjs/tap/label/TapLabel.cjs",
       "default": "./src/tap/label/TapLabel.ts"
     },
-    "./tap/label/index.cjs": {
-      "types": "./dist/types/tap/label/index.d.ts",
-      "import": "./dist/esm/tap/label/index.mjs",
-      "require": "./dist/cjs/tap/label/index.cjs",
-      "default": "./src/tap/label/index.ts"
-    },
-    "./tap/label/index.d.ts": {
-      "types": "./dist/types/tap/label/index.d.ts",
-      "default": "./src/tap/label/index.ts"
-    },
-    "./tap/label/index.js": {
-      "types": "./dist/types/tap/label/index.d.ts",
-      "import": "./dist/esm/tap/label/index.mjs",
-      "require": "./dist/cjs/tap/label/index.cjs",
-      "default": "./src/tap/label/index.ts"
-    },
-    "./tap/label/index.mjs": {
-      "types": "./dist/types/tap/label/index.d.ts",
-      "import": "./dist/esm/tap/label/index.mjs",
-      "require": "./dist/cjs/tap/label/index.cjs",
-      "default": "./src/tap/label/index.ts"
-    },
-    "./tap/label/index": {
-      "types": "./dist/types/tap/label/index.d.ts",
-      "import": "./dist/esm/tap/label/index.mjs",
-      "require": "./dist/cjs/tap/label/index.cjs",
-      "default": "./src/tap/label/index.ts"
-    },
     "./tap/label/labelTap.cjs": {
       "types": "./dist/types/tap/label/labelTap.d.ts",
       "import": "./dist/esm/tap/label/labelTap.mjs",
@@ -2363,18 +1695,6 @@
       "import": "./dist/esm/tap/label/labelTap.mjs",
       "require": "./dist/cjs/tap/label/labelTap.cjs",
       "default": "./src/tap/label/labelTap.ts"
-    },
-    "./tap/label": {
-      "types": "./dist/types/tap/label/index.d.ts",
-      "import": "./dist/esm/tap/label/index.mjs",
-      "require": "./dist/cjs/tap/label/index.cjs",
-      "default": "./src/tap/label/index.ts"
-    },
-    "./tap": {
-      "types": "./dist/types/tap/index.d.ts",
-      "import": "./dist/esm/tap/index.mjs",
-      "require": "./dist/cjs/tap/index.cjs",
-      "default": "./src/tap/index.ts"
     },
     "./tracer/Tracer.cjs": {
       "types": "./dist/types/tracer/Tracer.d.ts",
@@ -2432,34 +1752,6 @@
       "require": "./dist/cjs/tracer/createTracer.cjs",
       "default": "./src/tracer/createTracer.ts"
     },
-    "./tracer/hook/index.cjs": {
-      "types": "./dist/types/tracer/hook/index.d.ts",
-      "import": "./dist/esm/tracer/hook/index.mjs",
-      "require": "./dist/cjs/tracer/hook/index.cjs",
-      "default": "./src/tracer/hook/index.ts"
-    },
-    "./tracer/hook/index.d.ts": {
-      "types": "./dist/types/tracer/hook/index.d.ts",
-      "default": "./src/tracer/hook/index.ts"
-    },
-    "./tracer/hook/index.js": {
-      "types": "./dist/types/tracer/hook/index.d.ts",
-      "import": "./dist/esm/tracer/hook/index.mjs",
-      "require": "./dist/cjs/tracer/hook/index.cjs",
-      "default": "./src/tracer/hook/index.ts"
-    },
-    "./tracer/hook/index.mjs": {
-      "types": "./dist/types/tracer/hook/index.d.ts",
-      "import": "./dist/esm/tracer/hook/index.mjs",
-      "require": "./dist/cjs/tracer/hook/index.cjs",
-      "default": "./src/tracer/hook/index.ts"
-    },
-    "./tracer/hook/index": {
-      "types": "./dist/types/tracer/hook/index.d.ts",
-      "import": "./dist/esm/tracer/hook/index.mjs",
-      "require": "./dist/cjs/tracer/hook/index.cjs",
-      "default": "./src/tracer/hook/index.ts"
-    },
     "./tracer/hook/registry/TracerHookRegistry.cjs": {
       "types": "./dist/types/tracer/hook/registry/TracerHookRegistry.d.ts",
       "import": "./dist/esm/tracer/hook/registry/TracerHookRegistry.mjs",
@@ -2515,40 +1807,6 @@
       "import": "./dist/esm/tracer/hook/registry/createTracerHookRegistry.mjs",
       "require": "./dist/cjs/tracer/hook/registry/createTracerHookRegistry.cjs",
       "default": "./src/tracer/hook/registry/createTracerHookRegistry.ts"
-    },
-    "./tracer/hook/registry/index.cjs": {
-      "types": "./dist/types/tracer/hook/registry/index.d.ts",
-      "import": "./dist/esm/tracer/hook/registry/index.mjs",
-      "require": "./dist/cjs/tracer/hook/registry/index.cjs",
-      "default": "./src/tracer/hook/registry/index.ts"
-    },
-    "./tracer/hook/registry/index.d.ts": {
-      "types": "./dist/types/tracer/hook/registry/index.d.ts",
-      "default": "./src/tracer/hook/registry/index.ts"
-    },
-    "./tracer/hook/registry/index.js": {
-      "types": "./dist/types/tracer/hook/registry/index.d.ts",
-      "import": "./dist/esm/tracer/hook/registry/index.mjs",
-      "require": "./dist/cjs/tracer/hook/registry/index.cjs",
-      "default": "./src/tracer/hook/registry/index.ts"
-    },
-    "./tracer/hook/registry/index.mjs": {
-      "types": "./dist/types/tracer/hook/registry/index.d.ts",
-      "import": "./dist/esm/tracer/hook/registry/index.mjs",
-      "require": "./dist/cjs/tracer/hook/registry/index.cjs",
-      "default": "./src/tracer/hook/registry/index.ts"
-    },
-    "./tracer/hook/registry/index": {
-      "types": "./dist/types/tracer/hook/registry/index.d.ts",
-      "import": "./dist/esm/tracer/hook/registry/index.mjs",
-      "require": "./dist/cjs/tracer/hook/registry/index.cjs",
-      "default": "./src/tracer/hook/registry/index.ts"
-    },
-    "./tracer/hook/registry": {
-      "types": "./dist/types/tracer/hook/registry/index.d.ts",
-      "import": "./dist/esm/tracer/hook/registry/index.mjs",
-      "require": "./dist/cjs/tracer/hook/registry/index.cjs",
-      "default": "./src/tracer/hook/registry/index.ts"
     },
     "./tracer/hooks/handle-stack-frame/HOOK_NAME_HANDLE_STACK_FRAME.cjs": {
       "types": "./dist/types/tracer/hooks/handle-stack-frame/HOOK_NAME_HANDLE_STACK_FRAME.d.ts",
@@ -2662,68 +1920,6 @@
       "require": "./dist/cjs/tracer/hooks/handle-stack-frame/createHandleStackFrameHook.cjs",
       "default": "./src/tracer/hooks/handle-stack-frame/createHandleStackFrameHook.ts"
     },
-    "./tracer/hooks/handle-stack-frame/index.cjs": {
-      "types": "./dist/types/tracer/hooks/handle-stack-frame/index.d.ts",
-      "import": "./dist/esm/tracer/hooks/handle-stack-frame/index.mjs",
-      "require": "./dist/cjs/tracer/hooks/handle-stack-frame/index.cjs",
-      "default": "./src/tracer/hooks/handle-stack-frame/index.ts"
-    },
-    "./tracer/hooks/handle-stack-frame/index.d.ts": {
-      "types": "./dist/types/tracer/hooks/handle-stack-frame/index.d.ts",
-      "default": "./src/tracer/hooks/handle-stack-frame/index.ts"
-    },
-    "./tracer/hooks/handle-stack-frame/index.js": {
-      "types": "./dist/types/tracer/hooks/handle-stack-frame/index.d.ts",
-      "import": "./dist/esm/tracer/hooks/handle-stack-frame/index.mjs",
-      "require": "./dist/cjs/tracer/hooks/handle-stack-frame/index.cjs",
-      "default": "./src/tracer/hooks/handle-stack-frame/index.ts"
-    },
-    "./tracer/hooks/handle-stack-frame/index.mjs": {
-      "types": "./dist/types/tracer/hooks/handle-stack-frame/index.d.ts",
-      "import": "./dist/esm/tracer/hooks/handle-stack-frame/index.mjs",
-      "require": "./dist/cjs/tracer/hooks/handle-stack-frame/index.cjs",
-      "default": "./src/tracer/hooks/handle-stack-frame/index.ts"
-    },
-    "./tracer/hooks/handle-stack-frame/index": {
-      "types": "./dist/types/tracer/hooks/handle-stack-frame/index.d.ts",
-      "import": "./dist/esm/tracer/hooks/handle-stack-frame/index.mjs",
-      "require": "./dist/cjs/tracer/hooks/handle-stack-frame/index.cjs",
-      "default": "./src/tracer/hooks/handle-stack-frame/index.ts"
-    },
-    "./tracer/hooks/handle-stack-frame": {
-      "types": "./dist/types/tracer/hooks/handle-stack-frame/index.d.ts",
-      "import": "./dist/esm/tracer/hooks/handle-stack-frame/index.mjs",
-      "require": "./dist/cjs/tracer/hooks/handle-stack-frame/index.cjs",
-      "default": "./src/tracer/hooks/handle-stack-frame/index.ts"
-    },
-    "./tracer/hooks/index.cjs": {
-      "types": "./dist/types/tracer/hooks/index.d.ts",
-      "import": "./dist/esm/tracer/hooks/index.mjs",
-      "require": "./dist/cjs/tracer/hooks/index.cjs",
-      "default": "./src/tracer/hooks/index.ts"
-    },
-    "./tracer/hooks/index.d.ts": {
-      "types": "./dist/types/tracer/hooks/index.d.ts",
-      "default": "./src/tracer/hooks/index.ts"
-    },
-    "./tracer/hooks/index.js": {
-      "types": "./dist/types/tracer/hooks/index.d.ts",
-      "import": "./dist/esm/tracer/hooks/index.mjs",
-      "require": "./dist/cjs/tracer/hooks/index.cjs",
-      "default": "./src/tracer/hooks/index.ts"
-    },
-    "./tracer/hooks/index.mjs": {
-      "types": "./dist/types/tracer/hooks/index.d.ts",
-      "import": "./dist/esm/tracer/hooks/index.mjs",
-      "require": "./dist/cjs/tracer/hooks/index.cjs",
-      "default": "./src/tracer/hooks/index.ts"
-    },
-    "./tracer/hooks/index": {
-      "types": "./dist/types/tracer/hooks/index.d.ts",
-      "import": "./dist/esm/tracer/hooks/index.mjs",
-      "require": "./dist/cjs/tracer/hooks/index.cjs",
-      "default": "./src/tracer/hooks/index.ts"
-    },
     "./tracer/hooks/post-call/HOOK_NAME_POST_CALL.cjs": {
       "types": "./dist/types/tracer/hooks/post-call/HOOK_NAME_POST_CALL.d.ts",
       "import": "./dist/esm/tracer/hooks/post-call/HOOK_NAME_POST_CALL.mjs",
@@ -2835,40 +2031,6 @@
       "import": "./dist/esm/tracer/hooks/post-call/createPostCallHook.mjs",
       "require": "./dist/cjs/tracer/hooks/post-call/createPostCallHook.cjs",
       "default": "./src/tracer/hooks/post-call/createPostCallHook.ts"
-    },
-    "./tracer/hooks/post-call/index.cjs": {
-      "types": "./dist/types/tracer/hooks/post-call/index.d.ts",
-      "import": "./dist/esm/tracer/hooks/post-call/index.mjs",
-      "require": "./dist/cjs/tracer/hooks/post-call/index.cjs",
-      "default": "./src/tracer/hooks/post-call/index.ts"
-    },
-    "./tracer/hooks/post-call/index.d.ts": {
-      "types": "./dist/types/tracer/hooks/post-call/index.d.ts",
-      "default": "./src/tracer/hooks/post-call/index.ts"
-    },
-    "./tracer/hooks/post-call/index.js": {
-      "types": "./dist/types/tracer/hooks/post-call/index.d.ts",
-      "import": "./dist/esm/tracer/hooks/post-call/index.mjs",
-      "require": "./dist/cjs/tracer/hooks/post-call/index.cjs",
-      "default": "./src/tracer/hooks/post-call/index.ts"
-    },
-    "./tracer/hooks/post-call/index.mjs": {
-      "types": "./dist/types/tracer/hooks/post-call/index.d.ts",
-      "import": "./dist/esm/tracer/hooks/post-call/index.mjs",
-      "require": "./dist/cjs/tracer/hooks/post-call/index.cjs",
-      "default": "./src/tracer/hooks/post-call/index.ts"
-    },
-    "./tracer/hooks/post-call/index": {
-      "types": "./dist/types/tracer/hooks/post-call/index.d.ts",
-      "import": "./dist/esm/tracer/hooks/post-call/index.mjs",
-      "require": "./dist/cjs/tracer/hooks/post-call/index.cjs",
-      "default": "./src/tracer/hooks/post-call/index.ts"
-    },
-    "./tracer/hooks/post-call": {
-      "types": "./dist/types/tracer/hooks/post-call/index.d.ts",
-      "import": "./dist/esm/tracer/hooks/post-call/index.mjs",
-      "require": "./dist/cjs/tracer/hooks/post-call/index.cjs",
-      "default": "./src/tracer/hooks/post-call/index.ts"
     },
     "./tracer/hooks/pre-call/HOOK_NAME_PRE_CALL.cjs": {
       "types": "./dist/types/tracer/hooks/pre-call/HOOK_NAME_PRE_CALL.d.ts",
@@ -2982,80 +2144,6 @@
       "require": "./dist/cjs/tracer/hooks/pre-call/createPreCallHook.cjs",
       "default": "./src/tracer/hooks/pre-call/createPreCallHook.ts"
     },
-    "./tracer/hooks/pre-call/index.cjs": {
-      "types": "./dist/types/tracer/hooks/pre-call/index.d.ts",
-      "import": "./dist/esm/tracer/hooks/pre-call/index.mjs",
-      "require": "./dist/cjs/tracer/hooks/pre-call/index.cjs",
-      "default": "./src/tracer/hooks/pre-call/index.ts"
-    },
-    "./tracer/hooks/pre-call/index.d.ts": {
-      "types": "./dist/types/tracer/hooks/pre-call/index.d.ts",
-      "default": "./src/tracer/hooks/pre-call/index.ts"
-    },
-    "./tracer/hooks/pre-call/index.js": {
-      "types": "./dist/types/tracer/hooks/pre-call/index.d.ts",
-      "import": "./dist/esm/tracer/hooks/pre-call/index.mjs",
-      "require": "./dist/cjs/tracer/hooks/pre-call/index.cjs",
-      "default": "./src/tracer/hooks/pre-call/index.ts"
-    },
-    "./tracer/hooks/pre-call/index.mjs": {
-      "types": "./dist/types/tracer/hooks/pre-call/index.d.ts",
-      "import": "./dist/esm/tracer/hooks/pre-call/index.mjs",
-      "require": "./dist/cjs/tracer/hooks/pre-call/index.cjs",
-      "default": "./src/tracer/hooks/pre-call/index.ts"
-    },
-    "./tracer/hooks/pre-call/index": {
-      "types": "./dist/types/tracer/hooks/pre-call/index.d.ts",
-      "import": "./dist/esm/tracer/hooks/pre-call/index.mjs",
-      "require": "./dist/cjs/tracer/hooks/pre-call/index.cjs",
-      "default": "./src/tracer/hooks/pre-call/index.ts"
-    },
-    "./tracer/hooks/pre-call": {
-      "types": "./dist/types/tracer/hooks/pre-call/index.d.ts",
-      "import": "./dist/esm/tracer/hooks/pre-call/index.mjs",
-      "require": "./dist/cjs/tracer/hooks/pre-call/index.cjs",
-      "default": "./src/tracer/hooks/pre-call/index.ts"
-    },
-    "./tracer/hooks": {
-      "types": "./dist/types/tracer/hooks/index.d.ts",
-      "import": "./dist/esm/tracer/hooks/index.mjs",
-      "require": "./dist/cjs/tracer/hooks/index.cjs",
-      "default": "./src/tracer/hooks/index.ts"
-    },
-    "./tracer/hook": {
-      "types": "./dist/types/tracer/hook/index.d.ts",
-      "import": "./dist/esm/tracer/hook/index.mjs",
-      "require": "./dist/cjs/tracer/hook/index.cjs",
-      "default": "./src/tracer/hook/index.ts"
-    },
-    "./tracer/index.cjs": {
-      "types": "./dist/types/tracer/index.d.ts",
-      "import": "./dist/esm/tracer/index.mjs",
-      "require": "./dist/cjs/tracer/index.cjs",
-      "default": "./src/tracer/index.ts"
-    },
-    "./tracer/index.d.ts": {
-      "types": "./dist/types/tracer/index.d.ts",
-      "default": "./src/tracer/index.ts"
-    },
-    "./tracer/index.js": {
-      "types": "./dist/types/tracer/index.d.ts",
-      "import": "./dist/esm/tracer/index.mjs",
-      "require": "./dist/cjs/tracer/index.cjs",
-      "default": "./src/tracer/index.ts"
-    },
-    "./tracer/index.mjs": {
-      "types": "./dist/types/tracer/index.d.ts",
-      "import": "./dist/esm/tracer/index.mjs",
-      "require": "./dist/cjs/tracer/index.cjs",
-      "default": "./src/tracer/index.ts"
-    },
-    "./tracer/index": {
-      "types": "./dist/types/tracer/index.d.ts",
-      "import": "./dist/esm/tracer/index.mjs",
-      "require": "./dist/cjs/tracer/index.cjs",
-      "default": "./src/tracer/index.ts"
-    },
     "./tracer/options/HookTracingOptions.cjs": {
       "types": "./dist/types/tracer/options/HookTracingOptions.d.ts",
       "import": "./dist/esm/tracer/options/HookTracingOptions.mjs",
@@ -3112,40 +2200,6 @@
       "require": "./dist/cjs/tracer/options/TracerOptions.cjs",
       "default": "./src/tracer/options/TracerOptions.ts"
     },
-    "./tracer/options/index.cjs": {
-      "types": "./dist/types/tracer/options/index.d.ts",
-      "import": "./dist/esm/tracer/options/index.mjs",
-      "require": "./dist/cjs/tracer/options/index.cjs",
-      "default": "./src/tracer/options/index.ts"
-    },
-    "./tracer/options/index.d.ts": {
-      "types": "./dist/types/tracer/options/index.d.ts",
-      "default": "./src/tracer/options/index.ts"
-    },
-    "./tracer/options/index.js": {
-      "types": "./dist/types/tracer/options/index.d.ts",
-      "import": "./dist/esm/tracer/options/index.mjs",
-      "require": "./dist/cjs/tracer/options/index.cjs",
-      "default": "./src/tracer/options/index.ts"
-    },
-    "./tracer/options/index.mjs": {
-      "types": "./dist/types/tracer/options/index.d.ts",
-      "import": "./dist/esm/tracer/options/index.mjs",
-      "require": "./dist/cjs/tracer/options/index.cjs",
-      "default": "./src/tracer/options/index.ts"
-    },
-    "./tracer/options/index": {
-      "types": "./dist/types/tracer/options/index.d.ts",
-      "import": "./dist/esm/tracer/options/index.mjs",
-      "require": "./dist/cjs/tracer/options/index.cjs",
-      "default": "./src/tracer/options/index.ts"
-    },
-    "./tracer/options": {
-      "types": "./dist/types/tracer/options/index.d.ts",
-      "import": "./dist/esm/tracer/options/index.mjs",
-      "require": "./dist/cjs/tracer/options/index.cjs",
-      "default": "./src/tracer/options/index.ts"
-    },
     "./tracer/stack/CallSite.cjs": {
       "types": "./dist/types/tracer/stack/CallSite.d.ts",
       "import": "./dist/esm/tracer/stack/CallSite.mjs",
@@ -3174,40 +2228,6 @@
       "require": "./dist/cjs/tracer/stack/CallSite.cjs",
       "default": "./src/tracer/stack/CallSite.ts"
     },
-    "./tracer/stack/index.cjs": {
-      "types": "./dist/types/tracer/stack/index.d.ts",
-      "import": "./dist/esm/tracer/stack/index.mjs",
-      "require": "./dist/cjs/tracer/stack/index.cjs",
-      "default": "./src/tracer/stack/index.ts"
-    },
-    "./tracer/stack/index.d.ts": {
-      "types": "./dist/types/tracer/stack/index.d.ts",
-      "default": "./src/tracer/stack/index.ts"
-    },
-    "./tracer/stack/index.js": {
-      "types": "./dist/types/tracer/stack/index.d.ts",
-      "import": "./dist/esm/tracer/stack/index.mjs",
-      "require": "./dist/cjs/tracer/stack/index.cjs",
-      "default": "./src/tracer/stack/index.ts"
-    },
-    "./tracer/stack/index.mjs": {
-      "types": "./dist/types/tracer/stack/index.d.ts",
-      "import": "./dist/esm/tracer/stack/index.mjs",
-      "require": "./dist/cjs/tracer/stack/index.cjs",
-      "default": "./src/tracer/stack/index.ts"
-    },
-    "./tracer/stack/index": {
-      "types": "./dist/types/tracer/stack/index.d.ts",
-      "import": "./dist/esm/tracer/stack/index.mjs",
-      "require": "./dist/cjs/tracer/stack/index.cjs",
-      "default": "./src/tracer/stack/index.ts"
-    },
-    "./tracer/stack": {
-      "types": "./dist/types/tracer/stack/index.d.ts",
-      "import": "./dist/esm/tracer/stack/index.mjs",
-      "require": "./dist/cjs/tracer/stack/index.cjs",
-      "default": "./src/tracer/stack/index.ts"
-    },
     "./tracer/traceHook.cjs": {
       "types": "./dist/types/tracer/traceHook.d.ts",
       "import": "./dist/esm/tracer/traceHook.mjs",
@@ -3235,12 +2255,6 @@
       "import": "./dist/esm/tracer/traceHook.mjs",
       "require": "./dist/cjs/tracer/traceHook.cjs",
       "default": "./src/tracer/traceHook.ts"
-    },
-    "./tracer": {
-      "types": "./dist/types/tracer/index.d.ts",
-      "import": "./dist/esm/tracer/index.mjs",
-      "require": "./dist/cjs/tracer/index.cjs",
-      "default": "./src/tracer/index.ts"
     },
     ".": {
       "types": "./dist/types/index.d.ts",

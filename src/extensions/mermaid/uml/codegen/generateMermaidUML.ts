@@ -1,6 +1,6 @@
 import type { EncodableStackFrame } from "../../../../stack-frame/encodable/EncodableStackFrame";
-import { LINE_FEED } from "../lexemes";
 import { CONFIG_ELK } from "../lexemes/CONFIG_ELK";
+import { LINE_FEED } from "../lexemes/LINE_FEED";
 
 import { generateMermaidGraphForFrames } from "./graph/generateMermaidGraphForFrames";
 

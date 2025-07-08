@@ -1,7 +1,7 @@
 import type { EncodableStackFrame } from "../../../../../stack-frame/encodable/EncodableStackFrame";
-import { LINE_FEED } from "../../lexemes";
 import { GRAPH_HEADER_LINE } from "../../lexemes/GRAPH_HEADER_LINE";
 import { INDENT } from "../../lexemes/INDENT";
+import { LINE_FEED } from "../../lexemes/LINE_FEED";
 import { generateMermaidGraphEdgeForStackFrame } from "../graph-edge/generateMermaidGraphEdgeForStackFrame";
 
 import { createMermaidGraphCodeGenState } from "./state/createMermaidGraphCodeGenState";
