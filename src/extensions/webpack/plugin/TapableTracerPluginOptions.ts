@@ -1,5 +1,5 @@
+import type { TracerOptions } from "../../../tracer/options/TracerOptions";
 import type { Tracer } from "../../../tracer/Tracer";
-import type { TracerOptions } from "../../../tracer/TracerOptions";
 import type { DoneCallback } from "../callbacks";
 
 export type TapableTracerPluginOptions = {

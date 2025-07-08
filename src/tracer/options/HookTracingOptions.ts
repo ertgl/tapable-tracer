@@ -1,4 +1,4 @@
-import type { HookLabel } from "../hook";
+import type { HookLabel } from "../../hook/label/HookLabel";
 
 export type HookTracingOptions = {
   includeTrigger?: boolean | null;
