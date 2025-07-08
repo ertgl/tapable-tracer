@@ -1,0 +1,13 @@
+# config: eslint > stylistic > brace-style
+allman
+
+# file extension: js/jsx
+cjsx
+mjsx
+
+# file extension: ts/tsx
+ctsx
+mtsx
+
+# first-party: src/extensions/mermaid/uml
+codegen

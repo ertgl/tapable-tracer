@@ -17,13 +17,18 @@ import:
   - "@cspell/dict-shell/cspell-ext.json"
   - "@cspell/dict-typescript/cspell-ext.json"
 dictionaryDefinitions:
-  - name: custom
-    path: ./cspell.custom.txt
+  - name: tapable-tracer-code
+    path: ./config/cspell/code.txt
+    addWords: true
+  - name: tapable-tracer-usernames
+    path: ./config/cspell/usernames.txt
+    addWords: true
+  - name: tapable-tracer-words
+    path: ./config/cspell/words.txt
     addWords: true
 dictionaries:
   - bash
   - css
-  - custom
   - en-common-misspellings
   - en-gb
   - en_us
@@ -35,6 +40,9 @@ dictionaries:
   - node
   - npm
   - shell
+  - tapable-tracer-code
+  - tapable-tracer-usernames
+  - tapable-tracer-words
   - typescript
 globRoot: "${cwd}"
 useGitignore: true
