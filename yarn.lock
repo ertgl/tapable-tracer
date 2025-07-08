@@ -4073,6 +4073,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"babel-plugin-report-runtime-free-files@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "babel-plugin-report-runtime-free-files@npm:1.0.0"
+  peerDependencies:
+    "@babel/helper-plugin-utils": "*"
+  checksum: 10c0/892260d6d53c39f4a5a66ac4881b791ebc23e6ae044083b361ec43b5f0dcbaaa98cea7e351492266a832a7f2161a21c4cdc441fe3253e761ee44d84817b10a06
+  languageName: node
+  linkType: hard
+
 "babel-plugin-transform-import-source@npm:^2.1.0":
   version: 2.1.0
   resolution: "babel-plugin-transform-import-source@npm:2.1.0"
@@ -8486,6 +8495,7 @@ __metadata:
     "@types/jest": "npm:^30.0.0"
     "@types/node": "npm:^24.0.10"
     babel-jest: "npm:^30.0.2"
+    babel-plugin-report-runtime-free-files: "npm:^1.0.0"
     babel-plugin-transform-import-source: "npm:^2.1.0"
     eslint: "npm:^9.30.1"
     eslint-plugin-jest: "npm:^29.0.1"

@@ -11,3 +11,6 @@ mtsx
 
 # first-party: src/extensions/mermaid/uml
 codegen
+
+# stdlib: node:fs
+dirents

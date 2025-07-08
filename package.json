@@ -9,8 +9,8 @@
   },
   "scripts": {
     "build": "yarn build:clean && yarn build::types && yarn build::cjs && yarn build::esm && yarn exports:update",
-    "build::cjs": "babel src --config-file ./babel.config.cjs.cjs --extensions '.cjs,.cts,.js,.mjs,.mts,.ts' --ignore '**/*.d.ts' --ignore '**/__tests__/**/*' --no-copy-ignored --out-dir ./dist/cjs --out-file-extension '.cjs'",
-    "build::esm": "babel src --config-file ./babel.config.esm.cjs --extensions '.cjs,.cts,.js,.mjs,.mts,.ts' --ignore '**/*.d.ts' --ignore '**/__tests__/**/*' --no-copy-ignored --out-dir ./dist/esm --out-file-extension '.mjs'",
+    "build::cjs": "node hack/scripts/build-cjs.mjs",
+    "build::esm": "node hack/scripts/build-esm.mjs",
     "build::types": "tsc --project ./tsconfig.output.types.json && node -e \"console.log('Successfully compiled type declaration files.')\"",
     "build:clean": "rimraf dist",
     "changeset:add": "changeset",
@@ -71,6 +71,7 @@
     "@types/jest": "^30.0.0",
     "@types/node": "^24.0.10",
     "babel-jest": "^30.0.2",
+    "babel-plugin-report-runtime-free-files": "^1.0.0",
     "babel-plugin-transform-import-source": "^2.1.0",
     "eslint": "^9.30.1",
     "eslint-plugin-jest": "^29.0.1",
@@ -339,8 +340,6 @@
     },
     "./extensions/mermaid/uml/codegen/graph/state/MermaidGraphCodeGenState.cjs": {
       "types": "./dist/types/extensions/mermaid/uml/codegen/graph/state/MermaidGraphCodeGenState.d.ts",
-      "import": "./dist/esm/extensions/mermaid/uml/codegen/graph/state/MermaidGraphCodeGenState.mjs",
-      "require": "./dist/cjs/extensions/mermaid/uml/codegen/graph/state/MermaidGraphCodeGenState.cjs",
       "default": "./src/extensions/mermaid/uml/codegen/graph/state/MermaidGraphCodeGenState.ts"
     },
     "./extensions/mermaid/uml/codegen/graph/state/MermaidGraphCodeGenState.d.ts": {
@@ -349,20 +348,14 @@
     },
     "./extensions/mermaid/uml/codegen/graph/state/MermaidGraphCodeGenState.js": {
       "types": "./dist/types/extensions/mermaid/uml/codegen/graph/state/MermaidGraphCodeGenState.d.ts",
-      "import": "./dist/esm/extensions/mermaid/uml/codegen/graph/state/MermaidGraphCodeGenState.mjs",
-      "require": "./dist/cjs/extensions/mermaid/uml/codegen/graph/state/MermaidGraphCodeGenState.cjs",
       "default": "./src/extensions/mermaid/uml/codegen/graph/state/MermaidGraphCodeGenState.ts"
     },
     "./extensions/mermaid/uml/codegen/graph/state/MermaidGraphCodeGenState.mjs": {
       "types": "./dist/types/extensions/mermaid/uml/codegen/graph/state/MermaidGraphCodeGenState.d.ts",
-      "import": "./dist/esm/extensions/mermaid/uml/codegen/graph/state/MermaidGraphCodeGenState.mjs",
-      "require": "./dist/cjs/extensions/mermaid/uml/codegen/graph/state/MermaidGraphCodeGenState.cjs",
       "default": "./src/extensions/mermaid/uml/codegen/graph/state/MermaidGraphCodeGenState.ts"
     },
     "./extensions/mermaid/uml/codegen/graph/state/MermaidGraphCodeGenState": {
       "types": "./dist/types/extensions/mermaid/uml/codegen/graph/state/MermaidGraphCodeGenState.d.ts",
-      "import": "./dist/esm/extensions/mermaid/uml/codegen/graph/state/MermaidGraphCodeGenState.mjs",
-      "require": "./dist/cjs/extensions/mermaid/uml/codegen/graph/state/MermaidGraphCodeGenState.cjs",
       "default": "./src/extensions/mermaid/uml/codegen/graph/state/MermaidGraphCodeGenState.ts"
     },
     "./extensions/mermaid/uml/codegen/graph/state/createMermaidGraphCodeGenState.cjs": {
@@ -569,8 +562,6 @@
     },
     "./extensions/webpack/callbacks/done/DoneCallback.cjs": {
       "types": "./dist/types/extensions/webpack/callbacks/done/DoneCallback.d.ts",
-      "import": "./dist/esm/extensions/webpack/callbacks/done/DoneCallback.mjs",
-      "require": "./dist/cjs/extensions/webpack/callbacks/done/DoneCallback.cjs",
       "default": "./src/extensions/webpack/callbacks/done/DoneCallback.ts"
     },
     "./extensions/webpack/callbacks/done/DoneCallback.d.ts": {
@@ -579,20 +570,14 @@
     },
     "./extensions/webpack/callbacks/done/DoneCallback.js": {
       "types": "./dist/types/extensions/webpack/callbacks/done/DoneCallback.d.ts",
-      "import": "./dist/esm/extensions/webpack/callbacks/done/DoneCallback.mjs",
-      "require": "./dist/cjs/extensions/webpack/callbacks/done/DoneCallback.cjs",
       "default": "./src/extensions/webpack/callbacks/done/DoneCallback.ts"
     },
     "./extensions/webpack/callbacks/done/DoneCallback.mjs": {
       "types": "./dist/types/extensions/webpack/callbacks/done/DoneCallback.d.ts",
-      "import": "./dist/esm/extensions/webpack/callbacks/done/DoneCallback.mjs",
-      "require": "./dist/cjs/extensions/webpack/callbacks/done/DoneCallback.cjs",
       "default": "./src/extensions/webpack/callbacks/done/DoneCallback.ts"
     },
     "./extensions/webpack/callbacks/done/DoneCallback": {
       "types": "./dist/types/extensions/webpack/callbacks/done/DoneCallback.d.ts",
-      "import": "./dist/esm/extensions/webpack/callbacks/done/DoneCallback.mjs",
-      "require": "./dist/cjs/extensions/webpack/callbacks/done/DoneCallback.cjs",
       "default": "./src/extensions/webpack/callbacks/done/DoneCallback.ts"
     },
     "./extensions/webpack/index.cjs": {
@@ -675,8 +660,6 @@
     },
     "./extensions/webpack/plugin/TapableTracerPluginOptions.cjs": {
       "types": "./dist/types/extensions/webpack/plugin/TapableTracerPluginOptions.d.ts",
-      "import": "./dist/esm/extensions/webpack/plugin/TapableTracerPluginOptions.mjs",
-      "require": "./dist/cjs/extensions/webpack/plugin/TapableTracerPluginOptions.cjs",
       "default": "./src/extensions/webpack/plugin/TapableTracerPluginOptions.ts"
     },
     "./extensions/webpack/plugin/TapableTracerPluginOptions.d.ts": {
@@ -685,20 +668,14 @@
     },
     "./extensions/webpack/plugin/TapableTracerPluginOptions.js": {
       "types": "./dist/types/extensions/webpack/plugin/TapableTracerPluginOptions.d.ts",
-      "import": "./dist/esm/extensions/webpack/plugin/TapableTracerPluginOptions.mjs",
-      "require": "./dist/cjs/extensions/webpack/plugin/TapableTracerPluginOptions.cjs",
       "default": "./src/extensions/webpack/plugin/TapableTracerPluginOptions.ts"
     },
     "./extensions/webpack/plugin/TapableTracerPluginOptions.mjs": {
       "types": "./dist/types/extensions/webpack/plugin/TapableTracerPluginOptions.d.ts",
-      "import": "./dist/esm/extensions/webpack/plugin/TapableTracerPluginOptions.mjs",
-      "require": "./dist/cjs/extensions/webpack/plugin/TapableTracerPluginOptions.cjs",
       "default": "./src/extensions/webpack/plugin/TapableTracerPluginOptions.ts"
     },
     "./extensions/webpack/plugin/TapableTracerPluginOptions": {
       "types": "./dist/types/extensions/webpack/plugin/TapableTracerPluginOptions.d.ts",
-      "import": "./dist/esm/extensions/webpack/plugin/TapableTracerPluginOptions.mjs",
-      "require": "./dist/cjs/extensions/webpack/plugin/TapableTracerPluginOptions.cjs",
       "default": "./src/extensions/webpack/plugin/TapableTracerPluginOptions.ts"
     },
     "./extensions/webpack/plugin/TapableTracerPlugin": {
@@ -715,8 +692,6 @@
     },
     "./hook/AnyHook.cjs": {
       "types": "./dist/types/hook/AnyHook.d.ts",
-      "import": "./dist/esm/hook/AnyHook.mjs",
-      "require": "./dist/cjs/hook/AnyHook.cjs",
       "default": "./src/hook/AnyHook.ts"
     },
     "./hook/AnyHook.d.ts": {
@@ -725,26 +700,18 @@
     },
     "./hook/AnyHook.js": {
       "types": "./dist/types/hook/AnyHook.d.ts",
-      "import": "./dist/esm/hook/AnyHook.mjs",
-      "require": "./dist/cjs/hook/AnyHook.cjs",
       "default": "./src/hook/AnyHook.ts"
     },
     "./hook/AnyHook.mjs": {
       "types": "./dist/types/hook/AnyHook.d.ts",
-      "import": "./dist/esm/hook/AnyHook.mjs",
-      "require": "./dist/cjs/hook/AnyHook.cjs",
       "default": "./src/hook/AnyHook.ts"
     },
     "./hook/AnyHook": {
       "types": "./dist/types/hook/AnyHook.d.ts",
-      "import": "./dist/esm/hook/AnyHook.mjs",
-      "require": "./dist/cjs/hook/AnyHook.cjs",
       "default": "./src/hook/AnyHook.ts"
     },
     "./hook/callback/HookCallback.cjs": {
       "types": "./dist/types/hook/callback/HookCallback.d.ts",
-      "import": "./dist/esm/hook/callback/HookCallback.mjs",
-      "require": "./dist/cjs/hook/callback/HookCallback.cjs",
       "default": "./src/hook/callback/HookCallback.ts"
     },
     "./hook/callback/HookCallback.d.ts": {
@@ -753,26 +720,18 @@
     },
     "./hook/callback/HookCallback.js": {
       "types": "./dist/types/hook/callback/HookCallback.d.ts",
-      "import": "./dist/esm/hook/callback/HookCallback.mjs",
-      "require": "./dist/cjs/hook/callback/HookCallback.cjs",
       "default": "./src/hook/callback/HookCallback.ts"
     },
     "./hook/callback/HookCallback.mjs": {
       "types": "./dist/types/hook/callback/HookCallback.d.ts",
-      "import": "./dist/esm/hook/callback/HookCallback.mjs",
-      "require": "./dist/cjs/hook/callback/HookCallback.cjs",
       "default": "./src/hook/callback/HookCallback.ts"
     },
     "./hook/callback/HookCallback": {
       "types": "./dist/types/hook/callback/HookCallback.d.ts",
-      "import": "./dist/esm/hook/callback/HookCallback.mjs",
-      "require": "./dist/cjs/hook/callback/HookCallback.cjs",
       "default": "./src/hook/callback/HookCallback.ts"
     },
     "./hook/label/HookLabel.cjs": {
       "types": "./dist/types/hook/label/HookLabel.d.ts",
-      "import": "./dist/esm/hook/label/HookLabel.mjs",
-      "require": "./dist/cjs/hook/label/HookLabel.cjs",
       "default": "./src/hook/label/HookLabel.ts"
     },
     "./hook/label/HookLabel.d.ts": {
@@ -781,20 +740,14 @@
     },
     "./hook/label/HookLabel.js": {
       "types": "./dist/types/hook/label/HookLabel.d.ts",
-      "import": "./dist/esm/hook/label/HookLabel.mjs",
-      "require": "./dist/cjs/hook/label/HookLabel.cjs",
       "default": "./src/hook/label/HookLabel.ts"
     },
     "./hook/label/HookLabel.mjs": {
       "types": "./dist/types/hook/label/HookLabel.d.ts",
-      "import": "./dist/esm/hook/label/HookLabel.mjs",
-      "require": "./dist/cjs/hook/label/HookLabel.cjs",
       "default": "./src/hook/label/HookLabel.ts"
     },
     "./hook/label/HookLabellerFunction.cjs": {
       "types": "./dist/types/hook/label/HookLabellerFunction.d.ts",
-      "import": "./dist/esm/hook/label/HookLabellerFunction.mjs",
-      "require": "./dist/cjs/hook/label/HookLabellerFunction.cjs",
       "default": "./src/hook/label/HookLabellerFunction.ts"
     },
     "./hook/label/HookLabellerFunction.d.ts": {
@@ -803,26 +756,18 @@
     },
     "./hook/label/HookLabellerFunction.js": {
       "types": "./dist/types/hook/label/HookLabellerFunction.d.ts",
-      "import": "./dist/esm/hook/label/HookLabellerFunction.mjs",
-      "require": "./dist/cjs/hook/label/HookLabellerFunction.cjs",
       "default": "./src/hook/label/HookLabellerFunction.ts"
     },
     "./hook/label/HookLabellerFunction.mjs": {
       "types": "./dist/types/hook/label/HookLabellerFunction.d.ts",
-      "import": "./dist/esm/hook/label/HookLabellerFunction.mjs",
-      "require": "./dist/cjs/hook/label/HookLabellerFunction.cjs",
       "default": "./src/hook/label/HookLabellerFunction.ts"
     },
     "./hook/label/HookLabellerFunction": {
       "types": "./dist/types/hook/label/HookLabellerFunction.d.ts",
-      "import": "./dist/esm/hook/label/HookLabellerFunction.mjs",
-      "require": "./dist/cjs/hook/label/HookLabellerFunction.cjs",
       "default": "./src/hook/label/HookLabellerFunction.ts"
     },
     "./hook/label/HookLabel": {
       "types": "./dist/types/hook/label/HookLabel.d.ts",
-      "import": "./dist/esm/hook/label/HookLabel.mjs",
-      "require": "./dist/cjs/hook/label/HookLabel.cjs",
       "default": "./src/hook/label/HookLabel.ts"
     },
     "./hook/label/labelHook.cjs": {
@@ -886,8 +831,6 @@
     },
     "./stack-frame/CallFrame.cjs": {
       "types": "./dist/types/stack-frame/CallFrame.d.ts",
-      "import": "./dist/esm/stack-frame/CallFrame.mjs",
-      "require": "./dist/cjs/stack-frame/CallFrame.cjs",
       "default": "./src/stack-frame/CallFrame.ts"
     },
     "./stack-frame/CallFrame.d.ts": {
@@ -896,26 +839,18 @@
     },
     "./stack-frame/CallFrame.js": {
       "types": "./dist/types/stack-frame/CallFrame.d.ts",
-      "import": "./dist/esm/stack-frame/CallFrame.mjs",
-      "require": "./dist/cjs/stack-frame/CallFrame.cjs",
       "default": "./src/stack-frame/CallFrame.ts"
     },
     "./stack-frame/CallFrame.mjs": {
       "types": "./dist/types/stack-frame/CallFrame.d.ts",
-      "import": "./dist/esm/stack-frame/CallFrame.mjs",
-      "require": "./dist/cjs/stack-frame/CallFrame.cjs",
       "default": "./src/stack-frame/CallFrame.ts"
     },
     "./stack-frame/CallFrame": {
       "types": "./dist/types/stack-frame/CallFrame.d.ts",
-      "import": "./dist/esm/stack-frame/CallFrame.mjs",
-      "require": "./dist/cjs/stack-frame/CallFrame.cjs",
       "default": "./src/stack-frame/CallFrame.ts"
     },
     "./stack-frame/StackFrame.cjs": {
       "types": "./dist/types/stack-frame/StackFrame.d.ts",
-      "import": "./dist/esm/stack-frame/StackFrame.mjs",
-      "require": "./dist/cjs/stack-frame/StackFrame.cjs",
       "default": "./src/stack-frame/StackFrame.ts"
     },
     "./stack-frame/StackFrame.d.ts": {
@@ -924,26 +859,18 @@
     },
     "./stack-frame/StackFrame.js": {
       "types": "./dist/types/stack-frame/StackFrame.d.ts",
-      "import": "./dist/esm/stack-frame/StackFrame.mjs",
-      "require": "./dist/cjs/stack-frame/StackFrame.cjs",
       "default": "./src/stack-frame/StackFrame.ts"
     },
     "./stack-frame/StackFrame.mjs": {
       "types": "./dist/types/stack-frame/StackFrame.d.ts",
-      "import": "./dist/esm/stack-frame/StackFrame.mjs",
-      "require": "./dist/cjs/stack-frame/StackFrame.cjs",
       "default": "./src/stack-frame/StackFrame.ts"
     },
     "./stack-frame/StackFrame": {
       "types": "./dist/types/stack-frame/StackFrame.d.ts",
-      "import": "./dist/esm/stack-frame/StackFrame.mjs",
-      "require": "./dist/cjs/stack-frame/StackFrame.cjs",
       "default": "./src/stack-frame/StackFrame.ts"
     },
     "./stack-frame/TapFrame.cjs": {
       "types": "./dist/types/stack-frame/TapFrame.d.ts",
-      "import": "./dist/esm/stack-frame/TapFrame.mjs",
-      "require": "./dist/cjs/stack-frame/TapFrame.cjs",
       "default": "./src/stack-frame/TapFrame.ts"
     },
     "./stack-frame/TapFrame.d.ts": {
@@ -952,26 +879,18 @@
     },
     "./stack-frame/TapFrame.js": {
       "types": "./dist/types/stack-frame/TapFrame.d.ts",
-      "import": "./dist/esm/stack-frame/TapFrame.mjs",
-      "require": "./dist/cjs/stack-frame/TapFrame.cjs",
       "default": "./src/stack-frame/TapFrame.ts"
     },
     "./stack-frame/TapFrame.mjs": {
       "types": "./dist/types/stack-frame/TapFrame.d.ts",
-      "import": "./dist/esm/stack-frame/TapFrame.mjs",
-      "require": "./dist/cjs/stack-frame/TapFrame.cjs",
       "default": "./src/stack-frame/TapFrame.ts"
     },
     "./stack-frame/TapFrame": {
       "types": "./dist/types/stack-frame/TapFrame.d.ts",
-      "import": "./dist/esm/stack-frame/TapFrame.mjs",
-      "require": "./dist/cjs/stack-frame/TapFrame.cjs",
       "default": "./src/stack-frame/TapFrame.ts"
     },
     "./stack-frame/TriggerFrame.cjs": {
       "types": "./dist/types/stack-frame/TriggerFrame.d.ts",
-      "import": "./dist/esm/stack-frame/TriggerFrame.mjs",
-      "require": "./dist/cjs/stack-frame/TriggerFrame.cjs",
       "default": "./src/stack-frame/TriggerFrame.ts"
     },
     "./stack-frame/TriggerFrame.d.ts": {
@@ -980,20 +899,14 @@
     },
     "./stack-frame/TriggerFrame.js": {
       "types": "./dist/types/stack-frame/TriggerFrame.d.ts",
-      "import": "./dist/esm/stack-frame/TriggerFrame.mjs",
-      "require": "./dist/cjs/stack-frame/TriggerFrame.cjs",
       "default": "./src/stack-frame/TriggerFrame.ts"
     },
     "./stack-frame/TriggerFrame.mjs": {
       "types": "./dist/types/stack-frame/TriggerFrame.d.ts",
-      "import": "./dist/esm/stack-frame/TriggerFrame.mjs",
-      "require": "./dist/cjs/stack-frame/TriggerFrame.cjs",
       "default": "./src/stack-frame/TriggerFrame.ts"
     },
     "./stack-frame/TriggerFrame": {
       "types": "./dist/types/stack-frame/TriggerFrame.d.ts",
-      "import": "./dist/esm/stack-frame/TriggerFrame.mjs",
-      "require": "./dist/cjs/stack-frame/TriggerFrame.cjs",
       "default": "./src/stack-frame/TriggerFrame.ts"
     },
     "./stack-frame/createCallFrame.cjs": {
@@ -1082,8 +995,6 @@
     },
     "./stack-frame/encodable/EncodableCallFrame.cjs": {
       "types": "./dist/types/stack-frame/encodable/EncodableCallFrame.d.ts",
-      "import": "./dist/esm/stack-frame/encodable/EncodableCallFrame.mjs",
-      "require": "./dist/cjs/stack-frame/encodable/EncodableCallFrame.cjs",
       "default": "./src/stack-frame/encodable/EncodableCallFrame.ts"
     },
     "./stack-frame/encodable/EncodableCallFrame.d.ts": {
@@ -1092,26 +1003,18 @@
     },
     "./stack-frame/encodable/EncodableCallFrame.js": {
       "types": "./dist/types/stack-frame/encodable/EncodableCallFrame.d.ts",
-      "import": "./dist/esm/stack-frame/encodable/EncodableCallFrame.mjs",
-      "require": "./dist/cjs/stack-frame/encodable/EncodableCallFrame.cjs",
       "default": "./src/stack-frame/encodable/EncodableCallFrame.ts"
     },
     "./stack-frame/encodable/EncodableCallFrame.mjs": {
       "types": "./dist/types/stack-frame/encodable/EncodableCallFrame.d.ts",
-      "import": "./dist/esm/stack-frame/encodable/EncodableCallFrame.mjs",
-      "require": "./dist/cjs/stack-frame/encodable/EncodableCallFrame.cjs",
       "default": "./src/stack-frame/encodable/EncodableCallFrame.ts"
     },
     "./stack-frame/encodable/EncodableCallFrame": {
       "types": "./dist/types/stack-frame/encodable/EncodableCallFrame.d.ts",
-      "import": "./dist/esm/stack-frame/encodable/EncodableCallFrame.mjs",
-      "require": "./dist/cjs/stack-frame/encodable/EncodableCallFrame.cjs",
       "default": "./src/stack-frame/encodable/EncodableCallFrame.ts"
     },
     "./stack-frame/encodable/EncodableStackFrame.cjs": {
       "types": "./dist/types/stack-frame/encodable/EncodableStackFrame.d.ts",
-      "import": "./dist/esm/stack-frame/encodable/EncodableStackFrame.mjs",
-      "require": "./dist/cjs/stack-frame/encodable/EncodableStackFrame.cjs",
       "default": "./src/stack-frame/encodable/EncodableStackFrame.ts"
     },
     "./stack-frame/encodable/EncodableStackFrame.d.ts": {
@@ -1120,26 +1023,18 @@
     },
     "./stack-frame/encodable/EncodableStackFrame.js": {
       "types": "./dist/types/stack-frame/encodable/EncodableStackFrame.d.ts",
-      "import": "./dist/esm/stack-frame/encodable/EncodableStackFrame.mjs",
-      "require": "./dist/cjs/stack-frame/encodable/EncodableStackFrame.cjs",
       "default": "./src/stack-frame/encodable/EncodableStackFrame.ts"
     },
     "./stack-frame/encodable/EncodableStackFrame.mjs": {
       "types": "./dist/types/stack-frame/encodable/EncodableStackFrame.d.ts",
-      "import": "./dist/esm/stack-frame/encodable/EncodableStackFrame.mjs",
-      "require": "./dist/cjs/stack-frame/encodable/EncodableStackFrame.cjs",
       "default": "./src/stack-frame/encodable/EncodableStackFrame.ts"
     },
     "./stack-frame/encodable/EncodableStackFrame": {
       "types": "./dist/types/stack-frame/encodable/EncodableStackFrame.d.ts",
-      "import": "./dist/esm/stack-frame/encodable/EncodableStackFrame.mjs",
-      "require": "./dist/cjs/stack-frame/encodable/EncodableStackFrame.cjs",
       "default": "./src/stack-frame/encodable/EncodableStackFrame.ts"
     },
     "./stack-frame/encodable/EncodableTapFrame.cjs": {
       "types": "./dist/types/stack-frame/encodable/EncodableTapFrame.d.ts",
-      "import": "./dist/esm/stack-frame/encodable/EncodableTapFrame.mjs",
-      "require": "./dist/cjs/stack-frame/encodable/EncodableTapFrame.cjs",
       "default": "./src/stack-frame/encodable/EncodableTapFrame.ts"
     },
     "./stack-frame/encodable/EncodableTapFrame.d.ts": {
@@ -1148,26 +1043,18 @@
     },
     "./stack-frame/encodable/EncodableTapFrame.js": {
       "types": "./dist/types/stack-frame/encodable/EncodableTapFrame.d.ts",
-      "import": "./dist/esm/stack-frame/encodable/EncodableTapFrame.mjs",
-      "require": "./dist/cjs/stack-frame/encodable/EncodableTapFrame.cjs",
       "default": "./src/stack-frame/encodable/EncodableTapFrame.ts"
     },
     "./stack-frame/encodable/EncodableTapFrame.mjs": {
       "types": "./dist/types/stack-frame/encodable/EncodableTapFrame.d.ts",
-      "import": "./dist/esm/stack-frame/encodable/EncodableTapFrame.mjs",
-      "require": "./dist/cjs/stack-frame/encodable/EncodableTapFrame.cjs",
       "default": "./src/stack-frame/encodable/EncodableTapFrame.ts"
     },
     "./stack-frame/encodable/EncodableTapFrame": {
       "types": "./dist/types/stack-frame/encodable/EncodableTapFrame.d.ts",
-      "import": "./dist/esm/stack-frame/encodable/EncodableTapFrame.mjs",
-      "require": "./dist/cjs/stack-frame/encodable/EncodableTapFrame.cjs",
       "default": "./src/stack-frame/encodable/EncodableTapFrame.ts"
     },
     "./stack-frame/encodable/EncodableTriggerFrame.cjs": {
       "types": "./dist/types/stack-frame/encodable/EncodableTriggerFrame.d.ts",
-      "import": "./dist/esm/stack-frame/encodable/EncodableTriggerFrame.mjs",
-      "require": "./dist/cjs/stack-frame/encodable/EncodableTriggerFrame.cjs",
       "default": "./src/stack-frame/encodable/EncodableTriggerFrame.ts"
     },
     "./stack-frame/encodable/EncodableTriggerFrame.d.ts": {
@@ -1176,20 +1063,14 @@
     },
     "./stack-frame/encodable/EncodableTriggerFrame.js": {
       "types": "./dist/types/stack-frame/encodable/EncodableTriggerFrame.d.ts",
-      "import": "./dist/esm/stack-frame/encodable/EncodableTriggerFrame.mjs",
-      "require": "./dist/cjs/stack-frame/encodable/EncodableTriggerFrame.cjs",
       "default": "./src/stack-frame/encodable/EncodableTriggerFrame.ts"
     },
     "./stack-frame/encodable/EncodableTriggerFrame.mjs": {
       "types": "./dist/types/stack-frame/encodable/EncodableTriggerFrame.d.ts",
-      "import": "./dist/esm/stack-frame/encodable/EncodableTriggerFrame.mjs",
-      "require": "./dist/cjs/stack-frame/encodable/EncodableTriggerFrame.cjs",
       "default": "./src/stack-frame/encodable/EncodableTriggerFrame.ts"
     },
     "./stack-frame/encodable/EncodableTriggerFrame": {
       "types": "./dist/types/stack-frame/encodable/EncodableTriggerFrame.d.ts",
-      "import": "./dist/esm/stack-frame/encodable/EncodableTriggerFrame.mjs",
-      "require": "./dist/cjs/stack-frame/encodable/EncodableTriggerFrame.cjs",
       "default": "./src/stack-frame/encodable/EncodableTriggerFrame.ts"
     },
     "./stack-frame/encodable/toEncodableCallFrame.cjs": {
@@ -1306,8 +1187,6 @@
     },
     "./stack-frame/label/StackFrameLabel.cjs": {
       "types": "./dist/types/stack-frame/label/StackFrameLabel.d.ts",
-      "import": "./dist/esm/stack-frame/label/StackFrameLabel.mjs",
-      "require": "./dist/cjs/stack-frame/label/StackFrameLabel.cjs",
       "default": "./src/stack-frame/label/StackFrameLabel.ts"
     },
     "./stack-frame/label/StackFrameLabel.d.ts": {
@@ -1316,20 +1195,14 @@
     },
     "./stack-frame/label/StackFrameLabel.js": {
       "types": "./dist/types/stack-frame/label/StackFrameLabel.d.ts",
-      "import": "./dist/esm/stack-frame/label/StackFrameLabel.mjs",
-      "require": "./dist/cjs/stack-frame/label/StackFrameLabel.cjs",
       "default": "./src/stack-frame/label/StackFrameLabel.ts"
     },
     "./stack-frame/label/StackFrameLabel.mjs": {
       "types": "./dist/types/stack-frame/label/StackFrameLabel.d.ts",
-      "import": "./dist/esm/stack-frame/label/StackFrameLabel.mjs",
-      "require": "./dist/cjs/stack-frame/label/StackFrameLabel.cjs",
       "default": "./src/stack-frame/label/StackFrameLabel.ts"
     },
     "./stack-frame/label/StackFrameLabel": {
       "types": "./dist/types/stack-frame/label/StackFrameLabel.d.ts",
-      "import": "./dist/esm/stack-frame/label/StackFrameLabel.mjs",
-      "require": "./dist/cjs/stack-frame/label/StackFrameLabel.cjs",
       "default": "./src/stack-frame/label/StackFrameLabel.ts"
     },
     "./stack-frame/type/STACK_FRAME_TYPE_CALL.cjs": {
@@ -1440,8 +1313,6 @@
     },
     "./stack-frame/type/StackFrameTypeString.cjs": {
       "types": "./dist/types/stack-frame/type/StackFrameTypeString.d.ts",
-      "import": "./dist/esm/stack-frame/type/StackFrameTypeString.mjs",
-      "require": "./dist/cjs/stack-frame/type/StackFrameTypeString.cjs",
       "default": "./src/stack-frame/type/StackFrameTypeString.ts"
     },
     "./stack-frame/type/StackFrameTypeString.d.ts": {
@@ -1450,20 +1321,14 @@
     },
     "./stack-frame/type/StackFrameTypeString.js": {
       "types": "./dist/types/stack-frame/type/StackFrameTypeString.d.ts",
-      "import": "./dist/esm/stack-frame/type/StackFrameTypeString.mjs",
-      "require": "./dist/cjs/stack-frame/type/StackFrameTypeString.cjs",
       "default": "./src/stack-frame/type/StackFrameTypeString.ts"
     },
     "./stack-frame/type/StackFrameTypeString.mjs": {
       "types": "./dist/types/stack-frame/type/StackFrameTypeString.d.ts",
-      "import": "./dist/esm/stack-frame/type/StackFrameTypeString.mjs",
-      "require": "./dist/cjs/stack-frame/type/StackFrameTypeString.cjs",
       "default": "./src/stack-frame/type/StackFrameTypeString.ts"
     },
     "./stack-frame/type/StackFrameTypeString": {
       "types": "./dist/types/stack-frame/type/StackFrameTypeString.d.ts",
-      "import": "./dist/esm/stack-frame/type/StackFrameTypeString.mjs",
-      "require": "./dist/cjs/stack-frame/type/StackFrameTypeString.cjs",
       "default": "./src/stack-frame/type/StackFrameTypeString.ts"
     },
     "./stack-frame/type/StackFrameType": {
@@ -1502,8 +1367,6 @@
     },
     "./stack-trace/StackTrace.cjs": {
       "types": "./dist/types/stack-trace/StackTrace.d.ts",
-      "import": "./dist/esm/stack-trace/StackTrace.mjs",
-      "require": "./dist/cjs/stack-trace/StackTrace.cjs",
       "default": "./src/stack-trace/StackTrace.ts"
     },
     "./stack-trace/StackTrace.d.ts": {
@@ -1512,20 +1375,14 @@
     },
     "./stack-trace/StackTrace.js": {
       "types": "./dist/types/stack-trace/StackTrace.d.ts",
-      "import": "./dist/esm/stack-trace/StackTrace.mjs",
-      "require": "./dist/cjs/stack-trace/StackTrace.cjs",
       "default": "./src/stack-trace/StackTrace.ts"
     },
     "./stack-trace/StackTrace.mjs": {
       "types": "./dist/types/stack-trace/StackTrace.d.ts",
-      "import": "./dist/esm/stack-trace/StackTrace.mjs",
-      "require": "./dist/cjs/stack-trace/StackTrace.cjs",
       "default": "./src/stack-trace/StackTrace.ts"
     },
     "./stack-trace/StackTrace": {
       "types": "./dist/types/stack-trace/StackTrace.d.ts",
-      "import": "./dist/esm/stack-trace/StackTrace.mjs",
-      "require": "./dist/cjs/stack-trace/StackTrace.cjs",
       "default": "./src/stack-trace/StackTrace.ts"
     },
     "./stack-trace/createStackTrace.cjs": {
@@ -1614,8 +1471,6 @@
     },
     "./tap/label/TapLabel.cjs": {
       "types": "./dist/types/tap/label/TapLabel.d.ts",
-      "import": "./dist/esm/tap/label/TapLabel.mjs",
-      "require": "./dist/cjs/tap/label/TapLabel.cjs",
       "default": "./src/tap/label/TapLabel.ts"
     },
     "./tap/label/TapLabel.d.ts": {
@@ -1624,20 +1479,14 @@
     },
     "./tap/label/TapLabel.js": {
       "types": "./dist/types/tap/label/TapLabel.d.ts",
-      "import": "./dist/esm/tap/label/TapLabel.mjs",
-      "require": "./dist/cjs/tap/label/TapLabel.cjs",
       "default": "./src/tap/label/TapLabel.ts"
     },
     "./tap/label/TapLabel.mjs": {
       "types": "./dist/types/tap/label/TapLabel.d.ts",
-      "import": "./dist/esm/tap/label/TapLabel.mjs",
-      "require": "./dist/cjs/tap/label/TapLabel.cjs",
       "default": "./src/tap/label/TapLabel.ts"
     },
     "./tap/label/TapLabellerFunction.cjs": {
       "types": "./dist/types/tap/label/TapLabellerFunction.d.ts",
-      "import": "./dist/esm/tap/label/TapLabellerFunction.mjs",
-      "require": "./dist/cjs/tap/label/TapLabellerFunction.cjs",
       "default": "./src/tap/label/TapLabellerFunction.ts"
     },
     "./tap/label/TapLabellerFunction.d.ts": {
@@ -1646,26 +1495,18 @@
     },
     "./tap/label/TapLabellerFunction.js": {
       "types": "./dist/types/tap/label/TapLabellerFunction.d.ts",
-      "import": "./dist/esm/tap/label/TapLabellerFunction.mjs",
-      "require": "./dist/cjs/tap/label/TapLabellerFunction.cjs",
       "default": "./src/tap/label/TapLabellerFunction.ts"
     },
     "./tap/label/TapLabellerFunction.mjs": {
       "types": "./dist/types/tap/label/TapLabellerFunction.d.ts",
-      "import": "./dist/esm/tap/label/TapLabellerFunction.mjs",
-      "require": "./dist/cjs/tap/label/TapLabellerFunction.cjs",
       "default": "./src/tap/label/TapLabellerFunction.ts"
     },
     "./tap/label/TapLabellerFunction": {
       "types": "./dist/types/tap/label/TapLabellerFunction.d.ts",
-      "import": "./dist/esm/tap/label/TapLabellerFunction.mjs",
-      "require": "./dist/cjs/tap/label/TapLabellerFunction.cjs",
       "default": "./src/tap/label/TapLabellerFunction.ts"
     },
     "./tap/label/TapLabel": {
       "types": "./dist/types/tap/label/TapLabel.d.ts",
-      "import": "./dist/esm/tap/label/TapLabel.mjs",
-      "require": "./dist/cjs/tap/label/TapLabel.cjs",
       "default": "./src/tap/label/TapLabel.ts"
     },
     "./tap/label/labelTap.cjs": {
@@ -1754,8 +1595,6 @@
     },
     "./tracer/hook/registry/TracerHookRegistry.cjs": {
       "types": "./dist/types/tracer/hook/registry/TracerHookRegistry.d.ts",
-      "import": "./dist/esm/tracer/hook/registry/TracerHookRegistry.mjs",
-      "require": "./dist/cjs/tracer/hook/registry/TracerHookRegistry.cjs",
       "default": "./src/tracer/hook/registry/TracerHookRegistry.ts"
     },
     "./tracer/hook/registry/TracerHookRegistry.d.ts": {
@@ -1764,20 +1603,14 @@
     },
     "./tracer/hook/registry/TracerHookRegistry.js": {
       "types": "./dist/types/tracer/hook/registry/TracerHookRegistry.d.ts",
-      "import": "./dist/esm/tracer/hook/registry/TracerHookRegistry.mjs",
-      "require": "./dist/cjs/tracer/hook/registry/TracerHookRegistry.cjs",
       "default": "./src/tracer/hook/registry/TracerHookRegistry.ts"
     },
     "./tracer/hook/registry/TracerHookRegistry.mjs": {
       "types": "./dist/types/tracer/hook/registry/TracerHookRegistry.d.ts",
-      "import": "./dist/esm/tracer/hook/registry/TracerHookRegistry.mjs",
-      "require": "./dist/cjs/tracer/hook/registry/TracerHookRegistry.cjs",
       "default": "./src/tracer/hook/registry/TracerHookRegistry.ts"
     },
     "./tracer/hook/registry/TracerHookRegistry": {
       "types": "./dist/types/tracer/hook/registry/TracerHookRegistry.d.ts",
-      "import": "./dist/esm/tracer/hook/registry/TracerHookRegistry.mjs",
-      "require": "./dist/cjs/tracer/hook/registry/TracerHookRegistry.cjs",
       "default": "./src/tracer/hook/registry/TracerHookRegistry.ts"
     },
     "./tracer/hook/registry/createTracerHookRegistry.cjs": {
@@ -1838,8 +1671,6 @@
     },
     "./tracer/hooks/handle-stack-frame/HandleStackFrameHook.cjs": {
       "types": "./dist/types/tracer/hooks/handle-stack-frame/HandleStackFrameHook.d.ts",
-      "import": "./dist/esm/tracer/hooks/handle-stack-frame/HandleStackFrameHook.mjs",
-      "require": "./dist/cjs/tracer/hooks/handle-stack-frame/HandleStackFrameHook.cjs",
       "default": "./src/tracer/hooks/handle-stack-frame/HandleStackFrameHook.ts"
     },
     "./tracer/hooks/handle-stack-frame/HandleStackFrameHook.d.ts": {
@@ -1848,20 +1679,14 @@
     },
     "./tracer/hooks/handle-stack-frame/HandleStackFrameHook.js": {
       "types": "./dist/types/tracer/hooks/handle-stack-frame/HandleStackFrameHook.d.ts",
-      "import": "./dist/esm/tracer/hooks/handle-stack-frame/HandleStackFrameHook.mjs",
-      "require": "./dist/cjs/tracer/hooks/handle-stack-frame/HandleStackFrameHook.cjs",
       "default": "./src/tracer/hooks/handle-stack-frame/HandleStackFrameHook.ts"
     },
     "./tracer/hooks/handle-stack-frame/HandleStackFrameHook.mjs": {
       "types": "./dist/types/tracer/hooks/handle-stack-frame/HandleStackFrameHook.d.ts",
-      "import": "./dist/esm/tracer/hooks/handle-stack-frame/HandleStackFrameHook.mjs",
-      "require": "./dist/cjs/tracer/hooks/handle-stack-frame/HandleStackFrameHook.cjs",
       "default": "./src/tracer/hooks/handle-stack-frame/HandleStackFrameHook.ts"
     },
     "./tracer/hooks/handle-stack-frame/HandleStackFrameHookPayload.cjs": {
       "types": "./dist/types/tracer/hooks/handle-stack-frame/HandleStackFrameHookPayload.d.ts",
-      "import": "./dist/esm/tracer/hooks/handle-stack-frame/HandleStackFrameHookPayload.mjs",
-      "require": "./dist/cjs/tracer/hooks/handle-stack-frame/HandleStackFrameHookPayload.cjs",
       "default": "./src/tracer/hooks/handle-stack-frame/HandleStackFrameHookPayload.ts"
     },
     "./tracer/hooks/handle-stack-frame/HandleStackFrameHookPayload.d.ts": {
@@ -1870,26 +1695,18 @@
     },
     "./tracer/hooks/handle-stack-frame/HandleStackFrameHookPayload.js": {
       "types": "./dist/types/tracer/hooks/handle-stack-frame/HandleStackFrameHookPayload.d.ts",
-      "import": "./dist/esm/tracer/hooks/handle-stack-frame/HandleStackFrameHookPayload.mjs",
-      "require": "./dist/cjs/tracer/hooks/handle-stack-frame/HandleStackFrameHookPayload.cjs",
       "default": "./src/tracer/hooks/handle-stack-frame/HandleStackFrameHookPayload.ts"
     },
     "./tracer/hooks/handle-stack-frame/HandleStackFrameHookPayload.mjs": {
       "types": "./dist/types/tracer/hooks/handle-stack-frame/HandleStackFrameHookPayload.d.ts",
-      "import": "./dist/esm/tracer/hooks/handle-stack-frame/HandleStackFrameHookPayload.mjs",
-      "require": "./dist/cjs/tracer/hooks/handle-stack-frame/HandleStackFrameHookPayload.cjs",
       "default": "./src/tracer/hooks/handle-stack-frame/HandleStackFrameHookPayload.ts"
     },
     "./tracer/hooks/handle-stack-frame/HandleStackFrameHookPayload": {
       "types": "./dist/types/tracer/hooks/handle-stack-frame/HandleStackFrameHookPayload.d.ts",
-      "import": "./dist/esm/tracer/hooks/handle-stack-frame/HandleStackFrameHookPayload.mjs",
-      "require": "./dist/cjs/tracer/hooks/handle-stack-frame/HandleStackFrameHookPayload.cjs",
       "default": "./src/tracer/hooks/handle-stack-frame/HandleStackFrameHookPayload.ts"
     },
     "./tracer/hooks/handle-stack-frame/HandleStackFrameHook": {
       "types": "./dist/types/tracer/hooks/handle-stack-frame/HandleStackFrameHook.d.ts",
-      "import": "./dist/esm/tracer/hooks/handle-stack-frame/HandleStackFrameHook.mjs",
-      "require": "./dist/cjs/tracer/hooks/handle-stack-frame/HandleStackFrameHook.cjs",
       "default": "./src/tracer/hooks/handle-stack-frame/HandleStackFrameHook.ts"
     },
     "./tracer/hooks/handle-stack-frame/createHandleStackFrameHook.cjs": {
@@ -1950,8 +1767,6 @@
     },
     "./tracer/hooks/post-call/PostCallHook.cjs": {
       "types": "./dist/types/tracer/hooks/post-call/PostCallHook.d.ts",
-      "import": "./dist/esm/tracer/hooks/post-call/PostCallHook.mjs",
-      "require": "./dist/cjs/tracer/hooks/post-call/PostCallHook.cjs",
       "default": "./src/tracer/hooks/post-call/PostCallHook.ts"
     },
     "./tracer/hooks/post-call/PostCallHook.d.ts": {
@@ -1960,20 +1775,14 @@
     },
     "./tracer/hooks/post-call/PostCallHook.js": {
       "types": "./dist/types/tracer/hooks/post-call/PostCallHook.d.ts",
-      "import": "./dist/esm/tracer/hooks/post-call/PostCallHook.mjs",
-      "require": "./dist/cjs/tracer/hooks/post-call/PostCallHook.cjs",
       "default": "./src/tracer/hooks/post-call/PostCallHook.ts"
     },
     "./tracer/hooks/post-call/PostCallHook.mjs": {
       "types": "./dist/types/tracer/hooks/post-call/PostCallHook.d.ts",
-      "import": "./dist/esm/tracer/hooks/post-call/PostCallHook.mjs",
-      "require": "./dist/cjs/tracer/hooks/post-call/PostCallHook.cjs",
       "default": "./src/tracer/hooks/post-call/PostCallHook.ts"
     },
     "./tracer/hooks/post-call/PostCallHookPayload.cjs": {
       "types": "./dist/types/tracer/hooks/post-call/PostCallHookPayload.d.ts",
-      "import": "./dist/esm/tracer/hooks/post-call/PostCallHookPayload.mjs",
-      "require": "./dist/cjs/tracer/hooks/post-call/PostCallHookPayload.cjs",
       "default": "./src/tracer/hooks/post-call/PostCallHookPayload.ts"
     },
     "./tracer/hooks/post-call/PostCallHookPayload.d.ts": {
@@ -1982,26 +1791,18 @@
     },
     "./tracer/hooks/post-call/PostCallHookPayload.js": {
       "types": "./dist/types/tracer/hooks/post-call/PostCallHookPayload.d.ts",
-      "import": "./dist/esm/tracer/hooks/post-call/PostCallHookPayload.mjs",
-      "require": "./dist/cjs/tracer/hooks/post-call/PostCallHookPayload.cjs",
       "default": "./src/tracer/hooks/post-call/PostCallHookPayload.ts"
     },
     "./tracer/hooks/post-call/PostCallHookPayload.mjs": {
       "types": "./dist/types/tracer/hooks/post-call/PostCallHookPayload.d.ts",
-      "import": "./dist/esm/tracer/hooks/post-call/PostCallHookPayload.mjs",
-      "require": "./dist/cjs/tracer/hooks/post-call/PostCallHookPayload.cjs",
       "default": "./src/tracer/hooks/post-call/PostCallHookPayload.ts"
     },
     "./tracer/hooks/post-call/PostCallHookPayload": {
       "types": "./dist/types/tracer/hooks/post-call/PostCallHookPayload.d.ts",
-      "import": "./dist/esm/tracer/hooks/post-call/PostCallHookPayload.mjs",
-      "require": "./dist/cjs/tracer/hooks/post-call/PostCallHookPayload.cjs",
       "default": "./src/tracer/hooks/post-call/PostCallHookPayload.ts"
     },
     "./tracer/hooks/post-call/PostCallHook": {
       "types": "./dist/types/tracer/hooks/post-call/PostCallHook.d.ts",
-      "import": "./dist/esm/tracer/hooks/post-call/PostCallHook.mjs",
-      "require": "./dist/cjs/tracer/hooks/post-call/PostCallHook.cjs",
       "default": "./src/tracer/hooks/post-call/PostCallHook.ts"
     },
     "./tracer/hooks/post-call/createPostCallHook.cjs": {
@@ -2062,8 +1863,6 @@
     },
     "./tracer/hooks/pre-call/PreCallHook.cjs": {
       "types": "./dist/types/tracer/hooks/pre-call/PreCallHook.d.ts",
-      "import": "./dist/esm/tracer/hooks/pre-call/PreCallHook.mjs",
-      "require": "./dist/cjs/tracer/hooks/pre-call/PreCallHook.cjs",
       "default": "./src/tracer/hooks/pre-call/PreCallHook.ts"
     },
     "./tracer/hooks/pre-call/PreCallHook.d.ts": {
@@ -2072,20 +1871,14 @@
     },
     "./tracer/hooks/pre-call/PreCallHook.js": {
       "types": "./dist/types/tracer/hooks/pre-call/PreCallHook.d.ts",
-      "import": "./dist/esm/tracer/hooks/pre-call/PreCallHook.mjs",
-      "require": "./dist/cjs/tracer/hooks/pre-call/PreCallHook.cjs",
       "default": "./src/tracer/hooks/pre-call/PreCallHook.ts"
     },
     "./tracer/hooks/pre-call/PreCallHook.mjs": {
       "types": "./dist/types/tracer/hooks/pre-call/PreCallHook.d.ts",
-      "import": "./dist/esm/tracer/hooks/pre-call/PreCallHook.mjs",
-      "require": "./dist/cjs/tracer/hooks/pre-call/PreCallHook.cjs",
       "default": "./src/tracer/hooks/pre-call/PreCallHook.ts"
     },
     "./tracer/hooks/pre-call/PreCallHookPayload.cjs": {
       "types": "./dist/types/tracer/hooks/pre-call/PreCallHookPayload.d.ts",
-      "import": "./dist/esm/tracer/hooks/pre-call/PreCallHookPayload.mjs",
-      "require": "./dist/cjs/tracer/hooks/pre-call/PreCallHookPayload.cjs",
       "default": "./src/tracer/hooks/pre-call/PreCallHookPayload.ts"
     },
     "./tracer/hooks/pre-call/PreCallHookPayload.d.ts": {
@@ -2094,26 +1887,18 @@
     },
     "./tracer/hooks/pre-call/PreCallHookPayload.js": {
       "types": "./dist/types/tracer/hooks/pre-call/PreCallHookPayload.d.ts",
-      "import": "./dist/esm/tracer/hooks/pre-call/PreCallHookPayload.mjs",
-      "require": "./dist/cjs/tracer/hooks/pre-call/PreCallHookPayload.cjs",
       "default": "./src/tracer/hooks/pre-call/PreCallHookPayload.ts"
     },
     "./tracer/hooks/pre-call/PreCallHookPayload.mjs": {
       "types": "./dist/types/tracer/hooks/pre-call/PreCallHookPayload.d.ts",
-      "import": "./dist/esm/tracer/hooks/pre-call/PreCallHookPayload.mjs",
-      "require": "./dist/cjs/tracer/hooks/pre-call/PreCallHookPayload.cjs",
       "default": "./src/tracer/hooks/pre-call/PreCallHookPayload.ts"
     },
     "./tracer/hooks/pre-call/PreCallHookPayload": {
       "types": "./dist/types/tracer/hooks/pre-call/PreCallHookPayload.d.ts",
-      "import": "./dist/esm/tracer/hooks/pre-call/PreCallHookPayload.mjs",
-      "require": "./dist/cjs/tracer/hooks/pre-call/PreCallHookPayload.cjs",
       "default": "./src/tracer/hooks/pre-call/PreCallHookPayload.ts"
     },
     "./tracer/hooks/pre-call/PreCallHook": {
       "types": "./dist/types/tracer/hooks/pre-call/PreCallHook.d.ts",
-      "import": "./dist/esm/tracer/hooks/pre-call/PreCallHook.mjs",
-      "require": "./dist/cjs/tracer/hooks/pre-call/PreCallHook.cjs",
       "default": "./src/tracer/hooks/pre-call/PreCallHook.ts"
     },
     "./tracer/hooks/pre-call/createPreCallHook.cjs": {
@@ -2146,8 +1931,6 @@
     },
     "./tracer/options/HookTracingOptions.cjs": {
       "types": "./dist/types/tracer/options/HookTracingOptions.d.ts",
-      "import": "./dist/esm/tracer/options/HookTracingOptions.mjs",
-      "require": "./dist/cjs/tracer/options/HookTracingOptions.cjs",
       "default": "./src/tracer/options/HookTracingOptions.ts"
     },
     "./tracer/options/HookTracingOptions.d.ts": {
@@ -2156,26 +1939,18 @@
     },
     "./tracer/options/HookTracingOptions.js": {
       "types": "./dist/types/tracer/options/HookTracingOptions.d.ts",
-      "import": "./dist/esm/tracer/options/HookTracingOptions.mjs",
-      "require": "./dist/cjs/tracer/options/HookTracingOptions.cjs",
       "default": "./src/tracer/options/HookTracingOptions.ts"
     },
     "./tracer/options/HookTracingOptions.mjs": {
       "types": "./dist/types/tracer/options/HookTracingOptions.d.ts",
-      "import": "./dist/esm/tracer/options/HookTracingOptions.mjs",
-      "require": "./dist/cjs/tracer/options/HookTracingOptions.cjs",
       "default": "./src/tracer/options/HookTracingOptions.ts"
     },
     "./tracer/options/HookTracingOptions": {
       "types": "./dist/types/tracer/options/HookTracingOptions.d.ts",
-      "import": "./dist/esm/tracer/options/HookTracingOptions.mjs",
-      "require": "./dist/cjs/tracer/options/HookTracingOptions.cjs",
       "default": "./src/tracer/options/HookTracingOptions.ts"
     },
     "./tracer/options/TracerOptions.cjs": {
       "types": "./dist/types/tracer/options/TracerOptions.d.ts",
-      "import": "./dist/esm/tracer/options/TracerOptions.mjs",
-      "require": "./dist/cjs/tracer/options/TracerOptions.cjs",
       "default": "./src/tracer/options/TracerOptions.ts"
     },
     "./tracer/options/TracerOptions.d.ts": {
@@ -2184,26 +1959,18 @@
     },
     "./tracer/options/TracerOptions.js": {
       "types": "./dist/types/tracer/options/TracerOptions.d.ts",
-      "import": "./dist/esm/tracer/options/TracerOptions.mjs",
-      "require": "./dist/cjs/tracer/options/TracerOptions.cjs",
       "default": "./src/tracer/options/TracerOptions.ts"
     },
     "./tracer/options/TracerOptions.mjs": {
       "types": "./dist/types/tracer/options/TracerOptions.d.ts",
-      "import": "./dist/esm/tracer/options/TracerOptions.mjs",
-      "require": "./dist/cjs/tracer/options/TracerOptions.cjs",
       "default": "./src/tracer/options/TracerOptions.ts"
     },
     "./tracer/options/TracerOptions": {
       "types": "./dist/types/tracer/options/TracerOptions.d.ts",
-      "import": "./dist/esm/tracer/options/TracerOptions.mjs",
-      "require": "./dist/cjs/tracer/options/TracerOptions.cjs",
       "default": "./src/tracer/options/TracerOptions.ts"
     },
     "./tracer/stack/CallSite.cjs": {
       "types": "./dist/types/tracer/stack/CallSite.d.ts",
-      "import": "./dist/esm/tracer/stack/CallSite.mjs",
-      "require": "./dist/cjs/tracer/stack/CallSite.cjs",
       "default": "./src/tracer/stack/CallSite.ts"
     },
     "./tracer/stack/CallSite.d.ts": {
@@ -2212,20 +1979,14 @@
     },
     "./tracer/stack/CallSite.js": {
       "types": "./dist/types/tracer/stack/CallSite.d.ts",
-      "import": "./dist/esm/tracer/stack/CallSite.mjs",
-      "require": "./dist/cjs/tracer/stack/CallSite.cjs",
       "default": "./src/tracer/stack/CallSite.ts"
     },
     "./tracer/stack/CallSite.mjs": {
       "types": "./dist/types/tracer/stack/CallSite.d.ts",
-      "import": "./dist/esm/tracer/stack/CallSite.mjs",
-      "require": "./dist/cjs/tracer/stack/CallSite.cjs",
       "default": "./src/tracer/stack/CallSite.ts"
     },
     "./tracer/stack/CallSite": {
       "types": "./dist/types/tracer/stack/CallSite.d.ts",
-      "import": "./dist/esm/tracer/stack/CallSite.mjs",
-      "require": "./dist/cjs/tracer/stack/CallSite.cjs",
       "default": "./src/tracer/stack/CallSite.ts"
     },
     "./tracer/traceHook.cjs": {
