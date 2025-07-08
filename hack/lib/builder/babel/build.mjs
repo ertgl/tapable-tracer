@@ -61,6 +61,11 @@ export function build(options)
     throw new TypeError("The custom Babel builder does not support `ConfigFunction`.");
   }
 
+  if (baseTransformOptions.sourceMaps)
+  {
+    throw new TypeError("The custom Babel builder does not support linking source-maps.");
+  }
+
   const sourceFileDirentIterator = iterateSourceFileDirents(
     srcDirectoryPath,
     {

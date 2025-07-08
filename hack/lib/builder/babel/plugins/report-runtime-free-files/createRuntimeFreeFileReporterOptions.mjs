@@ -24,11 +24,6 @@ export function createRuntimeFreeFileReporterOptions()
     isRuntimeFree,
   )
   {
-    if (!isRuntimeFree)
-    {
-      return;
-    }
-
     // @ts-expect-error - The property `isRuntimeFree` on `BabelFile.metadata` is not typed.
     programState.file.metadata.isRuntimeFree = isRuntimeFree;
   }

@@ -11,7 +11,7 @@
     "build": "yarn build:clean && yarn build::types && yarn build::cjs && yarn build::esm && yarn exports:update",
     "build::cjs": "node hack/scripts/build-cjs.mjs",
     "build::esm": "node hack/scripts/build-esm.mjs",
-    "build::types": "tsc --project ./tsconfig.output.types.json && node -e \"console.log('Successfully compiled type declaration files.')\"",
+    "build::types": "tsc --project ./tsconfig.output.types.json && node -e \"console.log('Successfully compiled source files for dts format with tsc.')\"",
     "build:clean": "rimraf dist",
     "changeset:add": "changeset",
     "changeset:tag": "changeset tag",
