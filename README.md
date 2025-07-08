@@ -1,7 +1,7 @@
 # tapable-tracer
 
 Trace the connections and flows between
-[tapable](https://github.com/webpack/tapable) hooks.
+[tapable](https://github.com/webpack/tapable) hooks in real-time.
 
 Collect structured stack traces, and optionally export them as UML diagrams.
 
@@ -11,12 +11,16 @@ Collect structured stack traces, and optionally export them as UML diagrams.
 - [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
-  - [UML Export](#uml-export)
+  - [Initialize Tracer](#initialize-tracer)
+  - [Register Hooks](#register-hooks)
+  - [Export Frames](#export-frames)
+  - [Generate UML](#generate-uml)
+  - [Tracer Internals](#tracer-internals)
 - [Configuration](#configuration)
-  - [Tracer Options](#tracer-options)
-  - [Hook Tracing Options](#hook-tracing-options)
+  - [Global Options](#global-options)
+  - [Per-Hook Options](#per-hook-options)
 - [Technical Details](#technical-details)
-  - [Output](#output)
+  - [Examples](#examples)
 - [License](#license)
 
 ## Overview
@@ -45,19 +49,15 @@ View the full interactive version here:
 
 ## Features
 
-- **Real-time**: Observe `tap` and `call` flows with a callback.
-- **Structured**: Frames are stored as a directed graph.
-- **Dynamic**: No need to alter the hook source code or application logic.
-- **Configurable**: Include or exclude the triggers, customize labels.
-- **UML Support**: Generate a UML representation of your system from the trace.
-- **Independent**: Works with any tapable usage, including but not limited to
-  webpack.
+- **Real-time**: Observe hooks as they're tapped and called.
+- **Structured**: Frames represent a directed graph.
+- **Dynamic**: No patching or rewriting needed.
+- **UML Export**: Visualize traces via Mermaid diagrams.
+- **Configurable**: Include or exclude the triggers.
+- **Customizable**: Embed information to be visible on diagrams.
+- **Universal**: Works with any tapable-based code, not just webpack.
 
 ## Installation
-
-To install `tapable-tracer`, use your favorite package manager.
-
-For example, with Yarn:
 
 ```sh
 yarn add tapable-tracer
@@ -65,63 +65,80 @@ yarn add tapable-tracer
 
 ## Usage
 
-Import the tracer utilities and start tracing your tapable hooks.
+### Initialize Tracer
+
+To start tracing hooks, first create a tracer:
 
 ```ts
-import {
-  createTracer,
-  dumpStackTrace,
-  traceHook,
-} from "tapable-tracer";
+import { createTracer } from "tapable-tracer";
 
-// Create a tracer.
 const tracer = createTracer();
+```
 
-// Start tracing the hooks.
+### Register Hooks
+
+To capture hook activity, register each hook with the tracer:
+
+```ts
+import { traceHook } from "tapable-tracer";
+
 traceHook(tracer, hook1);
 traceHook(tracer, hook2);
+```
 
-// Get the encodable frames.
+### Export Frames
+
+Export the captured frames as encodable array:
+
+```ts
+import { dumpStackTrace } from "tapable-tracer";
+
 const frames = dumpStackTrace(tracer.trace);
 ```
 
-### UML Export
+### Generate UML
 
-`tapable-tracer` has a built-in extension for exporting the collected trace
-data as a UML diagram code using the Mermaid format. This allows for
-visualization of the relationships and flows between the tapable hooks.
+Generate a Mermaid-compatible diagram code:
 
 ```ts
 import { generateMermaidUML } from "tapable-tracer/extensions/mermaid";
 
-// Export the diagram code.
 const uml = generateMermaidUML(frames);
 ```
 
+### Tracer Internals
+
+`tapable-tracer` exposes its own hooks (via tapable) for further
+instrumentation:
+
+- [PreCallHook](src/tracer/hooks/pre-call/PreCallHook.ts): Before a `Tap.fn`
+  called.
+- [PostCallHook](src/tracer/hooks/post-call/PostCallHook.ts): After a `Tap.fn`
+  completes.
+- [HandleStackFrameHook](src/tracer/hooks/handle-stack-frame/HandleStackFrameHook.ts):
+  When a new stack frame is emitted.
+
 ## Configuration
 
-### Tracer Options
+### Global Options
 
-To configure the tracer, pass a [`TracerOptions`](src/tracer/TracerOptions.ts)
-object to the `createTracer` function.
+Pass [`TracerOptions`](src/tracer/options/TracerOptions.ts) to
+`createTracer()`:
 
-The available options are listed below:
+The available options are:
 
-- **handleStackFrame** ([`StackFrameHandler`](src/tracer/callbacks/stack-frame-handler/StackFrameHandler.ts)):
-  Real-time callback function.
 - **interceptorName** (`string`): Name of the interceptor to use.
 - **labelHook** ([`HookLabellerFunction`](src/hook/label/HookLabellerFunction.ts)):
   Function to label hooks.
 - **labelTap** ([`TapLabellerFunction`](src/tap/label/TapLabellerFunction.ts)):
   Function to label taps.
 
-### Hook Tracing Options
+### Per-Hook Options
 
-To configure the process of tracing a single hook, pass a
-[`HookTracingOptions`](src/tracer/HookTracingOptions.ts) object to the
-`traceHook` function.
+Pass [`HookTracingOptions`](src/tracer/options/HookTracingOptions.ts) to
+`traceHook()`:
 
-The available options are listed below:
+The available options are:
 
 - **includeTrigger** (`boolean`): Whether to include the trigger in the trace.
 - **key** (`string`): The hook's identifier in a container data-structure
@@ -129,26 +146,20 @@ The available options are listed below:
 
 ## Technical Details
 
-This section describes the internal mechanism of the tracer and how it captures
-the frames of the hooks.
-
 The tracer captures three different frame types:
 
-- [`CallFrame`](src/stack-frame/CallFrame.ts): Represents a call to a tapable
-  hook.
-- [`TapFrame`](src/stack-frame/TapFrame.ts): Represents a tap added to a hook.
-- [`TriggerFrame`](src/stack-frame/TriggerFrame.ts): Represents the
-  deterministic callback point of a tap. Useful if the tap shares the same name
-  with the parent trigger (such as plugins in webpack).
+- [`TapFrame`](src/stack-frame/TapFrame.ts): A tap is registered to a hook.
+- [`TriggerFrame`](src/stack-frame/TriggerFrame.ts): An delegate is called
+  before the actual `Tap.fn`.
+- [`CallFrame`](src/stack-frame/CallFrame.ts): A `Tap.fn` is called.
 
 Additionally, it uses a [`CallSite`](src/tracer/stack/CallSite.ts) context
 object per tap, for storing the hook, tap, and the original callback function.
 
-To capture these frames the tracer uses two separate states:
+To capture the frames the tracer uses two separate states:
 
-1. Stack: A stack of `CallSite` objects that represents the current call
-  stack.
-2. Trace: A list of frames that represents the entire trace of the hooks.
+1. Stack: A stack of `CallSite` objects that represents the current call stack.
+2. Trace: A list of frames that represents the entire trace of the flows.
 
 For tracing a hook, the tracer intercepts the hook's `tap`, `call` and `loop`
 events.
@@ -170,10 +181,7 @@ When a `call` or `loop` event occurs:
 4. Pop the `CallSite` object from the `stack`.
 5. Create and push a `CallFrame` onto the `trace` list.
 
-### Output
-
-The output of the tracer is a list of frames that can be used to generate
-UML diagrams or other visualizations.
+### Examples
 
 <details>
   <summary>
@@ -191,6 +199,12 @@ UML diagrams or other visualizations.
     { callee: 'hook4', caller: 'hook3', type: 'call' }
   ]
   ```
+</details>
+
+<details>
+  <summary>
+    <b>Example: Graph visualization of the output without triggers</b>
+  </summary>
 
   <picture>
     <source
@@ -223,6 +237,12 @@ UML diagrams or other visualizations.
     { callee: 'hook4', caller: 'Plugin4', type: 'call' }
   ]
   ```
+</details>
+
+<details>
+  <summary>
+    <b>Example: Graph visualization of the output with triggers</b>
+  </summary>
 
   <picture>
     <source
