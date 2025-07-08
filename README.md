@@ -149,7 +149,7 @@ The available options are:
 The tracer captures three different frame types:
 
 - [`TapFrame`](src/stack-frame/TapFrame.ts): A tap is registered to a hook.
-- [`TriggerFrame`](src/stack-frame/TriggerFrame.ts): An delegate is called
+- [`TriggerFrame`](src/stack-frame/TriggerFrame.ts): A delegate is called
   before the actual `Tap.fn`.
 - [`CallFrame`](src/stack-frame/CallFrame.ts): A `Tap.fn` is called.
 
