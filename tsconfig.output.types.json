@@ -1,12 +1,19 @@
 {
   "extends": "./tsconfig.scope.src.json",
   "compilerOptions": {
+    "baseUrl": "./src",
     "declaration": true,
     "emitDeclarationOnly": true,
+    "module": "ESNext",
+    "moduleResolution": "bundler",
     "noEmit": false,
-    "outDir": "./dist/types"
+    "outDir": "./dist/types",
+    "rootDir": "./src"
   },
   "exclude": [
     "**/__tests__/**/*"
+  ],
+  "include": [
+    "./src/**/*"
   ]
 }

@@ -1,5 +1,5 @@
 {
-  "extends": "./tsconfig.partial.base.json",
+  "extends": "./config/typescript/tsconfig.partial.base.json",
   "compilerOptions": {
     "baseUrl": "./dist/types",
     "module": "ESNext",
