@@ -65,8 +65,6 @@ export class Tracer
     args: unknown[],
   ): unknown
   {
-    this.stack.push(callSite);
-
     const callback = (
       ...callbackArgs: unknown[]
     ): void =>
@@ -74,8 +72,17 @@ export class Tracer
       // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-function-type
       (args[args.length - 1] as Function)(...callbackArgs);
 
+      this.tracerHooks.postCall.call({
+        fn: callSite.fn,
+        hook: callSite.hook,
+        options,
+        tap: callSite.tap,
+      });
+
       this.stack.pop();
     };
+
+    this.stack.push(callSite);
 
     this.tracerHooks.preCall.call({
       fn: callSite.fn,
@@ -88,13 +95,6 @@ export class Tracer
       ...args.slice(0, args.length - 1),
       callback,
     );
-
-    this.tracerHooks.postCall.call({
-      fn: callSite.fn,
-      hook: callSite.hook,
-      options,
-      tap: callSite.tap,
-    });
 
     return result;
   }
