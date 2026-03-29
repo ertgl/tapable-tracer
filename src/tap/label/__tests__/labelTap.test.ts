@@ -1,4 +1,9 @@
-import { jest } from "@jest/globals";
+import {
+  describe,
+  expect,
+  it,
+  jest,
+} from "@jest/globals";
 import {
   type FullTap,
   SyncHook,
@@ -26,6 +31,7 @@ describe(
                 hook,
                 tap,
                 0,
+                {},
               ),
             ).toBe(
               "test",
@@ -36,6 +42,7 @@ describe(
                 hook,
                 tap,
                 1,
+                {},
               ),
             ).toBe(
               "test",
@@ -79,6 +86,7 @@ describe(
               hook,
               tap,
               0,
+              {},
             );
 
             expect(

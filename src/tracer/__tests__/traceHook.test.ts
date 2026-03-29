@@ -1,3 +1,8 @@
+import {
+  describe,
+  expect,
+  it,
+} from "@jest/globals";
 import { SyncHook } from "tapable";
 
 import { createTracer } from "../createTracer";

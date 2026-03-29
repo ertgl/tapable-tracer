@@ -1,3 +1,9 @@
+import {
+  describe,
+  expect,
+  it,
+} from "@jest/globals";
+
 import type { CallFrame } from "../../CallFrame";
 import { createCallFrame } from "../../createCallFrame";
 import { STACK_FRAME_TYPE_CALL } from "../../type/STACK_FRAME_TYPE_CALL";

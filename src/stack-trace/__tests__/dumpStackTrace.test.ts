@@ -1,3 +1,9 @@
+import {
+  describe,
+  expect,
+  it,
+} from "@jest/globals";
+
 import { createCallFrame } from "../../stack-frame/createCallFrame";
 import { createTapFrame } from "../../stack-frame/createTapFrame";
 import { createStackTrace } from "../createStackTrace";

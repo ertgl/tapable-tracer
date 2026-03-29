@@ -1,3 +1,9 @@
+import {
+  describe,
+  expect,
+  it,
+} from "@jest/globals";
+
 import { createTapFrame } from "../createTapFrame";
 import type { TapFrame } from "../TapFrame";
 import { STACK_FRAME_TYPE_TAP } from "../type/STACK_FRAME_TYPE_TAP";
