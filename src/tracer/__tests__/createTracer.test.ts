@@ -1,3 +1,9 @@
+import {
+  describe,
+  expect,
+  it,
+} from "@jest/globals";
+
 import { createTracer } from "../createTracer";
 import { Tracer } from "../Tracer";
 

@@ -1,3 +1,9 @@
+import {
+  describe,
+  expect,
+  it,
+} from "@jest/globals";
+
 import { createTriggerFrame } from "../../createTriggerFrame";
 import type { TriggerFrame } from "../../TriggerFrame";
 import { STACK_FRAME_TYPE_TRIGGER } from "../../type/STACK_FRAME_TYPE_TRIGGER";

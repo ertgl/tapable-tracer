@@ -1,3 +1,9 @@
+import {
+  describe,
+  expect,
+  it,
+} from "@jest/globals";
+
 import { castStackFrameType } from "../castStackFrameType";
 import { STACK_FRAME_TYPE_CALL } from "../STACK_FRAME_TYPE_CALL";
 import { STACK_FRAME_TYPE_TAP } from "../STACK_FRAME_TYPE_TAP";
