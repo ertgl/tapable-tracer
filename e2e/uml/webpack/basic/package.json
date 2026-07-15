@@ -7,7 +7,7 @@
     "codegen:uml": "node codegen-uml.mjs"
   },
   "devDependencies": {
-    "webpack": "^5.104.1"
+    "webpack": "^5.108.4"
   },
   "files": [
     "./package.json"

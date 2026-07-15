@@ -9,7 +9,7 @@
     "w:foreach::parallel::topological": "yarn w:foreach::parallel --topological-dev"
   },
   "devDependencies": {
-    "rimraf": "^6.0.1",
+    "rimraf": "^6.1.3",
     "tapable-tracer": "*"
   },
   "workspaces": [
